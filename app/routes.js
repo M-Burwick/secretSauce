@@ -54,8 +54,7 @@ module.exports = function(app, passport) {
         }
     
         };
-        algo(value);
-       
+      algo(value);
 
 
     })
@@ -131,15 +130,15 @@ module.exports = function(app, passport) {
         res.send(err);
       } else {     
         vehicle.buyer.push(decoded);
-        User.findById(decoded._id, function(err, user){
-            user.car.push(vehicle);
-            user.save();
-        })
         vehicle.save();
         console.log(vehicle);
         res.json(vehicle);
-    }
-
+    }   
+    //push 
+    User.findById(decoded._id, function(err, user){
+            user.car.push(vehicle);
+            user.save();
+        })
   })
 })
   //signup a new User who is a buyer ill probably rename next commit 
@@ -161,7 +160,7 @@ module.exports = function(app, passport) {
     }
 });
     //create new vehicle post and user associated with car
-  app.post('/postCar', function(req, res) {
+  app.post('/signupCar', function(req, res) {
         if (!req.body.make || !req.body.model) {
          res.json({success: false, msg: 'Please pass name and password.'});
         } else {
