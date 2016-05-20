@@ -1,0 +1,58 @@
+
+-Note all vehicles have one to one relationship with seller so they are within same doc
+{
+    "_id" : ObjectId("573aa20de21ed2d09ab0cff0"),
+    "make" : "buick",
+    "model" : "roadster",
+    "year" : 2015,
+    "email" : "macy@gray.com",
+    "password" : "$2a$10$Pm7nHbEmo3go1Lip1YZjWem3BkEtrehUbrOqzt8NNKIGgZwnxODZ2",
+    "buyer" : [ 
+        null, 
+        null, 
+        null, 
+        {
+            "_id" : "573a5ee2c96ab75e89e69a8f",
+            "email" : "try@mail.com",
+            "password" : "$2a$10$nnzaFHNm51t7QCp/E6n.9uIf8wkbk03E2HYBeHEbnBHNHqqgwbKJ.",
+            "__v" : 0
+        }
+    ],
+    "__v" : 4
+}
+
+
+Route: Get all Vehicles 
+.get('/vehicles')
+-search page for vehicles get all the vehicles so they can be filtered based on user preference
+
+Route: Seller login
+.post('/carLogin')
+-seperate signin form or simply a button to designate the car login
+Route: Vehicle Profile
+-Shows vehicle info
+.get('/vehicleProfile')
+-seperate signin form or simply a button to designate the car login
+
+
+Route: Profile(Buyer)
+.get('/profile')
+-feeds buyer profile relevant data including a vehicle
+
+Route: Buyer Purchase Vehicle
+.put('/vehicles/:vehicle_id')
+-on click a buyer is added to vehicle which equates to a purchas
+
+Route: Credit Check for Buyer
+.get('/creditCheck')
+-gets a buyers credit score and assigns approval or unapporval
+ and approval amount and credit score
+
+Route: Buyer Signup
+.post('/signup')
+-creates a new buyer 
+
+Route: Seller Signup
+.post('/signupCar')
+-creates a new vehicle and a seller
+
