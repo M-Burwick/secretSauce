@@ -1,9 +1,9 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt-nodejs');
-var Vehicle = require('./vehicle')
+var bcrypt = require('bcrypt');
+var Vehicle = require('./vehicle');
 
 // define the schema for our user model
-var userSchema = mongoose.Schema({
+var buyerSchema = mongoose.Schema({
 
     email: {
         type: String,
@@ -43,7 +43,7 @@ var userSchema = mongoose.Schema({
 
 // methods ======================
 // generating a hash
-userSchema.pre('save', function(next) {
+buyerSchema.pre('save', function(next) {
     var user = this;
     if (this.isModified('password') || this.isNew) {
         bcrypt.genSalt(10, function(err, salt) {
@@ -63,7 +63,7 @@ userSchema.pre('save', function(next) {
     }
 });
 
-userSchema.methods.comparePassword = function(passw, cb) {
+buyerSchema.methods.comparePassword = function(passw, cb) {
     bcrypt.compare(passw, this.password, function(err, isMatch) {
         if (err) {
             return cb(err);
@@ -73,4 +73,4 @@ userSchema.methods.comparePassword = function(passw, cb) {
 };
 
 // create the model for users and expose it to our app
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Buyer', buyerSchema);

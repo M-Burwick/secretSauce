@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt-nodejs');
-var User = require('./user')
+var bcrypt = require('bcrypt');
+var Buyer = require('./buyer')
 
 // define the schema for our user model
 var vehicleSchema = mongoose.Schema({
@@ -37,7 +37,7 @@ var vehicleSchema = mongoose.Schema({
 
     buyer: [{
         type: mongoose.Schema.Types.Mixed,
-        ref: 'User'
+        ref: 'Buyer'
     }]
 
 });
