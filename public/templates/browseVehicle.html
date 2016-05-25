@@ -1,0 +1,26 @@
+<section class="sellerSection"layout="row" layout-align=" center center">
+	<div layout="column" layout-align="center center"
+
+>
+		<h1>21st Century Car Buying</h1>
+	</div>
+</section>
+
+
+
+
+<div class="vehicleGrid" layout="column" layout-align="start center">
+
+<ul ng-repeat="vehicle in vehicles">
+	<li>
+		{{vehicle.make}}
+		{{vehicle.model}}
+		{{vehicle.year}}
+	</li>
+
+
+	<button ng-click = "selectVehicle(vehicle)" type="submit" class="btn btn-success">Select This {{vehicle.model}}</button>
+
+</ul>
+
+</div>
