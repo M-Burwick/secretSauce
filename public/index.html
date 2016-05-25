@@ -2,18 +2,79 @@
 <html>
 
 <head>
-    <title>Lending</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="./css/main.css">
+  <title>Lending</title>
+   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+   <link rel="stylesheet" href="./css/main.css">
+   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
 </head>
 
 <body ng-app="app">
-  <main ng-view></main>
-</body>
+<!--   <nav data-my-navscroll  ng-class="{min:boolChangeClass}"role="navigation"> -->
+    <!-- <div class="navbar-header">
+        <a class="navbar-brand" ui-sref="home">Carista</a>
+    </div>
+    <ul class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+        <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+          <li><a ui-sref="loginVehicle">login Vehicle</a></li>
+          <li><a ui-sref="signupVehicle">Signup Vehicle</a></li>
+          <li><a ui-sref="signup">Signup Buyer</a></li>
+          <li><a ui-sref="login">login Buyer</a></li>
+         </ul>
+          <ul>
+            <li><a ui-sref="browse">Browse</a></li>
+          </ul>
+    </ul> -->
+       <!-- Fixed navbar -->
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="small-logo-container">
+            <a class="small-logo" href="#">↥Small Logo</a>
+          </div>
+        </div>
+        <div class="navbar-collapse collapse">
+          
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="#">Active</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a href="#">Link</a></li>
+            <li><a ui-sref="browse">Browse</a></li>
+          </ul>
 
-<script src="../bower_components/angular/angular.js"></script>
-<script src="./Home/controller.js"></script>
-<script src="./Login/controller.js"></script>
-<script src="./Signup/controller.js"></script>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+
+  <div ui-view></div>
+
+
+</body>
+<script src="https://use.fontawesome.com/e1c73868a3.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+  
+     <script src="./bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+    <script src="./bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
+    <script src="./bower_components/ng-file-upload/ng-file-upload-all.min.js"></script>
+
+ <script src="./js/config.js"></script>
+
 </html>

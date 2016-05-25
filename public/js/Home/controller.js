@@ -1,4 +1,4 @@
-(function(angular) {
-angular.module('app')
+// (function(angular) {
+// angular.module('app')
 
-})(window.angular);
+// })(window.angular);

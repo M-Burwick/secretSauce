@@ -1,0 +1,38 @@
+<br>
+
+<div class="container">
+
+<h1>Hello im the Buyer profile</h1>
+
+<br>
+<div class="jumbotron">
+<p> Email: {{profile.email}} </p>
+</div>
+<br>
+<div class="jumbotron">
+<p> Approval: {{profile.approval}}</p>
+<p>Unapproval: {{profile.unapproval}}</p>
+<p>Amount: {{profile.approvalAmount}}</p>
+
+<p>Credit Score: {{profile.creditScore}}</p>
+
+</div>
+<br>
+<div class="jumbotron">
+<ul ng-repeat = "car in profile.car">
+	<li>{{car.make}}</li>
+	<li>{{car.model}}</li>
+	<li>{{car.year}}</li>
+<!-- 	<li>{{car.price}}</li>
+ -->
+
+</ul>	
+
+
+</div>
+
+<button ng-click = "creditCheck()" type="submit" class="btn btn-success">Check you Credit!</button>
+
+<button ng-click = "logout()" type="submit" class="btn btn-success">logout</button>
+
+</div>
