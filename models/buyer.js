@@ -1,21 +1,17 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var Vehicle = require('./vehicle');
-
 // define the schema for our user model
 var buyerSchema = mongoose.Schema({
-
     email: {
         type: String,
         unique: true,
         required: true
-
     },
     password: {
         type: String,
         unique: true,
         required: true
-
     },
     approval: {
         type: Boolean,
@@ -50,7 +46,7 @@ buyerSchema.pre('save', function(next) {
             if (err) {
                 return next(err);
             }
-            bcrypt.hash(user.password, salt, function(err, hash) {
+            bcrypt.hash(user.password, salt, null, function(err, hash) {
                 if (err) {
                     return next(err);
                 }

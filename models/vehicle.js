@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var Buyer = require('./buyer')
 
 // define the schema for our user model
@@ -51,7 +51,7 @@ vehicleSchema.pre('save', function(next) {
             if (err) {
                 return next(err);
             }
-            bcrypt.hash(vehicle.password, salt, function(err, hash) {
+            bcrypt.hash(vehicle.password, salt, null, function(err, hash) {
                 if (err) {
                     return next(err);
                 }
