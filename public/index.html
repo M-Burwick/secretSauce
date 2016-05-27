@@ -10,24 +10,7 @@
 </head>
 
 <body ng-app="app">
-<!--   <nav data-my-navscroll  ng-class="{min:boolChangeClass}"role="navigation"> -->
-    <!-- <div class="navbar-header">
-        <a class="navbar-brand" ui-sref="home">Carista</a>
-    </div>
-    <ul class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-        <span class="caret"></span></button>
-          <ul class="dropdown-menu">
-          <li><a ui-sref="loginVehicle">login Vehicle</a></li>
-          <li><a ui-sref="signupVehicle">Signup Vehicle</a></li>
-          <li><a ui-sref="signup">Signup Buyer</a></li>
-          <li><a ui-sref="login">login Buyer</a></li>
-         </ul>
-          <ul>
-            <li><a ui-sref="browse">Browse</a></li>
-          </ul>
-    </ul> -->
-       <!-- Fixed navbar -->
+
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -38,26 +21,74 @@
             <span class="icon-bar"></span>
           </button>
           <div class="small-logo-container">
-            <a class="small-logo" href="#">↥Small Logo</a>
+            <a class="small-logo" href="#">Carista</a>
           </div>
         </div>
         <div class="navbar-collapse collapse">
           
           <ul class="nav navbar-nav navbar-right">
-            <li class="active"><a href="#">Active</a></li>
-            <li><a href="#">Link</a></li>
-            <li><a href="#">Link</a></li>
+            <li class="navbarLink"  ><a href="#">Active</a></li>
             <li><a ui-sref="browse">Browse</a></li>
+            <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="">Seller
+            <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                  <li><a ui-sref="signupVehicle">Sign Up</a></li>
+                  <li><a ui-sref="loginVehicle">Login</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="">Buyer
+            <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                  <li><a ui-sref="signup">Sign Up</a></li>
+                  <li><a ui-sref="login">Login</a></li>
+              </ul>
+            </li>
+          </ul>
+          <ul>
+             
           </ul>
 
-        </div><!--/.nav-collapse -->
+        </div>
       </div>
     </div>
 
 
   <div ui-view></div>
 
+<section class="footer">
+  <div class="container">
+  <div class="row">
+    <div class="col-sm-2">
+      <ul>
+        <li>Sell A Car</li>
+        <li>Buy A Car</li>
+        <li>How it Works</li>
+        <li>Contact Us</li>
+        <li>FAQ</li>
+     </ul>   
+  </div>
+  <div class="col-sm-3">
+    <h4>Popular searches</h4>
+    <p>Ford, Ford Fiesta, Hatchbacks, Black cars, Sports cars, Used BMW, Small cars, Used Audi, Black Audi, SLK, Black Convertibles, Cheap small cars</p>
+  </div>
+  <div class="col-sm-3">
+    <h1>Hey</h1>
+  </div>
+  <div class="col-sm-3">
+    <h1>Hey</h1>
+  </div>
+  <div class="col-sm-3">
+    <h1>Carista</h1>
+  </div>
+  <div class="col-sm-2">
+    <h1>Hey</h1>
+  </div>
 
+  </div>  
+</div>
+</section>  
 </body>
 <script src="https://use.fontawesome.com/e1c73868a3.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.js"></script>

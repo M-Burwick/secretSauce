@@ -7,11 +7,26 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
       
       $httpProvider.interceptors.push('AuthInterceptor');
       $urlRouterProvider.otherwise('/home');
+
       $stateProvider
         .state('home', {
         url: '/home',  
         templateUrl: 'templates/home.html'
       })
+
+      $stateProvider
+        .state('congratulations', {
+        url: '/congratulations',  
+        templateUrl: 'templates/congratulations.html'
+      })
+
+      $stateProvider
+        .state('inspection', {
+        url: '/inspection',  
+        templateUrl: 'templates/inspection.html'
+      })
+
+        
 
       $stateProvider
         .state('browse', {
@@ -42,7 +57,6 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
         url:'/signupVehicle',  
         controller: 'SignupVehicleController',
         templateUrl: 'templates/signupVehicle.html',
-        redirecTo: 'sellerProfile'
       })
       $stateProvider
         .state('profile', {
@@ -153,7 +167,7 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
             console.log(response.data);
             $window.sessionStorage.setItem('token', response.data.token)
             // $scope.profile = response.data;
-            $location.path('/sellerProfile')
+            $location.path('/congratulations')
           })
         }
       }) 

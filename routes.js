@@ -196,27 +196,15 @@ module.exports = function(app, passport) {
         year: req.body.year,
         email: req.body.email,
         password: req.body.password,
-        pic: filename
         });
-
-      s3fsImpl.writeFile(file.originalFilename, stream).then(function(){
-      fs.unlink(file.path, function(err){
-        if(err){ 
-          console.log(err) 
-        } else {
         newVehicle.save(function(err) {
         console.log(err);  
-        
         if (err) {
         return res.json({success: false, msg: 'Buyername already exists.'});
         }
-        
         res.json({success: true, msg: 'Successful created new vehicle.', data: newVehicle});
         console.log(newVehicle);
-        });
-        }
       })
-    })
     }
   });
 

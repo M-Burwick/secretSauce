@@ -1,13 +1,22 @@
 <h1>Login </h1>
-<div class="container">
-<form class="container"flex>
-<md-input-container>
-  <label>email</label>
-  <input type="email" ng-model="buyer.email">
-</md-input-container>
-<md-input-container>
-  <label>password</label>
-  <input type="password" ng-model="buyer.password">
-</md-input-container>
-<button ng-click = "login(buyer)" type="submit" class="btn btn-success">login Buyer!</button>
-</form>
+<div class="login-page">
+  <div class="form">
+
+    <form class="login-form">
+      <h4>Carista. Set. Go.</h4>
+
+      <input type="text" ng-model="buyer.email" placeholder="email"/>
+      <input type="password" ng-model="buyer.password" placeholder="password"/>
+      <input type="text" ng-model="vehicle.make" placeholder="make"/>
+      <input type="text" ng-model="vehicle.model" placeholder="model"/>
+      <input type="number"ng-model="vehicle.year" placeholder="year"/>
+
+
+
+      <button ng-click = "login(buyer)" type="submit" class="btn btn-success">login</button>
+
+
+      <p class="message">Not registered? <a href="#">Create an account</a></p>
+    </form>
+  </div>
+</div> 
