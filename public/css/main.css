@@ -13,6 +13,7 @@
 .md-button.md-raised:not([disabled]) {
   box-shadow: none !important;
 }
+
 .navbar {
     font-family: 'Merriweather Sans', sans-serif;
     background-color: #fff;
@@ -219,17 +220,41 @@ section {
     background-color: #fff;
     padding: 20px;
 }
+<<<<<<< HEAD
+
+
+ .one{
+ 	width:50%;
+ 	border:3px dotted #aaa;
+ 	margin:5px;
+ 	height:650px;
+  padding:20px;
+ }           
+
+
+
+ #congrats {
+  background: url('./audi.png');
+  background-size:cover;
+  height:600px;
+  width:100%;
+ }
+
+
 #benefits {
     padding-top: 100px;
     padding-bottom: 100px;
     height: 800px;
+
 }
 #howItWorks {
     padding: 40px;
     background-color: #fafafa;
 }
+
 .buyLogin {
   margin-left: -200px !important;
+
 }
 #sellerJmb {
     background: url('./bmw.jpg');
@@ -237,11 +262,40 @@ section {
     margin-bottom: -80px;
     height: 100vh;
 }
+
+
+ section{
+/* 	padding-top:20%;
+
+*/ 	background-color: #fff;
+	padding:20px;
+ }
+
+ #benefits {
+ 	padding-top:100px;
+ 	padding-bottom:100px;
+ 	height:800px;
+ }
+
+  #howItWorks{
+  	padding:40px;
+ 	background-color:#fafafa;
+
+ }
+
+
+#sellerJmb{
+		background: url('./bmw.jpg');
+	background-size:cover;
+  height:920px;
+}
+
 #buyerJmb {
     background: url('./audi-banner.jpg');
     background-size: cover;
     height: 100vh;
     width: 100v;
+
 }
 #car {
     background: url('./inspect02.jpg');
