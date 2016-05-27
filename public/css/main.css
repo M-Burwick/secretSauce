@@ -21,6 +21,12 @@
 
 .navbar-brand{
   font-size: 32px;
+  color: #fff;
+}
+
+
+.footer li{
+  margin-left:20px;
 }
 
 /*.nav-link{
@@ -207,6 +213,7 @@ hr{
  	border:3px dotted #aaa;
  	margin:5px;
  	height:650px;
+  padding:20px;
  }           
 
 
@@ -235,6 +242,7 @@ hr{
 }
 .footer{
   background-color:lightgray;
+  margin-top:-30px;
 }
 
  .navbar{
@@ -274,6 +282,7 @@ hr{
 #sellerJmb{
 		background: url('./bmw.jpg');
 	background-size:cover;
+  height:920px;
 }
 
 #buyerJmb{
