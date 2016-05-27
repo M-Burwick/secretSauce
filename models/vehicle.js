@@ -22,6 +22,11 @@ var vehicleSchema = mongoose.Schema({
         type: String
     },
 
+    phone: {
+        type: Number,
+        required:true
+    }
+
     email: {
         type: String,
         unique: true,
