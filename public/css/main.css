@@ -172,6 +172,7 @@ hr {
     background: blue;
 }
 .one {
+    padding-top:15px;
     width: 50%;
     border: 3px dotted #aaa;
     margin: 5px;
@@ -256,12 +257,12 @@ section {
   margin-left: -200px !important;
 
 }
-#sellerJmb {
+/*#sellerJmb {
     background: url('./bmw.jpg');
     background-size: cover;
     margin-bottom: -80px;
-    height: 100vh;
-}
+ 
+}*/
 
 
  section{
@@ -288,6 +289,7 @@ section {
 		background: url('./audi.png');
 	background-size:cover;
   height:920px;
+     height: 100vh;
 }
 
 #buyerJmb {
