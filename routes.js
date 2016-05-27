@@ -195,8 +195,8 @@ module.exports = function(app, passport) {
         model: req.body.model,
         year: req.body.year,
         email: req.body.email,
-        phone: req.body.phone
-        password: req.body.password,
+        phone: req.body.phone,
+        password: req.body.password
         });
         newVehicle.save(function(err) {
         console.log(err);
