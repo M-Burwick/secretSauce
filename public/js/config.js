@@ -85,12 +85,6 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
         .state('logout', {
         controller: 'LogoutController',
       })
-      $stateProvider
-        .state('inspection', {
-            url: '/inspection',
-        templateUrl: 'templates/inspection.html',
-      })
-
 
   })
       .factory('AuthInterceptor', function ($window, $q, $location) {
