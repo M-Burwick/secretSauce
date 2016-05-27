@@ -13,9 +13,14 @@
 
 }
 
+
 .navbar{
  font-family: 'Merriweather Sans', sans-serif;
  background-color: #fff;
+}
+
+.navbar-brand{
+  font-size: 32px;
 }
 
 /*.nav-link{
@@ -23,9 +28,10 @@ color: #000;
 }*/
 
 #homejumbo{
-    height:800px;
+    height:914px;
 
   background: url('./bmwphoto.jpg');
+  -webkit-filter:grayscale(100%);
   background-size:cover;
   position:relative;
   z-index: 0;
@@ -60,8 +66,10 @@ color: #000;
     bottom: 0;
     left: 0;
     right: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background-color: rgba(90, 90, 90, 0.8);
+
     z-index: -1;
+
     color:white;
 }
   
@@ -101,6 +109,15 @@ margin-top:5%;
 	margin-bottom:20px;*/
 }
 
+.divider {  
+     border-top: 2px solid #e14e4e;
+    margin: 0 0 0 5px;
+    position: absolute;
+    text-align: left;
+    width:100px;
+    height:5px;
+      top: 12%;
+}
 .jumboBtn{
 	width:135px;
 	height:75px;
@@ -114,44 +131,75 @@ margin-top:5%;
 
 #sellerBtn{
 	color:white;
-	background-color:rgba(88, 125, 249, 0.5);
+	background-color:transparent;
+  border-bottom:0.5px solid white;
+
+}
+#buyerBtn{
+  color:white;
+  background-color:transparent;
+  border:1px solid transparent;
+  border-bottom:0.5px solid white;
+}
+#sellerBtn:hover{
+  background-color: white;
+  color:#000;
+
+}
+
+#buyerBtn:hover{
+  background-color: white;
+  color:#000;
+}
+#buyerBtn a{
+  color:white;
+
 }
 
 #sellerBtn a{
   color:white;
 }
-
-
-#buyerBtn a{
-  color:white;
-}
-#buyerBtn{
-	color:white;
-	background-color:#aaa;
-
+#sellerBtn a:hover{
+  color:black;
 }
 
-a{
-	color:white;
+
+#buyerBtn a:hover{
+  color:black;
 }
 
+
+.fuck{
+  posiiton:relative;
+  margin-top:-500px;
+  background-color:#007ba7;
+}
 hr{
 	height:3px;
 	background-color:rgb(88, 125, 249);
 }
 
+.jumboHr{
+  height:5px;
+  width:200px;
+  background-color:#007ba7;
+}
+
+
+
 .content{  
-  padding-top: 5%;
+  margin-top: 17%;
   align-items:center;
   justify-content: center;
-  margin:auto;
-   font-family: 'Merriweather Sans', sans-serif;
-
-  color: white; word-spacing: 0px; letter-spacing: -0.364px; font-size: 41.707px;
+  margin-left:;
+  font-family: 'Merriweather Sans', sans-serif;
+  color: white; word-spacing: 0px; letter-spacing: -0.364px; font-size: 31.707px;
  }
 
 
-
+.content hr{
+  background:blue;
+}
 
 
  .one{
