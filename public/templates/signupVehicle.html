@@ -1,135 +1,27 @@
 <div id="sellerJmb" class="jumbotron">
- 
+
   <div class="login-page">
   <div class="form">
 
     <form class="login-form">
       <h4>Carista helps you sell your car conveniently.</h4>
 
-      <input type="text" ng-model="vehicle.email" placeholder="email"/>
-      <input type="password" ng-model="vehicle.password" placeholder="password"/>
-      <input type="text" ng-model="vehicle.make" placeholder="make"/>
-      <input type="text" ng-model="vehicle.model" placeholder="model"/>
-      <input type="number"ng-model="vehicle.year" placeholder="year"/>
+      <input type="text" ng-model="vehicle.email" placeholder="Email"/>
+      <input type="password" ng-model="vehicle.password" placeholder="Password"/>
+      <input type="number"ng-model="vehicle.phone" placeholder="Phone Number"/>
+      <input type="text" ng-model="vehicle.make" placeholder="Make"/>
+      <input type="text" ng-model="vehicle.model" placeholder="Model"/>
+      <input type="number"ng-model="vehicle.year" placeholder="Year"/>
 
 
 
       <button ng-click = "signupVehicle(vehicle)" type="submit" class="btn btn-success">Sell my car for me!</button>
 
 
-      <p class="message">Not registered? <a href="#">Create an account</a></p>
+      <p class="message">Already have an account? <a ui-sref="loginVehicle">Login</a></p>
     </form>
   </div>
-</div> 
 
 
-</div> 
-
-
-<!-- 
-<div class="container" layout="column" layout-align="center center">
- <div class="sellText" layout="column"  layout-align="center center"> 
-  <h2>Carista makes your selling experience a breeze!</h2>
- </div> 
-<div id ="sellRow"  class = "row">
-   <div class="col-sm-4"  layout="column"  layout-align="center center">
-    <img src="./css/ico-greatprice.png" class="img-thumbnail" alt="Cinque Terre" width="100" height="50">
-    <h4>Best Prices</h4>
-    <p>We guarantee a better price than the dealership.</p>
-   </div> 
-   <div class="col-sm-4"  layout="column"  layout-align="center center">
-    <img src="./css/ico-carwash.png" class="img-thumbnail" alt="Cinque Terre" width="100" height="50">
-    <h4>New experience</h4>
-    <p>We'll beautify you car with a wash and detail so your buyers happy when they receieve your lovely vehicle</p>
-   </div> 
-   <div class="col-sm-4"  layout="column"  layout-align="center center">
-    <img src="./css/ico-certified.png" class="img-thumbnail" alt="Cinque Terre" width="100" height="50">
-    <h4>We Inspect. Free</h4>
-<p>We provide a complimentary 250-point inspection report for you so you can confidently show off your car to buyers. Not only that, our 250-point inspection report comes with a 30 days guarantee for the buyer to provide them peace of mind that they are buying your pristine vehicle.</p>
-   </div> 
-</div>  
-<br>
-<div id ="sellRow" class = "row">
-   <div class="col-sm-4"  layout="column"  layout-align="center center">
-     <img src="./css/ico-maxexposure.png" class="img-thumbnail" alt="Cinque Terre" width="75" height="50">
-    <h4>We handle exposure</h4>
-    <p>We'll broadcast our and ensure your car finds a home. List it once with us and we'll get it across all classifieds for you</p>
-   </div> 
-   <div class="col-sm-4"  layout="column"  layout-align="center center">
-    
-         <img src="./css/ico-photograph.png" class="img-thumbnail" alt="Cinque Terre" width="75" height="50">
-         <h4>Our photography sells!</h4>
-
-<p>We show off your car with great photos so buyers will be impressed when view it</p>   </div> 
-   <div class="col-sm-4"  layout="column"  layout-align="center center">
-            <img src="./css/ico-paperwork.png" class="img-thumbnail" alt="Cinque Terre" width="75" height="50">
-        <h4>Dmv? Paperwork? No way.</h4>
-
-<p>We'll take the hassle out of completing a roadworthy for your car by delivery your car to a mechanic for a FREE Roadworthy Certificate</p>
-   </div> 
-</div>  
-<br>
-<div  id ="sellRow" class = "row">
-   <div class="col-sm-4"  layout="column"  layout-align="center center">
-       <img src="./css/ico-organise.png" class="img-thumbnail" alt="Cinque Terre" width="75" height="50">
-    <h4>Paperwork and Finance</h4>
-    <p>Worry no more! We also settle that for you ensuring you don't need to lift a finger to complete the transfer of your vehicle while selling your car (maybe a little finger...)</p>
-   </div> 
-   <div class="col-sm-4"  layout="column"  layout-align="center center">
-       <img src="./css/ico-butwait.png" class="img-thumbnail" alt="Cinque Terre" width="75" height="50">
-    <h4>Thats not all!</h4>
-<p>We will sell your car within 40days (for selected cars) or else we will buy your car from you!</p>   </div> 
-   <div class="col-sm-4"  layout="column"  layout-align="center center">
-     <img src="./css/ico-fullcon.png" class="img-thumbnail" alt="Cinque Terre" width="75" height="50">
-  <h4>Drive your car until sold!</h4>
-
-<p>Since when does selling your car become so easy? Since NOW, with topacar we take hassle out of dealing with inquiries and calls so you can have more of your leisure time</p>
-   </div> 
-</div>  
 </div>
-
-<section id="next">
-<div class="container">
-  <div class="sellText" layout="column"  layout-align="center center"> 
-  <h2>Wondering what happens next?</h2>
- </div>
-  <div id ="sellRow" class="row">
-    <div class="col-md-3" layout="column"  layout-align="center center">
-        <img src="./css/ico-intouch.png" class="img-thumbnail" alt="Cinque Terre" width="75" height="50">
-      <p>We'll get in touch and one of our inspectors will schedule a suitable time to evaluate your car. No pre-owned car gets listed until it is Topacar-certified!</p>
-    </div>  
-    <div class="col-md-3" layout="column"  layout-align="center center">
-        <img src="./css/ico-delivery.png" class="img-thumbnail" alt="Cinque Terre" width="75" height="50">
-       <p>When there are potential buyers, we'll organise a suitable time for us to facilitate the test drives.</p>
-    </div> 
-    <div class="col-md-3" layout="column"  layout-align="center center">
-        <img src="./css/ico-potential.png" class="img-thumbnail" alt="Cinque Terre" width="75" height="50">
-       <p>Once we have all the details, we'll provide you a competitive price that is agreeable by you.</p>
-    </div> 
-    <div class="col-md-3" layout="column"  layout-align="center center">
-        <img src="./css/ico-handle.png" class="img-thumbnail" alt="Cinque Terre" width="75" height="50">
-       <p>If you're happy, we'll list your car on Topacar. Did you know only 1 out of 3 cars that make the mark are listed?</p>
-    </div> 
-  </div>
-   <br>
-  <div id ="sellRow" class="row">
-    <div class="col-md-3" layout="column"  layout-align="center center">
-        <img src="./css/ico-potential.png" class="img-thumbnail" alt="Cinque Terre" width="75" height="50">
-      <p>Potential buyers referred by Topacar have been vetted so you can be assured about their intent to buy your car.</p>
-    </div>  
-    <div class="col-md-3" layout="column"  layout-align="center center">
-        <img src="./css/ico-workshop.png" class="img-thumbnail" alt="Cinque Terre" width="75" height="50">
-       <p>We take the awkward price haggling out of the whole selling process. What the buyer sees is what he'll pay. Once the buyer is happy, we'll organise for all roadworthy to be taken care off and we'll ensure for the transfer process to be done smoothly so you don't have to worry.</p>
-    </div> 
-    <div class="col-md-3" layout="column"  layout-align="center center">
-        <img src="./css/ico-handle.png" class="img-thumbnail" alt="Cinque Terre" width="75" height="50">
-       <p>We'll then handle all inquires and make your car available to our buyer communities.</p>
-    </div> 
-    <div class="col-md-3" layout="column"  layout-align="center center">
-        <img src="./css/ico-delivery.png" class="img-thumbnail" alt="Cinque Terre" width="75" height="50">
-       <p>We'll assist with all paperwork and finance and deliver your car door to door for the new owner to enjoy. No worries and hassle free for you!</p>
-    </div> 
-  </div> 
-
-</div>  
- -->
+</div>

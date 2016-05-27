@@ -4,63 +4,63 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
 //also render the html like the credit check template
 
   app.config(function($stateProvider, $httpProvider ,$urlRouterProvider, $locationProvider) {
-      
+
       $httpProvider.interceptors.push('AuthInterceptor');
       $urlRouterProvider.otherwise('/home');
 
       $stateProvider
         .state('home', {
-        url: '/home',  
+        url: '/home',
         templateUrl: 'templates/home.html'
       })
 
       $stateProvider
         .state('congratulations', {
-        url: '/congratulations',  
+        url: '/congratulations',
         templateUrl: 'templates/congratulations.html'
       })
 
       $stateProvider
         .state('inspection', {
-        url: '/inspection',  
+        url: '/inspection',
         templateUrl: 'templates/inspection.html'
       })
 
-        
+
 
       $stateProvider
         .state('browse', {
-        url: '/search',  
+        url: '/search',
         controller: 'BrowseController',
         templateUrl: 'templates/browseVehicle.html'
       })
       $stateProvider
         .state('login', {
-        url:'/login',  
+        url:'/login',
         controller: 'LoginController',
         templateUrl: 'templates/login.html'
       })
       $stateProvider
         .state('loginVehicle', {
-        url:'/loginVehicle',  
+        url:'/loginVehicle',
         controller: 'LoginVehicleController',
         templateUrl: 'templates/loginVehicle.html'
-      }) 
+      })
       $stateProvider
         .state('signup', {
-        url:'/signup',  
+        url:'/signup',
         controller: 'SignupController',
         templateUrl: 'templates/signup.html'
       })
       $stateProvider
         .state('signupVehicle', {
-        url:'/signupVehicle',  
+        url:'/signupVehicle',
         controller: 'SignupVehicleController',
         templateUrl: 'templates/signupVehicle.html',
       })
       $stateProvider
         .state('profile', {
-        url:'/profile',  
+        url:'/profile',
         controller: 'ProfileController',
         templateUrl: 'templates/profile.html'
       })
@@ -72,7 +72,7 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
       })
       $stateProvider
         .state('vehicleView', {
-        url: '/vehicleView',  
+        url: '/vehicleView',
         controller: 'VehicleViewController',
         templateUrl: 'templates/vehicleView.html'
       })
@@ -85,7 +85,6 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
         .state('logout', {
         controller: 'LogoutController',
       })
-
 
   })
       .factory('AuthInterceptor', function ($window, $q, $location) {
@@ -108,7 +107,7 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
       })
 
       .controller('mainController', function MainController($scope, $location, $window, $http, $rootScope){
-          $scope.hello = "hello fucker";      
+          $scope.hello = "hello fucker";
       })
 
 
@@ -136,8 +135,8 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
             $window.sessionStorage.setItem('token', response.data.token)
             $location.path('/profile')
           });
-        } 
-      }) 
+        }
+      })
 
       .controller('LoginVehicleController', function LoginVehicleController($scope, $location, $window, $http, $rootScope){
         $scope.loginVeh = function(vehicle){
@@ -147,7 +146,7 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
             $location.path('/sellerProfile')
           });
         }
-      }) 
+      })
 
       .controller('SignupController', function SignupController($scope, $location, $window, $http, $rootScope){
         $scope.signup = function(buyer){
@@ -158,7 +157,7 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
             $location.path('/profile')
           });
         }
-      }) 
+      })
 
       .controller('SignupVehicleController', function SignupVehicleController($scope, $location, $window, $http, $rootScope){
         $scope.signupVehicle = function(vehicle){
@@ -170,16 +169,16 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
             $location.path('/congratulations')
           })
         }
-      }) 
+      })
 
       .controller('VehicleViewController', function VehicleViewController($scope, $location, $window, $http, $rootScope){
-        
+
             $scope.vehicle = {
               year: $window.sessionStorage.year,
               make: $window.sessionStorage.make,
-              model: $window.sessionStorage.model           
+              model: $window.sessionStorage.model
             }
-        
+
 
 
 
@@ -189,7 +188,7 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
             $location.path('/profile')
           })
          }
-      }) 
+      })
 
       .controller('SellerProfileController', function SellerProfileController($scope, $location, $window, $http, $rootScope){
          $http.get('/sellerProfile').then(function(response){
@@ -202,7 +201,7 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
           $location.path('/home')
         })
         }
-      }) 
+      })
 
       .controller('ProfileController', function ProfileController($scope, $location, $window, $http, $rootScope){
          $http.get('/profile').then(function(response){
@@ -221,14 +220,14 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
           $location.path('/home')
         })
         }
-      }) 
+      })
 
       .controller('CreditCheckController', function LoginVehicleController($scope, $location, $window, $http, $rootScope){
          $http.get('/creditCheck').then(function(response){
             $scope.results = response.data;
             $location.path('/creditCheck.html')
           });
-      }) 
+      })
   .controller('MyController', function($scope, $mdBottomSheet) {
   $scope.openBottomSheet = function() {
     $mdBottomSheet.show({

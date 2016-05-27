@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "bcrypt": "^0.8.6",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "~1.0.0",
     "bson": "^0.4.23",

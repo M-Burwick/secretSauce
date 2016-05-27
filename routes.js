@@ -152,13 +152,13 @@ module.exports = function(app, passport) {
         res.send(err);
       } else {
         //i want this to only happen if there is no current buyer
-        //also if there is no decoded then redirect to an 
+        //also if there is no decoded then redirect to an
         //request for authorization page...
         vehicle.buyer.push(decoded);
         vehicle.save();
         console.log(vehicle);
         res.json(vehicle);
-    }   
+    }
     Buyer.findById(decoded._id, function(err, buyer){
             buyer.car.push(vehicle);
             buyer.save();
@@ -185,11 +185,11 @@ module.exports = function(app, passport) {
 });
     //create new vehicle post and Buyer associated with car
   app.post('/signupVehicle', function(req, res) {
-       
+
         if (!req.body.make || !req.body.model) {
          res.json({success: false, msg: 'Please pass name and password.'});
         } else {
-          
+
         var newVehicle = new Vehicle({
         make: req.body.make,
         model: req.body.model,
@@ -198,13 +198,14 @@ module.exports = function(app, passport) {
         password: req.body.password,
         });
         newVehicle.save(function(err) {
-        console.log(err);  
+        console.log(err);
         if (err) {
         return res.json({success: false, msg: 'Buyername already exists.'});
         }
         res.json({success: true, msg: 'Successful created new vehicle.', data: newVehicle});
         console.log(newVehicle);
       })
+
     }
   });
 
