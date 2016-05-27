@@ -154,7 +154,7 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
             console.log(response.data);
             $scope.profile = response.data;
             $window.sessionStorage.setItem('token', response.data.token)
-            $location.path('/profile')
+            $location.path('/home')
           });
         }
       })
