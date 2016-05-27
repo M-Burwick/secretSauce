@@ -1,5 +1,6 @@
 .body{
 	background-color:white;
+   font-family: 'Merriweather Sans', sans-serif;
 
 }
 
@@ -12,6 +13,15 @@
 
 }
 
+.navbar{
+ font-family: 'Merriweather Sans', sans-serif;
+ background-color: #fff;
+}
+
+/*.nav-link{
+color: #000;
+}*/
+
 #homejumbo{
     height:800px;
 
@@ -21,6 +31,15 @@
   z-index: 0;
 
 }
+/*
+.navbarLink a {
+  color: black;
+  background-color: #000;
+}
+
+.nav li a {
+  color: #000;
+}*/
 
 .jumboSeller{
 	height:400px;
@@ -95,7 +114,7 @@ margin-top:5%;
 
 #sellerBtn{
 	color:white;
-	background-color:rgb(88, 125, 249);
+	background-color:rgba(88, 125, 249, 0.5);
 }
 
 #sellerBtn a{
@@ -126,6 +145,8 @@ hr{
   align-items:center;
   justify-content: center;
   margin:auto;
+   font-family: 'Merriweather Sans', sans-serif;
+
   color: white; word-spacing: 0px; letter-spacing: -0.364px; font-size: 41.707px;
  }
 
