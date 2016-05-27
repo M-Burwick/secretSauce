@@ -8,16 +8,7 @@ var jwt = require('jwt-simple');
 var passport = require('passport');
 var config = require('./config/main');
 var random = require("random-js")(); // uses the nativeMath engine
-// var S3FS = require('s3fs');
-// var multiparty= require('connect-multiparty');
-// var multipartyMiddleWare = multiparty();
-// var s3fsImpl = new S3FS('stigerdevbucket', {
-//   accessKeyId:'AKIAIYO3JCQGJGWU4BWQ' ,
-//   secretAccessKey: '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'
-// });
 
-// //requirements
-// s3fsImpl.create();
 
 
 
