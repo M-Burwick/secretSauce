@@ -11,17 +11,6 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var config = require('./config/main');
 var fs = require('fs');
-var S3FS = require('s3fs');
-var multiparty= require('connect-multiparty');
-var multipartyMiddleWare = multiparty();
-var s3fsImpl = new S3FS('stigerdevbucket', {
-  accessKeyId:'AKIAIYO3JCQGJGWU4BWQ' ,
-  secretAccessKey: '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'
-});
-
-//requirements
-s3fsImpl.create();
-
 
 mongoose.connect(config.database);
 app.use(morgan('dev')); // log every request to the console
@@ -39,18 +28,14 @@ app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(multipartyMiddleWare);
-
 app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
     next();
 });
-
 require('./routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
-
 // launch ======================================================================
-
 server = app.listen(process.env.PORT || 1738, process.env.IP || "0.0.0.0", function() {
   var addr = server.address();
   console.log("Server listening at", addr.address + ":" + addr.port);

@@ -287,7 +287,7 @@ section {
 }
 
 #buyerJmb {
-    background: url('./pexels-photo.jpg');
+    background: url('./sunnyday.jpg');
     background-size: cover;
     height: 100vh;
     width: 100v;
@@ -344,7 +344,7 @@ section {
 .form {
     position: relative;
     z-index: 1;
-    background-color: #80848a;
+    background-color: rgb(88, 125, 249);
     max-width: 460px;
     margin: 0 auto 100px;
     padding: 45px;
@@ -359,32 +359,34 @@ section {
     outline: 0;
     background: #f2f2f2;
     width: 100%;
+    color: rgb(0, 0, 0);
     border: 0;
     margin: 0 0 15px;
     padding: 10px;
     box-sizing: border-box;
-    font-size: 14px;
+    font-size: 16px;
 }
 .form button {
     font-family: "Merriweather Sans", sans-serif;
     text-transform: uppercase;
     outline: 0;
-    background-color: rgb(88, 125, 249);
+    background-color: rgb(255, 255, 255);
     width: 100%;
     border: 0;
     padding: 15px;
-    color: #FFFFFF;
+    color:  rgb(88, 125, 249);
+
     font-size: 14px;
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
     cursor: pointer;
 }
 .form button:hover, .form button:active, .form button:focus {
-    background: #43A047;
+    background: #8d9093;
 }
 .form .message {
     margin: 15px 0 0;
-    color: #b3b3b3;
+    color: rgb(88, 125, 249);
     font-size: 12px;
 }
 .form .message a {
