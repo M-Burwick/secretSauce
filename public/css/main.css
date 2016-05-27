@@ -178,12 +178,7 @@ hr {
     margin: 5px;
     height: 650px;
 }
-#congrats {
-    background: url('./coast.jpg');
-    background-size: cover;
-    height: 600px;
-    width: 100%;
-}
+
 #inTouch {
     background: lightgray;
     background-size: cover;
@@ -221,7 +216,6 @@ section {
     background-color: #fff;
     padding: 20px;
 }
-<<<<<<< HEAD
 
 
  .one{
@@ -235,7 +229,7 @@ section {
 
 
  #congrats {
-  background: url('./audi.png');
+ background: url('./coast.jpg');
   background-size:cover;
   height:600px;
   width:100%;
