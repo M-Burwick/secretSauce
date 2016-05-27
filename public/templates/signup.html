@@ -1,20 +1,18 @@
-<div id="sellerJmb" class="jumbotron">
+<div id="buyerJmb" class="jumbotron">
 
-</div>
 <h1>Signup Buyer</h1>
-<md-content>
-<form class="container"flex>
-<md-input-container>
-  <label>email</label>
-  <input type="email" ng-model="buyer.email">
-</md-input-container>
-<md-input-container>
-  <label>password</label>
-  <input type="password" ng-model="buyer.password">
-</md-input-container>
-<button ng-click = "signup(buyer)" type="submit" class="btn btn-success">Sign Up buyer!</button>
+
+  <div class="login-page">
+ <div class="form buyLogin">
+  <form class="login-form">
+    <h4>Carista helps you buy a car conveniently.</h4>
+    <input type="text" ng-model="buyer.email" placeholder="Email"/>
+    <input type="password" ng-model="buyer.password" placeholder="Password"/>
+    <button ng-click="signup(buyer)" type="submit" class="btn btn-success">buy a car for me!</button>
 
 
-</form>
-</md-content>
-
+    <p class="message">Already have an account? <a href="#">Login!</a></p>
+  </form>
+</div>
+</div>
+</div>
