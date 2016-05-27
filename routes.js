@@ -195,19 +195,17 @@ module.exports = function(app, passport) {
         model: req.body.model,
         year: req.body.year,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
         });
-
         newVehicle.save(function(err) {
         console.log(err);
-
         if (err) {
         return res.json({success: false, msg: 'Buyername already exists.'});
         }
-
         res.json({success: true, msg: 'Successful created new vehicle.', data: newVehicle});
         console.log(newVehicle);
-        });
+      })
+
     }
   });
 

@@ -15,6 +15,68 @@
             </form>
         </div>
     </div>
+<button ng-click = "signupVehicle(vehicle)" type="submit" class="btn btn-success">Sign Up Seller!</button>
+      </div>
+    </div>
+  </div> -->
+  <div class="login-page">
+  <div class="form">
+
+    <form class="login-form">
+      <h4>Carista helps you sell your car conveniently.</h4>
+
+      <input type="text" ng-model="vehicle.email" placeholder="email"/>
+      <input type="password" ng-model="vehicle.password" placeholder="password"/>
+      <input type="text" ng-model="vehicle.make" placeholder="make"/>
+      <input type="text" ng-model="vehicle.model" placeholder="model"/>
+      <input type="number"ng-model="vehicle.year" placeholder="year"/>
+
+
+
+      <button ng-click = "signupVehicle(vehicle)" type="submit" class="btn btn-success">Sell my car for me!</button>
+
+
+      <p class="message">Not registered? <a href="#">Create an account</a></p>
+    </form>
+  </div>
+</div>
+
+
+</div>
+<!-- <div class="row">
+<div class="col-md-6">
+  <form layout="column" layout-align="center start">
+                    <h1>Sign up Vehicle</h1>
+
+                  <md-input-container>
+
+                    <label>make</label>
+                    <input type="text" ng-model="vehicle.make">
+                  </md-input-container>
+                  <md-input-container>
+                    <label>model</label>
+                    <input type="text" ng-model="vehicle.model">
+                  </md-input-container>
+                  <md-input-container>
+                    <label>year</label>
+                    <input type="text" ng-model="vehicle.year">
+                  </md-input-container>
+                  <md-input-container>
+                    <label>email</label>
+                    <input type="text" ng-model="vehicle.email">
+                  </md-input-container>
+                  <md-input-container>
+                    <label>password</label>
+                    <input type="password" ng-model="vehicle.password"></textarea>
+                  </md-input-container>
+
+              <button ng-click = "signupVehicle(vehicle)" type="submit" class="btn btn-success">Sign Up Seller!</button>
+</form>
+
+</div>
+<div class="col-md-6">
+  <h1>Hello</h1>
+>>>>>>> 424c1d007a94dde0099688473f554f792475c6c0
 </div>
 
 <div class="container" layout="column" layout-align="center center">
