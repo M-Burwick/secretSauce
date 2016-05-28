@@ -21,6 +21,13 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
       })
 
       $stateProvider
+        .state('buyercongratulations', {
+        url: '/hooray',
+        templateUrl: 'templates/buyercongratulations.html'
+      })
+
+
+      $stateProvider
         .state('inspection', {
         url: '/inspection',
         templateUrl: 'templates/inspection.html'
@@ -228,29 +235,130 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
             $location.path('/creditCheck.html')
           });
       })
-  .controller('MyController', function($scope, $mdBottomSheet) {
-  $scope.openBottomSheet = function() {
-    $mdBottomSheet.show({
-      templateUrl: 'login'
-    });
-  };
+  .controller('AppCtrl', function($scope, $mdDialog, $mdMedia) {
+  $scope.status = '  ';
+  $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+  $scope.showSellerAlert = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    // Modal dialogs should fully cover application
+    // to prevent interaction outside of dialog
+       $mdDialog.show({
+          clickOutsideToClose: true,
+          scope: $scope,        // use parent scope in template
+          preserveScope: true,  // do not forget this if use parent scope
+          // Since GreetingController is instantiated with ControllerAs syntax
+          // AND we are passing the parent '$scope' to the dialog, we MUST
+          // use 'vm.<xxx>' in the template markup
+          template: '<md-dialog class="login-page">' +
+                    '<md-dialog-content layout="column" layout-align="start center">' +
+                    '<h4>SELL WITH CARISTA</h4>' +
+                    '     <md-input-container>' +
+                    '           <label>Email</label>'+
+                    '           <input type="text" ng-model="vehicle.email">'+
+                    '     </md-input-container>'+
+                    '     <md-input-container>' +
+                    '           <label>Password</label>'+
+                    '           <input type="password" ng-model="vehicle.password">'+
+                    '     </md-input-container>'+
+                    '     <md-input-container>' +
+                    '           <label>Make</label>'+
+                    '           <input type="text" ng-model="vehicle.make">'+
+                    '     </md-input-container>'+
+                    '     <md-input-container>' +
+                    '           <label>Model</label>'+
+                    '           <input type="text" ng-model="vehicle.model">'+
+                    '     </md-input-container>'+  
+                    '     <md-input-container>' +
+                    '           <label>Year</label>'+
+                    '           <input type="text" ng-model="vehicle.year">'+
+                    '     </md-input-container>'+  
+                    '     <md-input-container>' +
+                    '           <label>Phone</label>'+
+                    '           <input type="text" ng-model="vehicle.phone">'+
+                    '     </md-input-container>'+                     
+                    '  <button ng-click = "signupVehicle(vehicle)" type="submit" class="sellBtn">Sell my car for me!</button>'+                                                                                                                                                 
+                    '</md-dialog-content>' +
+                    '</md-dialog>',
+          controller: function DialogController($scope, $mdDialog, $http, $location, $window) {
+            $scope.closeDialog = function() {
+              $mdDialog.hide();
+            }
+
+            $scope.signupVehicle = function(vehicle, $mdDialog){
+                $http.post('/signupVehicle', vehicle)
+                .success(function(response){
+                console.log(response);
+                $window.sessionStorage.setItem('token', response.data.token)
+                // $scope.profile = response.data;
+                $location.path('/congratulations')
+                })
+            }  
+          }
+
+       })
+    }
+    $scope.showBuyerAlert = function(ev) {
+    // Appending dialog to document.body to cover sidenav in docs app
+    // Modal dialogs should fully cover application
+    // to prevent interaction outside of dialog
+       $mdDialog.show({
+          clickOutsideToClose: true,
+          scope: $scope,        // use parent scope in template
+          preserveScope: true,  // do not forget this if use parent scope
+          // Since GreetingController is instantiated with ControllerAs syntax
+          // AND we are passing the parent '$scope' to the dialog, we MUST
+          // use 'vm.<xxx>' in the template markup
+          template: '<md-dialog class="login-page">' +
+                    '<md-dialog-content layout="column" layout-align="start center">' +
+                    '<h4>BUY WITH CARISTA</h4>' +
+                    '     <md-input-container>' +
+                    '           <label>Email</label>'+
+                    '           <input type="text" ng-model="buyer.email">'+
+                    '     </md-input-container>'+
+                    '     <md-input-container>'+
+                    '           <label>Password</label>'+
+                    '           <input type="password" ng-model="buyer.password">'+
+                    '     </md-input-container>'+
+                    '     <md-input-container>' +
+                    '           <label>Name</label>'+
+                    '           <input type="text" ng-model="buyer.name">'+
+                    '     </md-input-container>'+            
+                    '  <button ng-click = "signup(buyer)" type="submit" class="sellBtn">Find my CAR!</button>'+                                                                                                                                                 
+                    '</md-dialog-content>' +
+                    '</md-dialog>',
+          controller: function DialogController($scope, $mdDialog, $http, $location, $window) {
+            $scope.closeDialog = function() {
+              $mdDialog.hide();
+            }
+
+            $scope.signup = function(buyer, $mdDialog){
+                $http.post('/signup', buyer)
+                .success(function(response){
+                console.log(response);
+                
+                $window.sessionStorage.setItem('token', response.data.token)
+                $location.path('/hooray')
+                })
+            }  
+          }
+
+       })
+    }; 
 })
+// <md-input-container>
+//   <label>Username</label>
+//   <input type="text" ng-model="user.name">
+// </md-input-container>
 
-
-      .directive("myNavscroll", function($window) {
-       return function(scope, element, attrs) {
-        angular.element($window).bind("scroll", function() {
-            if (!scope.scrollPosition) {
-                scope.scrollPosition = 0
-            }
-
-            if (this.pageYOffset > scope.scrollPosition) {
-                scope.boolChangeClass = true;
-            } else {
-                scope.boolChangeClass = false;
-            }
-            scope.scrollPosition = this.pageYOffset;
-            scope.$apply();
-            });
-          };
-       });
+function DialogController($scope, $mdDialog) {
+  $scope.hide = function() {
+    $mdDialog.hide();
+  };
+  $scope.cancel = function() {
+    $mdDialog.cancel();
+  };
+  $scope.answer = function(answer) {
+    $mdDialog.hide(answer);
+  };
+}
+ 

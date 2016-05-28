@@ -13,6 +13,9 @@ var buyerSchema = mongoose.Schema({
         unique: true,
         required: true
     },
+    name: {
+        type: String
+    },
     approval: {
         type: Boolean,
         default: false
