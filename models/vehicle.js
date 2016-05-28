@@ -23,7 +23,7 @@ var vehicleSchema = mongoose.Schema({
     },
 
     phone: {
-        type: Number,
+        type: String,
         required:true
     },
 

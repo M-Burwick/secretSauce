@@ -163,7 +163,8 @@ module.exports = function(app, passport) {
         } else {
         var newBuyer = new Buyer({
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        name: req.body.name
         });
         // save the Buyer
         newBuyer.save(function(err) {

@@ -3,7 +3,7 @@
 		<div class="confidenceOverlay">
 
 	<div class="container">
-    <div class="content" layout="column" layout-align="start start">
+    <div ng-controller="AppCtrl"  class="content" layout="column" layout-align="start start">
 
     	<p>Welcome to the new community,</p>
     	<p>redefining the automotive experience.</p>
@@ -14,8 +14,8 @@
  -->
        <!--   <p>Our offers are better than what you'll get in the market.             All our cars come fully certified with a 250 point check.</p> -->
          <div class="btnGrp" layout="row" layout-align="start start">
-         	 <a ui-sref="signupVehicle"><md-button id="sellerBtn" class="md-raised">Seller</md-button></a>
-      		<a ui-sref="signup"><md-button id="buyerBtn" class="md-raised">Buyer</md-button></a>
+         	<md-button ng-click="showSellerAlert($event)" id="sellerBtn" class="md-raised">Seller</md-button>
+      		<md-button id="buyerBtn" class="md-raised" ng-click="showBuyerAlert($event)">Buyer</md-button>
 
 
          </div>
