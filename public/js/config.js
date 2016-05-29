@@ -311,7 +311,9 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
                     '           <label>Phone</label>'+
                     '           <input type="text" ng-model="vehicle.phone">'+
                     '     </md-input-container>'+
+
                     '  <button ng-click = "signupVehicle(vehicle)" type="submit" class="sellBtn">Sell my car for me!</button>'+
+                    '   </  br>'               +
                     '</md-dialog-content>' +
                     '</md-dialog>',
           controller: function DialogController($scope, $mdDialog, $http, $location, $window) {
