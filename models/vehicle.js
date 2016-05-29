@@ -33,11 +33,18 @@ var vehicleSchema = mongoose.Schema({
     estimate: {
         type: Number
     },
-    
+
     phone: {
         type: String,
         required:true
     },
+    mileage: {
+        type: Number
+    },
+
+    zip: {
+        type:Number
+    }
 
     email: {
         type: String,

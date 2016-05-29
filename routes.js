@@ -188,7 +188,11 @@ module.exports = function(app, passport) {
         year: req.body.year,
         email: req.body.email,
         phone: req.body.phone,
-        password: req.body.password
+        password: req.body.password,
+        style: req.body.stlye,
+        zip: req.body.zip,
+        mileage: req.body.mileage,
+        condition:req.body.condition
         });
         newVehicle.save(function(err) {
         console.log(err);
