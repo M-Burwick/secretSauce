@@ -238,7 +238,7 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
   $scope.status = '  ';
   $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 
-  
+
 
   $scope.selectedMake = function(make) {
     $scope.currentMake = make;
@@ -248,18 +248,31 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
     $scope.currentModel = model;
     console.log(model);
   }
+  $scope.handleStyle = function(style) {
+    $scope.currentStyle = style;
+}
+  $scope.selectedYear = function(year) {
+    $scope.currentYear = year;
+    $http.get('https://api.edmunds.com/api/vehicle/v2/'+ $scope.currentMake.name +'/' + $scope.currentModel.name + '/'+ $scope.currentYear.year +'?fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg').then(function(response) {
+      $scope.styles = response.data;
+      console.log($scope.styles);
+    });
+    console.log(year);
+  }
   $scope.showSellerAlert = function(ev) {
     $http.get('https://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg').then(function(response) {
       $scope.makes = _.map(response.data.makes, function(make){return make});
       console.log($scope.makes);
     });
+
+
     // Appending dialog to document.body to cover sidenav in docs app
     // Modal dialogs should fully cover application
     // to prevent interaction outside of dialog
        $mdDialog.show({
           clickOutsideToClose: true,
-          scope: $scope,  
-          preserveScope: true,  
+          scope: $scope,
+          preserveScope: true,
           template: '<md-dialog class="login-page">' +
                     '<md-dialog-content layout="column" layout-align="start center">' +
                     '<h4>SELL WITH CARISTA</h4>' +
@@ -286,7 +299,13 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
                     '     <md-input-container>' +
                     '           <label>Year</label>'+
                     '           <md-select ng-model="vehicle.year">'+
-                    '           <md-option ng-repeat="year in currentModel.years" >{{year.year}}</md-option>'+
+                    '           <md-option ng-repeat="year in currentModel.years" ng-click="selectedYear(year)">{{year.year}}</md-option>'+
+                    '           </md-select>'+
+                    '     </md-input-container>'+
+                    '     <md-input-container>' +
+                    '           <label>Style</label>'+
+                      '           <md-select ng-model="vehicle.style">'+
+                    '           <md-option ng-repeat="style in styles.styles" ng-click="handleStyle(style)">{{style.name}}</md-option>'+
                     '           </md-select>'+
                     '     </md-input-container>'+
                     '     <md-input-container>' +
@@ -312,14 +331,18 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
             }
 
             $scope.signupVehicle = function(vehicle, $mdDialog){
+              $http.get('https://api.edmunds.com/v1/api/tmv/tmvservice/calculateusedtmv?styleid=' + $scope.currentStyle.id + '&condition=' + vehicle.condition + '&mileage=' + vehicle.mileage + '&zip=' + vehicle.zip + '&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg').then(function(response) {
+                console.log(response.data);
                 $http.post('/signupVehicle', vehicle)
                 .success(function(response){
                 console.log(response);
                 $window.sessionStorage.setItem('token', response.data.token)
                 // $scope.profile = response.data;
                 $location.path('/congratulations')
-                })
+              });
+            });
             }
+
           }
 
        })
@@ -331,7 +354,7 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
        $mdDialog.show({
           clickOutsideToClose: true,
           scope: $scope,
-          preserveScope: true, 
+          preserveScope: true,
           template: '<md-dialog class="login-page">' +
                     '<md-dialog-content layout="column" layout-align="start center">' +
                     '<h4>BUY WITH CARISTA</h4>' +
