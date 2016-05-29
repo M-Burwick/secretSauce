@@ -310,15 +310,23 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                     '           </md-select>' +
                     '     </md-input-container>' +
                     '     <md-input-container>' +
-                    '           <label>Condition</label>' +
-                    '           <md-select ng-model="vehicle.condition">' +
-                    '           <md-option>Outstanding</md-option>' +
-                    '           <md-option>Clean</md-option>' +
-                    '           <md-option>Average</md-option>' +
-                    '           <md-option>Rough</md-option>' +
-                    '           <md-option>Damaged</md-option>' +
-                    '           </md-select>' +
-                    '     </md-input-container>' +
+                    '           <label>Mileage</label>'+
+                    '           <input type="mileage" ng-model="vehicle.mileage">'+
+                    '     </md-input-container>'+
+                    '     <md-input-container>' +
+                    '           <label>Zipcode</label>'+
+                    '           <input type="zipcode" ng-model="vehicle.zip">'+
+                    '     </md-input-container>'+
+                    '     <md-input-container>' +
+                    '           <label>Condition</label>'+
+                    '           <md-select ng-model="vehicle.condition">'+
+                    '           <md-option>Outstanding</md-option>'+
+                    '           <md-option>Clean</md-option>'+
+                    '           <md-option>Average</md-option>'+
+                    '           <md-option>Rough</md-option>'+
+                    '           <md-option>Damaged</md-option>'+
+                    '           </md-select>'+
+                    '     </md-input-container>'+
                     '     <md-input-container>' +
                     '           <label>Phone</label>' +
                     '           <input type="text" ng-model="vehicle.phone">' +
@@ -333,7 +341,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 
                     $scope.signupVehicle = function(vehicle, $mdDialog) {
                         $http.get('https://api.edmunds.com/v1/api/tmv/tmvservice/calculateusedtmv?styleid=' + $scope.currentStyle.id + '&condition=' + vehicle.condition + '&mileage=' + vehicle.mileage + '&zip=' + vehicle.zip + '&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg').then(function(response) {
-      
+
                             vehicle.tmv = response.data.tmv.certifiedUsedPrice;
                             console.log(vehicle);
                             $http.post('/signupVehicle', vehicle)

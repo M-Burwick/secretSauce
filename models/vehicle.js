@@ -22,9 +22,28 @@ var vehicleSchema = mongoose.Schema({
         type: String
     },
 
+    condition: {
+        type: String
+    },
+    
+    style: {
+        type:String
+    },
+
+    tmv: {
+        type: Number
+    },
+
     phone: {
         type: String,
         required:true
+    },
+    mileage: {
+        type: Number
+    },
+
+    zip: {
+        type:Number
     },
 
     email: {
