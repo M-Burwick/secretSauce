@@ -33,8 +33,6 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
         templateUrl: 'templates/inspection.html'
       })
 
-
-
       $stateProvider
         .state('browse', {
         url: '/search',
@@ -238,17 +236,12 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
   .controller('AppCtrl', function($scope, $mdDialog, $mdMedia) {
   $scope.status = '  ';
   $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+
   $scope.showSellerAlert = function(ev) {
-    // Appending dialog to document.body to cover sidenav in docs app
-    // Modal dialogs should fully cover application
-    // to prevent interaction outside of dialog
        $mdDialog.show({
           clickOutsideToClose: true,
-          scope: $scope,        // use parent scope in template
-          preserveScope: true,  // do not forget this if use parent scope
-          // Since GreetingController is instantiated with ControllerAs syntax
-          // AND we are passing the parent '$scope' to the dialog, we MUST
-          // use 'vm.<xxx>' in the template markup
+          scope: $scope,  
+          preserveScope: true,  
           template: '<md-dialog class="login-page">' +
                     '<md-dialog-content layout="column" layout-align="start center">' +
                     '<h4>SELL WITH CARISTA</h4>' +
@@ -303,11 +296,8 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
     // to prevent interaction outside of dialog
        $mdDialog.show({
           clickOutsideToClose: true,
-          scope: $scope,        // use parent scope in template
-          preserveScope: true,  // do not forget this if use parent scope
-          // Since GreetingController is instantiated with ControllerAs syntax
-          // AND we are passing the parent '$scope' to the dialog, we MUST
-          // use 'vm.<xxx>' in the template markup
+          scope: $scope,
+          preserveScope: true, 
           template: '<md-dialog class="login-page">' +
                     '<md-dialog-content layout="column" layout-align="start center">' +
                     '<h4>BUY WITH CARISTA</h4>' +
