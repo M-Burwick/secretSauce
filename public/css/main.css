@@ -89,7 +89,7 @@ color: #000;
     width: 450px;
     margin-top: 5%;
 }
-.confideceCarista {}
+
 .btnGrp {
     width: 100%;
     padding: -10px;
@@ -115,6 +115,7 @@ color: #000;
 #sellerBtn {
     color: white;
     background-color: transparent;
+    border: 1px solid transparent;
     border-bottom: 0.5px solid white;
 }
 #buyerBtn {
@@ -189,6 +190,21 @@ hr {
    letter-spacing: -0.364px;
    font-size: 31.707px;*/
 }
+
+#confirmSaleBtn{
+  background-color: rgb(88, 125, 249);
+
+}
+
+#confirmBuyBtn{
+  background-color:#aaa;
+
+}
+
+.confirmBtn{
+  width:75%;
+
+}
 .navBtn {
   background-color:tomato;
   margin-top:15%;
@@ -208,6 +224,13 @@ hr {
 
 }
 
+.navBtn span{
+  color:white;
+}
+
+.confirmBtn span{
+  color:white;
+}
 
 .congratsContent h1{
   font-family: 'Merriweather Sans', sans-serif !important;
@@ -243,13 +266,16 @@ section {
 
 
  .one{
- 	width:50%;
+ 	width:auto;
  	border:3px dotted #aaa;
  	margin:5px;
- 	height:650px;
+      height:auto;
   padding:20px;
  }           
 
+.one p {
+  font-size: 1.5em;
+}
 
 
  #congrats {
@@ -263,7 +289,7 @@ section {
 #benefits {
     padding-top: 100px;
     padding-bottom: 100px;
-    height: 800px;
+    height: auto;
 
 }
 #howItWorks {
@@ -291,9 +317,9 @@ section {
  }
 
  #benefits {
- 	padding-top:100px;
- 	padding-bottom:100px;
- 	height:800px;
+ 	padding-top:40px;
+ 	padding-bottom:40px;
+ 	height:700px;
  }
 
   #howItWorks{
@@ -360,8 +386,7 @@ section {
    margin: auto;
    padding-top:3%;
   padding-bottom:3%;
-  overflow:
-
+  height:auto;
 }
 .home-page {
     width: auto;
@@ -400,6 +425,11 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
   color:white;
   border-radius: 5px;
   border: 2px solid rgb(88, 125, 249);
+}
+
+#confirmSale{
+    background-color:tomato);
+
 }
 /*.form {
     position: relative;
@@ -534,12 +564,48 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
       width:75%;
       height:12px;
     }
-    .login-page{
-      padding-bottom:0%;
-    }
+ 
     .sellBtn{
-      height:55px;
+      margin-bottom: 50px;
+      height:75px;
     }
+
+      .one {
+      height:auto;
+      width: 100%;
+    }
+       #benefits{
+    height: auto;
+   }
+
+  
+
+   .one p {
+     font-size: 15px
+   }
+
+   .one h2 {
+    font-size:22px;
+   }
+
+   .one h1 {
+    font-size:30px;
+   }
+
+
+
+}
+
+
+@media (max-width: 900px) {
+  .one {
+      height:auto;
+      width: 100%;
+    }
+       #benefits{
+    height: auto;
+   }
+
 }
 
 #dialogContainer{
