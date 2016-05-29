@@ -249,7 +249,7 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
     console.log(model);
   }
   $scope.handleStyle = function(style) {
-    $scope.currentStyle = style;  
+    $scope.currentStyle = style;
 }
   $scope.selectedYear = function(year) {
     $scope.currentYear = year;
@@ -264,6 +264,7 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
       $scope.makes = _.map(response.data.makes, function(make){return make});
       console.log($scope.makes);
     });
+
 
     // Appending dialog to document.body to cover sidenav in docs app
     // Modal dialogs should fully cover application
@@ -330,14 +331,18 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
             }
 
             $scope.signupVehicle = function(vehicle, $mdDialog){
+              $http.get('https://api.edmunds.com/v1/api/tmv/tmvservice/calculateusedtmv?styleid=' + $scope.currentStyle.id + '&condition=' + vehicle.condition + '&mileage=' + vehicle.mileage + '&zip=' + vehicle.zip + '&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg').then(function(response) {
+                console.log(response.data);
                 $http.post('/signupVehicle', vehicle)
                 .success(function(response){
                 console.log(response);
                 $window.sessionStorage.setItem('token', response.data.token)
                 // $scope.profile = response.data;
                 $location.path('/congratulations')
-                })
+              });
+            });
             }
+
           }
 
        })
