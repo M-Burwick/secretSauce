@@ -44,7 +44,7 @@ var vehicleSchema = mongoose.Schema({
 
     zip: {
         type:Number
-    }
+    },
 
     email: {
         type: String,
