@@ -34,8 +34,6 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
         templateUrl: 'templates/inspection.html'
       })
 
-
-
       $stateProvider
         .state('browse', {
         url: '/search',
@@ -240,6 +238,8 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
   $scope.status = '  ';
   $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 
+  
+
   $scope.selectedMake = function(make) {
     $scope.currentMake = make;
     console.log(make);
@@ -258,11 +258,8 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
     // to prevent interaction outside of dialog
        $mdDialog.show({
           clickOutsideToClose: true,
-          scope: $scope,        // use parent scope in template
-          preserveScope: true,  // do not forget this if use parent scope
-          // Since GreetingController is instantiated with ControllerAs syntax
-          // AND we are passing the parent '$scope' to the dialog, we MUST
-          // use 'vm.<xxx>' in the template markup
+          scope: $scope,  
+          preserveScope: true,  
           template: '<md-dialog class="login-page">' +
                     '<md-dialog-content layout="column" layout-align="start center">' +
                     '<h4>SELL WITH CARISTA</h4>' +
@@ -290,6 +287,16 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
                     '           <label>Year</label>'+
                     '           <md-select ng-model="vehicle.year">'+
                     '           <md-option ng-repeat="year in currentModel.years" >{{year.year}}</md-option>'+
+                    '           </md-select>'+
+                    '     </md-input-container>'+
+                    '     <md-input-container>' +
+                    '           <label>Condition</label>'+
+                    '           <md-select ng-model="vehicle.condition">'+
+                    '           <md-option>Outstanding</md-option>'+
+                    '           <md-option>Clean</md-option>'+
+                    '           <md-option>Average</md-option>'+
+                    '           <md-option>Rough</md-option>'+
+                    '           <md-option>Damaged</md-option>'+
                     '           </md-select>'+
                     '     </md-input-container>'+
                     '     <md-input-container>' +
@@ -323,11 +330,8 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
     // to prevent interaction outside of dialog
        $mdDialog.show({
           clickOutsideToClose: true,
-          scope: $scope,        // use parent scope in template
-          preserveScope: true,  // do not forget this if use parent scope
-          // Since GreetingController is instantiated with ControllerAs syntax
-          // AND we are passing the parent '$scope' to the dialog, we MUST
-          // use 'vm.<xxx>' in the template markup
+          scope: $scope,
+          preserveScope: true, 
           template: '<md-dialog class="login-page">' +
                     '<md-dialog-content layout="column" layout-align="start center">' +
                     '<h4>BUY WITH CARISTA</h4>' +
