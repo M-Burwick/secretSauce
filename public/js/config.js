@@ -290,6 +290,16 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
                     '           </md-select>'+
                     '     </md-input-container>'+
                     '     <md-input-container>' +
+                    '           <label>Condition</label>'+
+                    '           <md-select ng-model="vehicle.condition">'+
+                    '           <md-option>Outstanding</md-option>'+
+                    '           <md-option>Clean</md-option>'+
+                    '           <md-option>Average</md-option>'+
+                    '           <md-option>Rough</md-option>'+
+                    '           <md-option>Damaged</md-option>'+
+                    '           </md-select>'+
+                    '     </md-input-container>'+
+                    '     <md-input-container>' +
                     '           <label>Phone</label>'+
                     '           <input type="text" ng-model="vehicle.phone">'+
                     '     </md-input-container>'+
