@@ -34,8 +34,6 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
         templateUrl: 'templates/inspection.html'
       })
 
-
-
       $stateProvider
         .state('browse', {
         url: '/search',
@@ -240,6 +238,8 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
   $scope.status = '  ';
   $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 
+
+
   $scope.selectedMake = function(make) {
     $scope.currentMake = make;
     console.log(make);
@@ -248,6 +248,9 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
     $scope.currentModel = model;
     console.log(model);
   }
+  $scope.handleStyle = function(style) {
+    $scope.currentStyle = style;  
+}
   $scope.selectedYear = function(year) {
     $scope.currentYear = year;
     $http.get('https://api.edmunds.com/api/vehicle/v2/'+ $scope.currentMake.name +'/' + $scope.currentModel.name + '/'+ $scope.currentYear.year +'?fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg').then(function(response) {
@@ -267,11 +270,8 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
     // to prevent interaction outside of dialog
        $mdDialog.show({
           clickOutsideToClose: true,
-          scope: $scope,        // use parent scope in template
-          preserveScope: true,  // do not forget this if use parent scope
-          // Since GreetingController is instantiated with ControllerAs syntax
-          // AND we are passing the parent '$scope' to the dialog, we MUST
-          // use 'vm.<xxx>' in the template markup
+          scope: $scope,
+          preserveScope: true,
           template: '<md-dialog class="login-page">' +
                     '<md-dialog-content layout="column" layout-align="start center">' +
                     '<h4>SELL WITH CARISTA</h4>' +
@@ -303,11 +303,20 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
                     '     </md-input-container>'+
                     '     <md-input-container>' +
                     '           <label>Style</label>'+
-                    '           <md-select ng-model="vehicle.style">'+
-                    '           <md-option ng-repeat="style in styles.styles" >{{style.name}}</md-option>'+
+                      '           <md-select ng-model="vehicle.style">'+
+                    '           <md-option ng-repeat="style in styles.styles" ng-click="handleStyle(style)">{{style.name}}</md-option>'+
                     '           </md-select>'+
                     '     </md-input-container>'+
-
+                    '     <md-input-container>' +
+                    '           <label>Condition</label>'+
+                    '           <md-select ng-model="vehicle.condition">'+
+                    '           <md-option>Outstanding</md-option>'+
+                    '           <md-option>Clean</md-option>'+
+                    '           <md-option>Average</md-option>'+
+                    '           <md-option>Rough</md-option>'+
+                    '           <md-option>Damaged</md-option>'+
+                    '           </md-select>'+
+                    '     </md-input-container>'+
                     '     <md-input-container>' +
                     '           <label>Phone</label>'+
                     '           <input type="text" ng-model="vehicle.phone">'+
@@ -339,11 +348,8 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
     // to prevent interaction outside of dialog
        $mdDialog.show({
           clickOutsideToClose: true,
-          scope: $scope,        // use parent scope in template
-          preserveScope: true,  // do not forget this if use parent scope
-          // Since GreetingController is instantiated with ControllerAs syntax
-          // AND we are passing the parent '$scope' to the dialog, we MUST
-          // use 'vm.<xxx>' in the template markup
+          scope: $scope,
+          preserveScope: true,
           template: '<md-dialog class="login-page">' +
                     '<md-dialog-content layout="column" layout-align="start center">' +
                     '<h4>BUY WITH CARISTA</h4>' +
