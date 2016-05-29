@@ -513,7 +513,7 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
 
 /* If you don't want the footer to be responsive, remove these media queries */
 
-@media (max-width: 900px) {
+@media (max-width: 600px) {
     .footer-basic-centered {
         padding: 35px;
     }
@@ -537,7 +537,6 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
     .login-page{
       padding-bottom:0%;
     }
-
     .sellBtn{
       height:55px;
     }
