@@ -309,6 +309,14 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
                     '           </md-select>'+
                     '     </md-input-container>'+
                     '     <md-input-container>' +
+                    '           <label>Mileage</label>'+
+                    '           <input type="mileage" ng-model="vehicle.mileage">'+
+                    '     </md-input-container>'+
+                    '     <md-input-container>' +
+                    '           <label>Zipcode</label>'+
+                    '           <input type="zipcode" ng-model="vehicle.zip">'+
+                    '     </md-input-container>'+
+                    '     <md-input-container>' +
                     '           <label>Condition</label>'+
                     '           <md-select ng-model="vehicle.condition">'+
                     '           <md-option>Outstanding</md-option>'+
