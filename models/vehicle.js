@@ -30,7 +30,7 @@ var vehicleSchema = mongoose.Schema({
         type:String
     },
 
-    estimate: {
+    tmv: {
         type: Number
     },
 
