@@ -1,3 +1,4 @@
+
 var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
 
 //add quote gen for vehicles server side and client side
@@ -233,11 +234,28 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
             $location.path('/creditCheck.html')
           });
       })
-  .controller('AppCtrl', function($scope, $mdDialog, $mdMedia) {
+  .controller('AppCtrl', function($scope, $mdDialog, $mdMedia, $http) {
   $scope.status = '  ';
   $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
 
+  
+
+  $scope.selectedMake = function(make) {
+    $scope.currentMake = make;
+    console.log(make);
+  }
+  $scope.selectedModel = function(model) {
+    $scope.currentModel = model;
+    console.log(model);
+  }
   $scope.showSellerAlert = function(ev) {
+    $http.get('https://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg').then(function(response) {
+      $scope.makes = _.map(response.data.makes, function(make){return make});
+      console.log($scope.makes);
+    });
+    // Appending dialog to document.body to cover sidenav in docs app
+    // Modal dialogs should fully cover application
+    // to prevent interaction outside of dialog
        $mdDialog.show({
           clickOutsideToClose: true,
           scope: $scope,  
@@ -255,21 +273,27 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
                     '     </md-input-container>'+
                     '     <md-input-container>' +
                     '           <label>Make</label>'+
-                    '           <input type="text" ng-model="vehicle.make">'+
+                    '           <md-select  ng-model="vehicle.make">'+
+                    '           <md-option ng-repeat="make in makes" ng-click="selectedMake(make)">{{make.name}}</md-option>'+
+                    '           </md-select>'+
                     '     </md-input-container>'+
                     '     <md-input-container>' +
                     '           <label>Model</label>'+
-                    '           <input type="text" ng-model="vehicle.model">'+
-                    '     </md-input-container>'+  
+                    '           <md-select  ng-model="vehicle.model">'+
+                    '           <md-option ng-repeat="model in currentMake.models" ng-click="selectedModel(model)">{{model.name}}</md-option>'+
+                    '           </md-select>'+
+                    '     </md-input-container>'+
                     '     <md-input-container>' +
                     '           <label>Year</label>'+
-                    '           <input type="text" ng-model="vehicle.year">'+
-                    '     </md-input-container>'+  
+                    '           <md-select ng-model="vehicle.year">'+
+                    '           <md-option ng-repeat="year in currentModel.years" >{{year.year}}</md-option>'+
+                    '           </md-select>'+
+                    '     </md-input-container>'+
                     '     <md-input-container>' +
                     '           <label>Phone</label>'+
                     '           <input type="text" ng-model="vehicle.phone">'+
-                    '     </md-input-container>'+                     
-                    '  <button ng-click = "signupVehicle(vehicle)" type="submit" class="sellBtn">Sell my car for me!</button>'+                                                                                                                                                 
+                    '     </md-input-container>'+
+                    '  <button ng-click = "signupVehicle(vehicle)" type="submit" class="sellBtn">Sell my car for me!</button>'+
                     '</md-dialog-content>' +
                     '</md-dialog>',
           controller: function DialogController($scope, $mdDialog, $http, $location, $window) {
@@ -285,7 +309,7 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
                 // $scope.profile = response.data;
                 $location.path('/congratulations')
                 })
-            }  
+            }
           }
 
        })
@@ -312,8 +336,8 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
                     '     <md-input-container>' +
                     '           <label>Name</label>'+
                     '           <input type="text" ng-model="buyer.name">'+
-                    '     </md-input-container>'+            
-                    '  <button ng-click = "signup(buyer)" type="submit" class="sellBtn">Find my CAR!</button>'+                                                                                                                                                 
+                    '     </md-input-container>'+
+                    '  <button ng-click = "signup(buyer)" type="submit" class="sellBtn">Find my CAR!</button>'+
                     '</md-dialog-content>' +
                     '</md-dialog>',
           controller: function DialogController($scope, $mdDialog, $http, $location, $window) {
@@ -325,15 +349,15 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
                 $http.post('/signup', buyer)
                 .success(function(response){
                 console.log(response);
-                
+
                 $window.sessionStorage.setItem('token', response.data.token)
                 $location.path('/hooray')
                 })
-            }  
+            }
           }
 
        })
-    }; 
+    };
 })
 // <md-input-container>
 //   <label>Username</label>
@@ -351,4 +375,3 @@ function DialogController($scope, $mdDialog) {
     $mdDialog.hide(answer);
   };
 }
- 
