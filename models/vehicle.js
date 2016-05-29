@@ -22,6 +22,18 @@ var vehicleSchema = mongoose.Schema({
         type: String
     },
 
+    condition: {
+        type: String
+    },
+    
+    style: {
+        type:String
+    },
+
+    estimate: {
+        type: Number
+    },
+    
     phone: {
         type: String,
         required:true
