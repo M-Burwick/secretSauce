@@ -331,7 +331,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                     '           <label>Phone</label>' +
                     '           <input type="text" ng-model="vehicle.phone">' +
                     '     </md-input-container>' +
-                    '  <button ng-click = "signupVehicle(vehicle)" type="submit" class="sellBtn">Sell my car for me!</button>' +
+                    '<md-button id="confirmSaleBtn" class ="confirmBtn" ng-click = "signupVehicle(vehicle)">Sell My Car!</md-button>' +
                     '</md-dialog-content>' +
                     '</md-dialog>',
                 controller: function DialogController($scope, $mdDialog, $http, $location, $window) {
@@ -381,7 +381,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                     '           <label>Name</label>' +
                     '           <input type="text" ng-model="buyer.name">' +
                     '     </md-input-container>' +
-                    '  <button ng-click = "signup(buyer)" type="submit" class="sellBtn">Find my CAR!</button>' +
+                    '<md-button  id="confirmBuyBtn" class ="confirmBtn"ng-click = "signup(buyer)" >Find my Car!</md-button>' +
                     '</md-dialog-content>' +
                     '</md-dialog>',
                 controller: function DialogController($scope, $mdDialog, $http, $location, $window) {
