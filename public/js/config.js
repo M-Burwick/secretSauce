@@ -248,11 +248,20 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
     $scope.currentModel = model;
     console.log(model);
   }
+  $scope.selectedYear = function(year) {
+    $scope.currentYear = year;
+    $http.get('https://api.edmunds.com/api/vehicle/v2/'+ $scope.currentMake.name +'/' + $scope.currentModel.name + '/'+ $scope.currentYear.year +'?fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg').then(function(response) {
+      $scope.styles = response.data;
+      console.log($scope.styles);
+    });
+    console.log(year);
+  }
   $scope.showSellerAlert = function(ev) {
     $http.get('https://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg').then(function(response) {
       $scope.makes = _.map(response.data.makes, function(make){return make});
       console.log($scope.makes);
     });
+
     // Appending dialog to document.body to cover sidenav in docs app
     // Modal dialogs should fully cover application
     // to prevent interaction outside of dialog
@@ -289,9 +298,16 @@ var app = angular.module('app', [ 'ui.router', 'ngMaterial', 'ngFileUpload'])
                     '     <md-input-container>' +
                     '           <label>Year</label>'+
                     '           <md-select ng-model="vehicle.year">'+
-                    '           <md-option ng-repeat="year in currentModel.years" >{{year.year}}</md-option>'+
+                    '           <md-option ng-repeat="year in currentModel.years" ng-click="selectedYear(year)">{{year.year}}</md-option>'+
                     '           </md-select>'+
                     '     </md-input-container>'+
+                    '     <md-input-container>' +
+                    '           <label>Style</label>'+
+                    '           <md-select ng-model="vehicle.style">'+
+                    '           <md-option ng-repeat="style in styles.styles" >{{style.name}}</md-option>'+
+                    '           </md-select>'+
+                    '     </md-input-container>'+
+
                     '     <md-input-container>' +
                     '           <label>Phone</label>'+
                     '           <input type="text" ng-model="vehicle.phone">'+
