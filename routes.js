@@ -242,7 +242,7 @@ app.get('/profile', function(req, res) {
 //get vehicle profile for sellers they login and
 //see vehicle data upon auth
 app.get('/sellerProfile', function(req, res) {
-  var token = req.user;
+  var token = {email: "brick@gmail.com"};
   if (token) {
     Vehicle.findOne({
       email: token.email
