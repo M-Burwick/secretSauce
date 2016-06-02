@@ -335,7 +335,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                     '           <label>Phone</label>' +
                     '           <input type="text" ng-model="vehicle.phone">' +
                     '     </md-input-container>' +
-                    '<md-button id="confirmSaleBtn" class ="confirmBtn" ng-click = "signupVehicle(vehicle)">Sell My Car!</md-button>' +
+                    '<md-button id="confirmSaleBtn" class ="confirmBtn" ng-click ="signupVehicle(vehicle)">Sell My Car!</md-button>' +
                     '</md-dialog-content>' +
                     '</md-dialog>',
                 controller: function DialogController($scope, $mdDialog, $http, $location, $window) {
@@ -352,9 +352,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                             vehicle.pics = ['tacoma.png', 'tacoma2.jpeg', 'tacoma3.JPG']
                             $http.post('/signupVehicle', vehicle)
                                 .then(function(response) {
-
-                                    $window.sessionStorage.setItem('token', response.data.token)
-                                        // $scope.profile = response.data;
+                                    $mdDialog.hide();
                                     $location.path('/congratulations')
                                 });
                         });
