@@ -13,63 +13,74 @@ var random = require("random-js")(); // uses the nativeMath engine
 
 
 module.exports = function(app, passport) {
-  app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+app.get('/auth/google', passport.authenticate('google', {
+    scope: ['profile', 'email']
+}));
 
-      // the callback after google has authenticated the user
-      app.get('/auth/google/callback',
-              passport.authenticate('google', {
-                      successRedirect : '/#/profile',
-                      failureRedirect : '/'
-              }));
+// the callback after google has authenticated the user
+app.get('/auth/google/callback',
+    passport.authenticate('google', {
+        successRedirect: '/#/profile',
+        failureRedirect: '/'
+    }));
 
-  // route for facebook authentication and login
-  // different scopes while logging in
-  app.get('/login/facebook',
-    passport.authenticate('facebook', {scope: 'email'}
-  ));
-
-  // handle the callback after facebook has authenticated the user
-  app.get('/login/facebook/callback',
+// route for facebook authentication and login
+// different scopes while logging in
+app.get('/login/facebook',
     passport.authenticate('facebook', {
-      successRedirect : '/#/profile',
-      failureRedirect : '/'
+        scope: 'email'
+    }));
+
+// handle the callback after facebook has authenticated the user
+app.get('/login/facebook/callback',
+    passport.authenticate('facebook', {
+        successRedirect: '/#/profile',
+        failureRedirect: '/'
     })
 
-  );
+);
 
 
-    //Simulates credit check
-    app.get('/creditCheck', function(req,res){
+//Simulates credit check
+app.get('/creditCheck', function(req, res) {
         var value = random.integer(500, 800);
         var aprvAmt = random.integer(15000, 55000);
-      function algo(credScore){
-        if(credScore > 700){
-             Buyer.findById(req.user._id, function(err, buyer){
-                buyer.approval = true;
-                buyer.approvalAmount = aprvAmt;
-                buyer.creditScore = credScore;
-                buyer.save();
-                res.json({msg: 'Buyer approved', data: buyer})
 
-             })
+        function algo(credScore) {
+            if (credScore > 700) {
+                Buyer.findById(req.user._id, function(err, buyer) {
+                    buyer.approval = true;
+                    buyer.approvalAmount = aprvAmt;
+                    buyer.creditScore = credScore;
+                    buyer.save();
+                    res.json({
+                        msg: 'Buyer approved',
+                        data: buyer
+                    })
 
-        } else if(credScore > 550){
-            Buyer.findById(req.user._id, function(err, buyer){
-                buyer.unapproval = true;
-                buyer.creditScore = credScore;
-                buyer.save();
-                res.json({msg: 'buyer not approved'})
+                })
 
-             })
+            } else if (credScore > 550) {
+                Buyer.findById(req.user._id, function(err, buyer) {
+                    buyer.unapproval = true;
+                    buyer.creditScore = credScore;
+                    buyer.save();
+                    res.json({
+                        msg: 'buyer not approved'
+                    })
 
-        } else {
-            Buyer.findById(req.user._id, function(err, buyer){
-                buyer.unapproval = true;
-                buyer.creditScore = credScore;
-                buyer.save()
-                res.json({msg: 'buyer not approved'})
-             })
-        }
+                })
+
+            } else {
+                Buyer.findById(req.user._id, function(err, buyer) {
+                    buyer.unapproval = true;
+                    buyer.creditScore = credScore;
+                    buyer.save()
+                    res.json({
+                        msg: 'buyer not approved'
+                    })
+                })
+            }
 
         };
 
@@ -79,165 +90,202 @@ module.exports = function(app, passport) {
 
     })
     //login for buyers
-    app.post('/login', function(req, res){
-      Buyer.findOne({
-         email: req.body.email
-         }, function(err, buyer) {
-          if (err) throw err;
+app.post('/login', function(req, res) {
+        Buyer.findOne({
+            email: req.body.email
+        }, function(err, buyer) {
+            if (err) throw err;
 
-        if (!buyer) {
-          res.send({success: false, msg: 'Authentication failed. buyer not found.'});
-         } else {
-        // check if password matches
-        buyer.comparePassword(req.body.password, function (err, isMatch) {
-        if (isMatch && !err) {
-          // if Buyer is found and password is right create a token
-        var token = jwt.encode(buyer, config.secret);
-          // return the information including token as JSON
-          res.send({success: true, token: 'JWT ' + token, data: buyer});
+            if (!buyer) {
+                res.send({
+                    success: false,
+                    msg: 'Authentication failed. buyer not found.'
+                });
+            } else {
+                // check if password matches
+                buyer.comparePassword(req.body.password, function(err, isMatch) {
+                    if (isMatch && !err) {
+                        // if Buyer is found and password is right create a token
+                        var token = jwt.encode(buyer, config.secret);
+                        // return the information including token as JSON
+                        res.send({
+                            success: true,
+                            token: 'JWT ' + token,
+                            data: buyer
+                        });
 
-        } else {
-          res.send({success: false, msg: 'Authentication failed. Wrong password.'});
-               }
-            });
-        }
+                    } else {
+                        res.send({
+                            success: false,
+                            msg: 'Authentication failed. Wrong password.'
+                        });
+                    }
+                });
+            }
         });
     })
     //login for sellers
-    app.post('/loginVehicle', function(req, res){
-      Vehicle.findOne({
-         email: req.body.email
-         }, function(err, vehicle) {
-          if (err) throw err;
+app.post('/loginVehicle', function(req, res) {
+        Vehicle.findOne({
+            email: req.body.email
+        }, function(err, vehicle) {
+            if (err) throw err;
 
-        if (!vehicle) {
-          res.send({success: false, msg: 'Authentication failed. vehicle not found.'});
-         } else {
-        // check if password matches
-        vehicle.comparePassword(req.body.password, function (err, isMatch) {
-        if (isMatch && !err) {
-          // if vehicle is found and password is right create a token
-        var token = jwt.encode(vehicle, config.secret);
-          // return the information including token as JSON
-          res.send({success: true, token: 'JWT ' + token, data: vehicle});
-
-        } else {
-          res.send({success: false, msg: 'Authentication failed. Wrong password.'});
-               }
-            });
-        }
+            if (!vehicle) {
+                res.send({
+                    success: false,
+                    msg: 'Authentication failed. vehicle not found.'
+                });
+            } else {
+                res.send({
+                    success: true,
+                    data: vehicle
+                });
+            }
         });
-    })
-    //route to get all vehicles
-    app.get('/vehicles', function(req, res){
-      console.log(req.user);
-        Vehicle.find({}, function(err, vehicles){
+});
+
+//route to get all vehicles
+app.get('/vehicles', function(req, res) {
+        console.log(req.user);
+        Vehicle.find({}, function(err, vehicles) {
             res.json(vehicles);
         })
     })
     //get vehicle a buyer is interested
-    app.get('/vehicles/:vehicle_id', function(req, res){
-      Vehicle.find({id: req.params.vehicle_id}, function(err, vehicle){
+app.get('/vehicles/:vehicle_id', function(req, res) {
+    Vehicle.find({
+        id: req.params.vehicle_id
+    }, function(err, vehicle) {
         console.log(vehicle);
         res.json(vehicle);
-      })
     })
+})
 
 //route to add a buyer to a vehicle when purchased
 //working to add the vehicle document to the buyer so query can
 //will just be to profile instead of the db to see which
 //vehicle has the current Buyer's id in its buyers subdoc
-  app.put('/vehicles/:vehicle_id', function (req, res){
-  Vehicle.findById(req.params.vehicle_id, function(err, vehicle){
+app.put('/vehicles/:vehicle_id', function(req, res) {
+    Vehicle.findById(req.params.vehicle_id, function(err, vehicle) {
 
-      if(err){
-        res.send(err);
-      } else {
-        //i want this to only happen if there is no current buyer
-        //also if there is no decoded then redirect to an
-        //request for authorization page...
-        vehicle.buyer.push(req.user);
-        vehicle.save();
-        console.log(vehicle);
-        res.json(vehicle);
-    }
-    Buyer.findById(req.user._id, function(err, buyer){
+        if (err) {
+            res.send(err);
+        } else {
+            //i want this to only happen if there is no current buyer
+            //also if there is no decoded then redirect to an
+            //request for authorization page...
+            vehicle.buyer.push(req.user);
+            vehicle.save();
+            console.log(vehicle);
+            res.json(vehicle);
+        }
+        Buyer.findById(req.user._id, function(err, buyer) {
             buyer.car.push(vehicle);
-                console.log(buyer)
+            console.log(buyer)
             buyer.save();
         })
-  })
+    })
 })
 
 
-  //signup a new Buyer who is a buyer ill probably rename next commit
-    app.post('/signup', function(req, res) {
-        if (!req.body.email || !req.body.password) {
-         res.json({success: false, msg: 'Please pass name and password.'});
-        } else {
+//signup a new Buyer who is a buyer ill probably rename next commit
+app.post('/signup', function(req, res) {
+    if (!req.body.email || !req.body.password) {
+        res.json({
+            success: false,
+            msg: 'Please pass name and password.'
+        });
+    } else {
         var newBuyer = new Buyer({
-        email: req.body.email,
-        password: req.body.password,
-        name: req.body.name
+            email: req.body.email,
+            password: req.body.password,
+            name: req.body.name
         });
         // save the Buyer
         newBuyer.save(function(err) {
-        if (err) {
-        return res.json({success: false, msg: 'Buyername already exists.'});
-        }
-        res.json({success: true, msg: 'Successful created new Buyer.', data: newBuyer});
+            if (err) {
+                return res.json({
+                    success: false,
+                    msg: 'Buyername already exists.'
+                });
+            }
+            res.json({
+                success: true,
+                msg: 'Successful created new Buyer.',
+                data: newBuyer
+            });
         });
     }
 });
-    //create new vehicle post and Buyer associated with car
-  app.post('/signupVehicle', function(req, res) {
+//create new vehicle post and Buyer associated with car
+app.post('/signupVehicle', function(req, res) {
 
-        if (!req.body.make || !req.body.model) {
-         res.json({success: false, msg: 'Please pass name and password.'});
-        } else {
+    if (!req.body.make || !req.body.model) {
+        res.json({
+            success: false,
+            msg: 'Please pass name and password.'
+        });
+    } else {
 
         var newVehicle = new Vehicle({
-        make: req.body.make,
-        model: req.body.model,
-        year: req.body.year,
-        email: req.body.email,
-        phone: req.body.phone,
-        password: req.body.password,
-        style: req.body.stlye,
-        zip: req.body.zip,
-        mileage: req.body.mileage,
-        condition:req.body.condition,
-        tmv: req.body.tmv,
-        pics: req.body.pics
+            make: req.body.make,
+            model: req.body.model,
+            year: req.body.year,
+            email: req.body.email,
+            phone: req.body.phone,
+            style: req.body.stlye,
+            zip: req.body.zip,
+            mileage: req.body.mileage,
+            condition: req.body.condition,
+            tmv: req.body.tmv,
+            pics: req.body.pics
         });
         newVehicle.save(function(err) {
-        console.log(err);
-        if (err) {
-        return res.json({success: false, msg: 'Buyername already exists.'});
-        }
-        res.json({success: true, msg: 'Successful created new vehicle.', data: newVehicle});
-        console.log(newVehicle);
-      })
+            console.log(err);
+            if (err) {
+                return res.json({
+                    success: false,
+                    msg: 'Buyername already exists.'
+                });
+            }
+            res.json({
+                success: true,
+                msg: 'Successful created new vehicle.',
+                data: newVehicle
+            });
+            console.log(newVehicle);
+        })
 
     }
-  });
+});
 
 app.get('/profile', function(req, res) {
-  var token = req.user;
-  if (token) {
-    Buyer.findOne({
-      email: token.email
-    }, function(err, buyer) {
-        if (err) throw err;
-        if (!buyer) {
-          return res.status(403).send({success: false, msg: 'Authentication failed. Buyer not found.'});
-        } else {
-          res.json({success: true, msg: 'Welcome in the member area ', data: buyer});
-        }
-    });
-  } else {
-    return res.status(403).send({success: false, msg: 'No token provided.'});
-  }
+    var token = req.user;
+    if (token) {
+        Buyer.findOne({
+            email: token.email
+        }, function(err, buyer) {
+            if (err) throw err;
+            if (!buyer) {
+                return res.status(403).send({
+                    success: false,
+                    msg: 'Authentication failed. Buyer not found.'
+                });
+            } else {
+                res.json({
+                    success: true,
+                    msg: 'Welcome in the member area ',
+                    data: buyer
+                });
+            }
+        });
+    } else {
+        return res.status(403).send({
+            success: false,
+            msg: 'No token provided.'
+        });
+    }
 });
 //get vehicle profile for sellers they login and
 //see vehicle data upon auth
@@ -258,26 +306,27 @@ app.get('/sellerProfile', function(req, res) {
   } else {
     return res.status(403).send({success: false, msg: 'No token provided.'});
   }
+
 });
 
 
-    //need a logout to remove auth.headers
-    app.get('/logout', function(req, res) {
-        req.logout();
-        res.redirect('/');
-    });
+//need a logout to remove auth.headers
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+});
 };
 
 
-getToken = function (headers) {
-  if (headers && headers.authorization) {
-    var parted = headers.authorization.split(' ');
-    if (parted.length === 2) {
-      return parted[1];
+getToken = function(headers) {
+    if (headers && headers.authorization) {
+        var parted = headers.authorization.split(' ');
+        if (parted.length === 2) {
+            return parted[1];
+        } else {
+            return null;
+        }
     } else {
-      return null;
+        return null;
     }
-  } else {
-    return null;
-  }
 };
