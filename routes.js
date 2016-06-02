@@ -137,7 +137,6 @@ module.exports = function(app, passport) {
   var token = getToken(req.headers);
   var decoded = jwt.decode(token, config.secret);
   Vehicle.findById(req.params.vehicle_id, function(err, vehicle){
-    console.log(decoded)
 
       if(err){
         res.send(err);
@@ -156,6 +155,8 @@ module.exports = function(app, passport) {
         })
   })
 })
+
+
   //signup a new Buyer who is a buyer ill probably rename next commit
     app.post('/signup', function(req, res) {
         if (!req.body.email || !req.body.password) {

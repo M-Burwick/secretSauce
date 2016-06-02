@@ -26,7 +26,6 @@ var buyerSchema = mongoose.Schema({
     },
     approvalAmount: {
         type: Number,
-
     },
     creditScore: {
         type: Number,
