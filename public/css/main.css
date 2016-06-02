@@ -31,8 +31,19 @@ color: #000;
     background: url('./bmwphoto.jpg');
     -webkit-filter: grayscale(100%);
     background-size: cover;
-    position: relative;
+    position: 
+    relative;
     z-index: 0;
+}
+
+
+#buyerProfileJumbo{
+    background: url('./bmwphoto.jpg');
+    background-size: cover;
+}
+
+#buyerProfileJumbo h1{
+  color:white;
 }
 
 /*

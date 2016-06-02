@@ -159,7 +159,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
             console.log(response.data);
             $scope.profile = response.data;
             $window.sessionStorage.setItem('token', response.data.token)
-            $location.path('/home')
+            $location.path('/profile')
         });
     }
 })
@@ -392,10 +392,10 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                     $scope.signup = function(buyer, $mdDialog) {
                         $http.post('/signup', buyer)
                             .success(function(response) {
-                                console.log(response);
-
+                                console.log(response.data);
+                                $scope.profile = response.data;
                                 $window.sessionStorage.setItem('token', response.data.token)
-                                $location.path('/hooray')
+                                $location.path('/profile')
                             })
                     }
                 }
