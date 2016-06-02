@@ -13,6 +13,14 @@ var random = require("random-js")(); // uses the nativeMath engine
 
 
 module.exports = function(app, passport) {
+  app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
+      // the callback after google has authenticated the user
+      app.get('/auth/google/callback',
+              passport.authenticate('google', {
+                      successRedirect : '/#/profile',
+                      failureRedirect : '/'
+              }));
 
   // route for facebook authentication and login
   // different scopes while logging in
@@ -23,7 +31,7 @@ module.exports = function(app, passport) {
   // handle the callback after facebook has authenticated the user
   app.get('/login/facebook/callback',
     passport.authenticate('facebook', {
-      successRedirect : '/',
+      successRedirect : '/#/profile',
       failureRedirect : '/'
     })
 

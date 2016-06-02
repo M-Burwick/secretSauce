@@ -9,11 +9,27 @@
     display: flex;
     justify-content: center;
 }
-
-.md-button.md-raised:not([disabled]) {
-  box-shadow: none !important;
+.fb-login-btn {
+    background: url('./IMG/fblogin.png') !important;
+    width: 200px !important;
+    background-size: cover !important;                      /* <------ */
+background-repeat:   no-repeat;
+background-position: center center;
+    height: 44px;
 }
 
+.google-login-btn {
+    background: url('./IMG/googleLogin.png') !important;
+    width: 207px !important;
+    background-size: cover !important;                      /* <------ */
+background-repeat:   no-repeat;
+background-position: center center;
+    height: 46px;
+}
+
+.md-button.md-raised:not([disabled]) {
+    box-shadow: none !important;
+}
 .navbar {
     font-family: 'Merriweather Sans', sans-serif;
     background-color: #fff;
@@ -31,19 +47,15 @@ color: #000;
     background: url('./bmwphoto.jpg');
     -webkit-filter: grayscale(100%);
     background-size: cover;
-    position: 
-    relative;
+    position: relative;
     z-index: 0;
 }
-
-
-#buyerProfileJumbo{
+#buyerProfileJumbo {
     background: url('./bmwphoto.jpg');
     background-size: cover;
 }
-
-#buyerProfileJumbo h1{
-  color:white;
+#buyerProfileJumbo h1 {
+    color: white;
 }
 
 /*
@@ -100,7 +112,6 @@ color: #000;
     width: 450px;
     margin-top: 5%;
 }
-
 .btnGrp {
     width: 100%;
     padding: -10px;
@@ -184,13 +195,12 @@ hr {
     background: blue;
 }
 .one {
-    padding-top:15px;
+    padding-top: 15px;
     width: 50%;
     border: 3px dotted #aaa;
     margin: 5px;
     height: 650px;
 }
-
 #inTouch {
     background: lightgray;
     background-size: cover;
@@ -201,55 +211,44 @@ hr {
    letter-spacing: -0.364px;
    font-size: 31.707px;*/
 }
-
-#confirmSaleBtn{
-  background-color: rgb(88, 125, 249);
-
+#confirmSaleBtn {
+    background-color: rgb(88, 125, 249);
 }
-
-#confirmBuyBtn{
-  background-color:#aaa;
-
+#confirmBuyBtn {
+    background-color: #aaa;
 }
-
-.confirmBtn{
-  width:75%;
-
+.confirmBtn {
+    width: 75%;
 }
 .navBtn {
-  background-color:tomato;
-  margin-top:15%;
-  color: white;
-  width:80px;
-  border-radius:7px;
-  border: 1px solid white;
-  margin-left:3px;
-  margin-right:3px;
+    background-color: tomato;
+    margin-top: 15%;
+    color: white;
+    width: 80px;
+    border-radius: 7px;
+    border: 1px solid white;
+    margin-left: 3px;
+    margin-right: 3px;
 }
-#navsellerBtn{
-  background-color: rgb(88, 125, 249);
-
+#navsellerBtn {
+    background-color: rgb(88, 125, 249);
 }
-#navbuyerBtn{
-  background-color:#aaa;
-
+#navbuyerBtn {
+    background-color: #aaa;
 }
-
-.navBtn span{
-  color:white;
+.navBtn span {
+    color: white;
 }
-
-.confirmBtn span{
-  color:white;
+.confirmBtn span {
+    color: white;
 }
-
-.congratsContent h1{
-  font-family: 'Merriweather Sans', sans-serif !important;
-  color:white;
+.congratsContent h1 {
+    font-family: 'Merriweather Sans', sans-serif !important;
+    color: white;
 }
-.congratsContent h3{
-  font-family: 'Merriweather Sans', sans-serif !important;
-  color:white;
+.congratsContent h3 {
+    font-family: 'Merriweather Sans', sans-serif !important;
+    color: white;
 }
 .md-raised {
     height: 50px;
@@ -270,90 +269,72 @@ hr {
     height: 500px;
 }
 section {
-
     background-color: #fff;
     padding: 20px;
 }
-
-
- .one{
- 	width:auto;
- 	border:3px dotted #aaa;
- 	margin:5px;
-      height:auto;
-  padding:20px;
- }           
-
-.one p {
-  font-size: 1.5em;
+.one {
+    width: auto;
+    border: 3px dotted #aaa;
+    margin: 5px;
+    height: auto;
+    padding: 20px;
 }
-
-
- #congrats {
- background: url('./coast.jpg');
-  background-size:cover;
-  height:600px;
-  width:100%;
- }
-
-
+.one p {
+    font-size: 1.5em;
+}
+#congrats {
+    background: url('./coast.jpg');
+    background-size: cover;
+    height: 600px;
+    width: 100%;
+}
 #benefits {
     padding-top: 100px;
     padding-bottom: 100px;
     height: auto;
-
 }
 #howItWorks {
     padding: 40px;
     background-color: #fafafa;
 }
-
 .buyLogin {
-  margin-left: -200px !important;
-
+    margin-left: -200px !important;
 }
+
 /*#sellerJmb {
     background: url('./bmw.jpg');
     background-size: cover;
     margin-bottom: -80px;
- 
+
 }*/
 
+section {
+    /* 	padding-top:20%;
 
- section{
-/* 	padding-top:20%;
-
-*/ 	background-color: #fff;
-	padding:20px;
- }
-
- #benefits {
- 	padding-top:40px;
- 	padding-bottom:40px;
- 	height:700px;
- }
-
-  #howItWorks{
-  	padding:40px;
- 	background-color:#fafafa;
-
- }
-
-
-#sellerJmb{
-		background: url('./audi.png');
-	background-size:cover;
-  height:920px;
-     height: 100vh;
+*/
+    background-color: #fff;
+    padding: 20px;
 }
-
+#benefits {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    height: 700px;
+}
+#howItWorks {
+    padding: 40px;
+    background-color: #fafafa;
+}
+#sellerJmb {
+    background: url('./audi.png');
+    background-size: cover;
+    height: 920px;
+    height: 100vh;
+}
 #buyerJmb {
     background: url('./sunnyday.jpg');
     background-size: cover;
     height: 100vh;
     width: 100v;
-
-
 }
 #car {
     background: url('./inspect02.jpg');
@@ -394,54 +375,45 @@ section {
 }
 .login-page {
     width: 460px;
-   margin: auto;
-   padding-top:3%;
-  padding-bottom:3%;
-  height:auto;
+    margin: auto;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    height: auto;
 }
 .home-page {
     width: auto;
     padding: 10px;
     margin: auto;
 }
-
-#graziSection{
-  padding-bottom :40px;
+#graziSection {
+    padding-bottom: 40px;
 }
-
-
-md-input-container{
-  width:75%;
-  height:25px;
+md-input-container {
+    width: 75%;
+    height: 25px;
 }
-
 md-input-container:not(.md-input-invalid).md-input-focused .md-input {
     border-color: rgb(88, 125, 249);
 }
-
-md-dialog-content h4{
-  color: rgb(88, 125, 249);
-
+md-dialog-content h4 {
+    color: rgb(88, 125, 249);
 }
-
 md-input-container:not(.md-input-invalid).md-input-focused label {
     color: rgb(88, 125, 249);
     font-size: 16px;
 }
-
-.sellBtn{
-  background-color:rgb(88, 125, 249);
-  width:75%;
-  height:55px;
-  color:white;
-  border-radius: 5px;
-  border: 2px solid rgb(88, 125, 249);
+.sellBtn {
+    background-color: rgb(88, 125, 249);
+    width: 75%;
+    height: 55px;
+    color: white;
+    border-radius: 5px;
+    border: 2px solid rgb(88, 125, 249);
+}
+#confirmSale {
+    background-color: tomato);
 }
 
-#confirmSale{
-    background-color:tomato);
-
-}
 /*.form {
     position: relative;
     z-index: 1;
@@ -454,7 +426,11 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
     border-radius: 2px;
     text-align: center;
 /*    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-*/}
+*/
+
+
+}
+
 /*.form input {
     font-family: "Merriweather Sans", sans-serif;
     outline: 0;
@@ -547,13 +523,11 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
     text-decoration: none;
     color: inherit;
 }
-
- .footer-company-motto{
-  width:100%;
- }
+.footer-company-motto {
+    width: 100%;
+}
 
 /* If you don't want the footer to be responsive, remove these media queries */
-
 @media (max-width: 600px) {
     .footer-basic-centered {
         padding: 35px;
@@ -571,67 +545,51 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
     .footer-basic-centered .footer-links a {
         line-height: 1.8;
     }
-    md-input-container{
-      width:75%;
-      height:12px;
+    md-input-container {
+        width: 75%;
+        height: 12px;
     }
- 
-    .sellBtn{
-      margin-bottom: 50px;
-      height:75px;
+    .sellBtn {
+        margin-bottom: 50px;
+        height: 75px;
     }
-
-      .one {
-      height:auto;
-      width: 100%;
+    .one {
+        height: auto;
+        width: 100%;
     }
-       #benefits{
-    height: auto;
-   }
-
-  
-
-   .one p {
-     font-size: 15px
-   }
-
-   .one h2 {
-    font-size:22px;
-   }
-
-   .one h1 {
-    font-size:30px;
-   }
-
-
-
+    #benefits {
+        height: auto;
+    }
+    .one p {
+        font-size: 15px
+    }
+    .one h2 {
+        font-size: 22px;
+    }
+    .one h1 {
+        font-size: 30px;
+    }
 }
-
-
 @media (max-width: 900px) {
-  .one {
-      height:auto;
-      width: 100%;
+    .one {
+        height: auto;
+        width: 100%;
     }
-       #benefits{
-    height: auto;
-   }
-
+    #benefits {
+        height: auto;
+    }
 }
-
-#dialogContainer{
-  height:1000px;
-  width:1000px;
+#dialogContainer {
+    height: 1000px;
+    width: 1000px;
 }
-
-#sell{
-  height:650px;
-  background-color:lightgray;
+#sell {
+    height: 650px;
+    background-color: lightgray;
 }
-
-#sellerh1{
-  position:absolute;
-  margin-top:-160px;
-  margin-left:90px;
-  color:white;
+#sellerh1 {
+    position: absolute;
+    margin-top: -160px;
+    margin-left: 90px;
+    color: white;
 }

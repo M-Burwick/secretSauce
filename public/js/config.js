@@ -233,12 +233,16 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
             $location.path('/creditCheck.html')
         });
     })
-    .controller('AppCtrl', function($scope, $mdDialog, $mdMedia, $http) {
+    .controller('AppCtrl', function($scope, $mdDialog, $mdMedia, $http, $window) {
         $scope.status = '  ';
         $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
+        $scope.fblogin = function() {
+      $window.location.href = '/login/facebook/';
+        }
 
-
-
+        $scope.googleLogin = function() {
+              $window.location.href = '/auth/google/';
+        }
         $scope.selectedMake = function(make) {
             $scope.currentMake = make;
             console.log(make);
@@ -339,6 +343,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                         $mdDialog.hide();
                     }
 
+
                     $scope.signupVehicle = function(vehicle, $mdDialog) {
                         $http.get('https://api.edmunds.com/v1/api/tmv/tmvservice/calculateusedtmv?styleid=' + $scope.currentStyle.id + '&condition=' + vehicle.condition + '&mileage=' + vehicle.mileage + '&zip=' + vehicle.zip + '&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg').then(function(response) {
 
@@ -358,6 +363,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 
             })
         }
+
         $scope.showBuyerAlert = function(ev) {
             // Appending dialog to document.body to cover sidenav in docs app
             // Modal dialogs should fully cover application
@@ -369,20 +375,9 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                 template: '<md-dialog class="login-page">' +
                     '<md-dialog-content layout="column" layout-align="start center">' +
                     '<h4>BUY WITH CARISTA</h4>' +
-                    '     <md-input-container>' +
-                    '           <label>Email</label>' +
-                    '           <input type="text" ng-model="buyer.email">' +
-                    '     </md-input-container>' +
-                    '     <md-input-container>' +
-                    '           <label>Password</label>' +
-                    '           <input type="password" ng-model="buyer.password">' +
-                    '     </md-input-container>' +
-                    '     <md-input-container>' +
-                    '           <label>Name</label>' +
-                    '           <input type="text" ng-model="buyer.name">' +
-                    '     </md-input-container>' +
-                    '<md-button  id="confirmBuyBtn" class ="confirmBtn"ng-click = "signup(buyer)" >Find my Car!</md-button>' +
-                    '</md-dialog-content>' +
+                      '<md-button class="fb-login-btn" ng-click="fblogin()"></md-button>' +
+                      '<md-button class="google-login-btn" ng-click="googleLogin()"></md-button>' +
+                      '</md-dialog-content>' +
                     '</md-dialog>',
                 controller: function DialogController($scope, $mdDialog, $http, $location, $window) {
                     $scope.closeDialog = function() {

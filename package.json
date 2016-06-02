@@ -22,7 +22,7 @@
     "morgan": "~1.0.0",
     "passport": "latest",
     "passport-facebook": "^2.1.1",
-    "passport-google-oauth": "latest",
+    "passport-google-oauth": "^1.0.0",
     "passport-jwt": "^2.0.0",
     "passport-local": "latest",
     "passport-twitter": "latest",
