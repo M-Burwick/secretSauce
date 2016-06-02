@@ -1,12 +1,21 @@
 <br>
 
-<div class="container">
 
 <h1>Hello im the Buyer profile</h1>
 
 <br>
-<div class="jumbotron">
-<p> Email: {{profile.email}} </p>
+<div id="buyerProfileJumbo" class="jumbotron">
+
+	<div layout="row">
+  <div flex="80">
+  	  <h1>Hello,</h1>
+     <h1> {{profile.email}} </h1>
+  </div>
+  <div flex="20">
+    [flex="70"]
+  </div>
+
+</div>
 </div>
 <br>
 <div class="jumbotron">
@@ -20,16 +29,18 @@
 <br>
 <div class="jumbotron">
 <ul ng-repeat = "car in profile.car">
+	<li ng-repeat = "pic in car.pics"><img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{pic}}" alt="Description" /></li>
 	<li>{{car.make}}</li>
 	<li>{{car.model}}</li>
 	<li>{{car.year}}</li>
+	
+
 <!-- 	<li>{{car.price}}</li>
  -->
 
 </ul>	
 
 
-</div>
 
 <button ng-click = "creditCheck()" type="submit" class="btn btn-success">Check you Credit!</button>
 

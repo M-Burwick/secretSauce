@@ -30,6 +30,8 @@ var vehicleSchema = mongoose.Schema({
         type:String
     },
 
+    pics: [],
+
     tmv: {
         type: Number
     },
