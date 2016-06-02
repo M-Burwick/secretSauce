@@ -286,10 +286,6 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                     '           <input type="text" ng-model="vehicle.email">' +
                     '     </md-input-container>' +
                     '     <md-input-container>' +
-                    '           <label>Password</label>' +
-                    '           <input type="password" ng-model="vehicle.password">' +
-                    '     </md-input-container>' +
-                    '     <md-input-container>' +
                     '           <label>Make</label>' +
                     '           <md-select  ng-model="vehicle.make">' +
                     '           <md-option ng-repeat="make in makes" ng-click="selectedMake(make)">{{make.name}}</md-option>' +
