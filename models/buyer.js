@@ -3,17 +3,25 @@ var bcrypt = require('bcrypt-nodejs');
 var Vehicle = require('./vehicle');
 // define the schema for our user model
 var buyerSchema = mongoose.Schema({
+    _id: {
+        type: String,
+        unique: true,
+        required: true
+    },
     email: {
         type: String,
         unique: true,
         required: true
     },
-    password: {
+    access_token: {
         type: String,
         unique: true,
         required: true
     },
-    name: {
+    nameFirst: {
+        type: String
+    },
+    nameLast: {
         type: String
     },
     approval: {
@@ -26,18 +34,14 @@ var buyerSchema = mongoose.Schema({
     },
     approvalAmount: {
         type: Number,
-
     },
     creditScore: {
         type: Number,
-
     },
-
     car: [{
         type: mongoose.Schema.Types.Mixed,
         ref: 'Vehicle'
     }]
-
 });
 
 // methods ======================
