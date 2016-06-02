@@ -66,6 +66,8 @@ var vehicleSchema = mongoose.Schema({
         ref: 'Buyer'
     }]
 
+    
+
 });
 
 // methods ======================
