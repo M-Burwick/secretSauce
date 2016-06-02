@@ -1,13 +1,22 @@
 
+<div class="jumbotron">
+
+
 <h1>Welcome to Seller Profile</h1>
-{{profile.make}}
-</div>
-<br>
-{{profile.model}}
-</div>
-<br>
-{{profile.year}}
-{{profile.buyer}}
+
 
 <button ng-click = "logoutSeller()" type="submit" class="btn btn-success">logout</button>
 </div>
+
+
+<div class="jumbotron">
+{{profile.make}}{{profile.model}}{{profile.year}}
+		<div ng-repeat = "pic in profile.pics" layout="row">
+          <div flex><img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{pic}}" class="img-responsive" alt="Cinque Terre" width="175" height="250" /></div>   
+        </div>
+
+
+
+
+</div>
+

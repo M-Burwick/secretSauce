@@ -290,31 +290,23 @@ app.get('/profile', function(req, res) {
 //get vehicle profile for sellers they login and
 //see vehicle data upon auth
 app.get('/sellerProfile', function(req, res) {
-    var token = req.user;
-    if (token) {
-        Vehicle.findOne({
-            email: token.email
-        }, function(err, vehicle) {
-            if (err)
-                res.send(err);
-            if (!vehicle) {
-                return res.status(403).send({
-                    success: false,
-                    msg: 'Authentication failed. Buyer not found.'
-                });
-            } else {
-                res.json({
-                    success: true,
-                    data: vehicle
-                });
-            }
-        });
-    } else {
-        return res.status(403).send({
-            success: false,
-            msg: 'No token provided.'
-        });
-    }
+  var token = {email: "brick@gmail.com"};
+  if (token) {
+    Vehicle.findOne({
+      email: token.email
+    }, function(err, vehicle) {
+        if (err)
+          res.send(err);
+        if (!vehicle) {
+          return res.status(403).send({success: false, msg: 'Authentication failed. Buyer not found.'});
+        } else {
+          res.json({success: true, data: vehicle});
+        }
+    });
+  } else {
+    return res.status(403).send({success: false, msg: 'No token provided.'});
+  }
+
 });
 
 
