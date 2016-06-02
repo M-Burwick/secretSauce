@@ -344,7 +344,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                     }
 
 
-                    $scope.signupVehicle = function(vehicle, $mdDialog) {
+                    $scope.signupVehicle = function(vehicle) {
                         $http.get('https://api.edmunds.com/v1/api/tmv/tmvservice/calculateusedtmv?styleid=' + $scope.currentStyle.id + '&condition=' + vehicle.condition + '&mileage=' + vehicle.mileage + '&zip=' + vehicle.zip + '&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg').then(function(response) {
 
                             vehicle.tmv = response.data.tmv.certifiedUsedPrice;
