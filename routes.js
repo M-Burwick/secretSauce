@@ -206,7 +206,9 @@ module.exports = function(app, passport) {
         style: req.body.stlye,
         zip: req.body.zip,
         mileage: req.body.mileage,
-        condition:req.body.condition
+        condition:req.body.condition,
+        tmv: req.body.tmv,
+        pics: req.body.pics
         });
         newVehicle.save(function(err) {
         console.log(err);

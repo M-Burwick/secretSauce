@@ -349,9 +349,10 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 
                             vehicle.tmv = response.data.tmv.certifiedUsedPrice;
                             console.log(vehicle);
+                            vehicle.pics = ['tacoma.png', 'tacoma2.jpeg', 'tacoma3.JPG']
                             $http.post('/signupVehicle', vehicle)
-                                .success(function(response) {
-                                    console.log(response);
+                                .then(function(response) {
+
                                     $window.sessionStorage.setItem('token', response.data.token)
                                         // $scope.profile = response.data;
                                     $location.path('/congratulations')
