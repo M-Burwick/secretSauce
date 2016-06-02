@@ -4,7 +4,8 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var flash = require('connect-flash');
 var path = require("path");
-var LocalStrategy = require('passport-local').Strategy
+var LocalStrategy = require('passport-local').Strategy;
+
 var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
@@ -34,6 +35,7 @@ app.use(function(req, res, next) {
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
     next();
 });
+require('./config/passport.js')(passport);
 require('./routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 // launch ======================================================================
 server = app.listen(process.env.PORT || 1738, process.env.IP || "0.0.0.0", function() {
