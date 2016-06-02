@@ -46,6 +46,11 @@ color: #000;
   color:white;
 }
 
+
+#browseJumbo{
+
+}
+
 /*
 .navbarLink a {
   color: black;
@@ -266,13 +271,31 @@ hr {
     color: black;
 }
 .sellerSection {
-    background-color: blue;
+    background-color: #fff;
     height: 500px;
 }
 section {
 
     background-color: #fff;
     padding: 20px;
+}
+
+
+.name{
+    color: #000;
+    word-spacing: 0px;
+    letter-spacing: -0.364px;
+    font-size: 25.707px;
+}
+
+#col1 img{
+ margin-bottom:10px;
+ border-radius: 7px;
+}
+
+#col2 img{
+   margin-bottom:10px;
+ border-radius: 7px;
 }
 
 
