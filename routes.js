@@ -168,6 +168,8 @@ module.exports = function(app, passport) {
         })
   })
 })
+
+
   //signup a new Buyer who is a buyer ill probably rename next commit
     app.post('/signup', function(req, res) {
         if (!req.body.email || !req.body.password) {

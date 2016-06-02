@@ -11,11 +11,22 @@
 
 <div class="vehicleGrid" layout="column" layout-align="start center">
 
+
+
 <ul ng-repeat="vehicle in vehicles">
+	<div layout="row">
+ 		 <div flex="50">
+   		 <img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{vehicle.pics[1]}}" class="img-responsive" alt="Cinque Terre" width="175" height="250"/>
+  		</div>
+   <div flex="50">
+    <img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{vehicle.pics[2]}}" class="img-responsive" alt="Cinque Terre" width="175" height="250"/>
+  </div>
+
 	<li>
 		{{vehicle.make}}
 		{{vehicle.model}}
 		{{vehicle.year}}
+		<img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{vehicle.pics[0]}}" class="img-responsive" alt="Cinque Terre" width="500" height="250"/>
 	</li>
 
 
