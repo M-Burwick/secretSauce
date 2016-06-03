@@ -193,7 +193,16 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 .controller('ProfileController', function ProfileController($scope, $location, $window, $http, $rootScope) {
     $http.get('/profile').then(function(response) {
         $scope.profile = response.data.data;
+        $scope.pickLoan;
+
+        if($scope.profile.loan.length){
+            $scope.pickLoan = true;
+        } else {
+            $scope.pickLoan = false;
+        }
+        
     });
+
     $scope.creditCheck = function() {
             $http.get('/creditCheck').then(function(response) {
               console.log(response.data);
@@ -206,14 +215,6 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
           });
         }
 
-          $scope.pickLoan;
-
-
-    if($scope.profile.loan.length){
-        $scope.pickLoan = true;
-    } else {
-        $scope.pickLoan = false;
-    }
         $scope.logout = function() {
             $http.get('/logout').then(function(response) {
                 $location.path('/home')
