@@ -135,7 +135,7 @@ module.exports = function(app, passport) {
                 });
             } else {
                 console.log(req.body)
-                buyer.loan = req.body.loan
+                buyer.loan = req.body
                 buyer.save();
             }
         });
