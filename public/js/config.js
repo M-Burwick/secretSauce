@@ -171,8 +171,8 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 
     $scope.pickLoan;
 
-    
-    if(profile.loan.length){
+
+    if(vehicle.loan.length){
         $scope.pickLoan = true;
     } else {
         $scope.pickLoan = false;
