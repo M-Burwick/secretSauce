@@ -169,7 +169,7 @@ module.exports = function(app, passport) {
 
     app.get('/vehicles/:vehicle_id', function(req, res) {
         Vehicle.find({
-            id: req.params.vehicle_id
+            _id: req.params.vehicle_id
         }, function(err, vehicle) {
             console.log(vehicle);
             res.json(vehicle);
