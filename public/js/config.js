@@ -169,6 +169,14 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
     }
 
 
+    $scope.pickLoan;
+
+    
+    if(profile.loan.length){
+        $scope.pickLoan = true;
+    } else {
+        $scope.pickLoan = false;
+    }
 
     $scope.purchaseVehicle = function(user) {
         $http.put('/vehicles/' + $window.sessionStorage.vehicleId).then(function(response) {

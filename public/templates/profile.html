@@ -23,7 +23,7 @@
 		<h1>Your Credit Score is {{results.creditScore}}</h1>
 
 		<div>
-		<ul>
+		<ul ng-hide="pickLoan">
 			<li ng-repeat="loan in results.loans">
 				Ammount Approved for: {{loan.approval}}
 				Apr: {{loan.apr}}
@@ -32,6 +32,10 @@
 				<button ng-click="pickLoan(loan)">I want this loan</button>
 			</li>
 		</ul>
+		<ul ng-show="pickLoan">
+			<li>{{profile.loan[0]}}</li>
+
+		</ul>	
 		</div>
 
 
