@@ -200,7 +200,28 @@ module.exports = function(app, passport) {
                 success: false,
                 msg: 'Please pass name and password.'
             });
+        } else {
+            var newBuyer = new Buyer({
+                email: req.body.email,
+                password: req.body.password,
+                name: req.body.name
+            });
 
+            newBuyer.save(function(err) {
+                if (err) {
+                    return res.json({
+                        success: false,
+                        msg: 'Buyername already exists.'
+                    });
+                }
+                res.json({
+                    success: true,
+                    msg: 'Successful created new Buyer.',
+                    data: newBuyer
+                });
+            });
+        }
+    });
 
     app.post('/signupVehicle', function(req, res) {
 
