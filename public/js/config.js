@@ -193,14 +193,14 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 .controller('ProfileController', function ProfileController($scope, $location, $window, $http, $rootScope) {
     $http.get('/profile').then(function(response) {
         $scope.profile = response.data.data;
-        $scope.pickLoan;
+        $scope.picedkLoan;
 
         if($scope.profile.loan.length){
-            $scope.pickLoan = true;
+            $scope.pickedLoan = true;
         } else {
-            $scope.pickLoan = false;
+            $scope.pickedLoan = false;
         }
-        
+
     });
 
     $scope.creditCheck = function() {
