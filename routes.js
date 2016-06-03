@@ -51,14 +51,14 @@ module.exports = function(app, passport) {
             months: 48,
             apr: (Math.random() * (13.74 - 5.76) + 5.76),
             payment: 400,
-            approval: (getRandomArbitrary(25000, 45000)
+            approval: (getRandomArbitrary(25000, 45000))
         };
 
         var two = {
             months: 36,
             apr: (Math.random() * (15.74 - 7.76) + 7.76),
             payment: 500,
-            approval: getRandomArbitrary(18000, 38000)
+            approval: (getRandomArbitrary(18000, 38000))
         };
 
 
@@ -66,7 +66,7 @@ module.exports = function(app, passport) {
             months: 60,
             apr: (Math.random() * (9.74 - 4.76) + 4.76),
             payment: 300,
-            approval: getRandomArbitrary(25000, 55000)
+            approval: (getRandomArbitrary(25000, 55000))
         };
 
         var firstTier = [one, two, three];
@@ -76,14 +76,14 @@ module.exports = function(app, passport) {
             months: 48,
             apr: (Math.random() * (18.74 - 12.76) + 12.76),
             payment: 500,
-            approval: getRandomArbitrary(15000, 35000)
+            approval: (getRandomArbitrary(15000, 35000))
         };
 
         var five = {
             months: 36,
             apr: (Math.random() * (19.74 - 11.76) + 11.76),
             payment: 600,
-            approval: getRandomArbitrary(18000, 38000)
+            approval: (getRandomArbitrary(18000, 38000))
         };
 
 
@@ -91,7 +91,7 @@ module.exports = function(app, passport) {
             months: 60,
             apr: (Math.random() * (15.74 - 8.76) + 8.76),
             payment: 450,
-            approval: getRandomArbitrary(25000, 55000)
+            approval: (getRandomArbitrary(25000, 55000))
         };
 
         var secondTier = [four, five, six];
@@ -100,21 +100,21 @@ module.exports = function(app, passport) {
             months: 48,
             apr: (Math.random() * (22.74 - 12.76) + 12.76),
             payment: 550,
-            approval: getRandomArbitrary(15000, 22000)
+            approval: (getRandomArbitrary(15000, 22000))
         };
 
         var eight = {
             months: 36,
             apr: (Math.random() * (24.74 - 11.76) + 11.76),
             payment: 690,
-            approval: getRandomArbitrary(18000, 28000)
+            approval: (getRandomArbitrary(18000, 28000))
         };
 
         var nine = {
             months: 60,
             apr: (Math.Floor(Math.random() * (20.74 - 14.76) + 8.76)),
             payment: 500,
-            approval: getRandomArbitrary(19000, 25000)
+            approval: (getRandomArbitrary(19000, 25000))
         };
 
         var thirdTier = [seven, eight, nine];
