@@ -1,13 +1,7 @@
 var app = angular.module('app', ['ui.router',  'ngMaterial', 'ngFileUpload'])
 
-//add quote gen for vehicles server side and client side
-//also render the html like the credit check template
-
 app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $locationProvider) {
-
-        $httpProvider.interceptors.push('AuthInterceptor');
         $urlRouterProvider.otherwise('/home');
-
         $stateProvider
             .state('home', {
                 url: '/home',
@@ -25,7 +19,6 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                 url: '/hooray',
                 templateUrl: 'templates/buyercongratulations.html'
             })
-
 
         $stateProvider
             .state('inspection', {
@@ -92,29 +85,10 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
             })
 
     })
-    .factory('AuthInterceptor', function($window, $q, $location) {
-        return {
-            request: function(config) {
-                config.headers = config.headers || {};
-                if ($window.sessionStorage.getItem('token')) {
-                    config.headers.authorization = $window.sessionStorage.getItem('token');
-                }
-                // console.log(config.headers);
-                return config || $q.when(config);
-            },
-            response: function(response) {
-                if (response.status === 401) {
-                    $location.path('/auth');
-                }
-                return response || $q.when(response);
-            }
-        };
-    })
 
 .controller('mainController', function MainController($scope, $location, $window, $http, $rootScope) {
     $scope.hello = "hello fucker";
 })
-
 
 .controller('BrowseController', function BrowseController($scope, $location, $window, $http, $rootScope) {
     $http.get('/vehicles').then(function(response) {
@@ -134,7 +108,6 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 .controller('LoginController', function LoginController($scope, $location, $window, $http, $rootScope) {
     $scope.login = function(buyer) {
         $http.post('/login', buyer).then(function(response) {
-            $window.sessionStorage.setItem('token', response.data.token)
             $location.path('/profile')
         });
     }
@@ -143,8 +116,6 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 .controller('LoginVehicleController', function LoginVehicleController($scope, $location, $window, $http, $rootScope) {
     $scope.loginVeh = function(vehicle) {
         $http.post('/loginVehicle', vehicle).then(function(response) {
-            console.log(response.data.token);
-            $window.sessionStorage.setItem('token', response.data.token)
             $location.path('/sellerProfile')
         });
     }
@@ -152,10 +123,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 
 .controller('SignupController', function SignupController($scope, $location, $window, $http, $rootScope) {
     $scope.signup = function(buyer) {
-        $http.post('/signup', buyer).success(function(response) {
-            console.log(response.data);
-            $scope.profile = response.data;
-            $window.sessionStorage.setItem('token', response.data.token)
+        $http.post('/signup', buyer).then(function(response) {
             $location.path('/profile')
         });
     }
@@ -164,10 +132,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 .controller('SignupVehicleController', function SignupVehicleController($scope, $location, $window, $http, $rootScope) {
     $scope.signupVehicle = function(vehicle) {
         $http.post('/signupVehicle', vehicle)
-            .success(function(response) {
-                console.log(response.data);
-                $window.sessionStorage.setItem('token', response.data.token)
-                    // $scope.profile = response.data;
+            .then(function(response) {
                 $location.path('/congratulations')
             })
     }
@@ -204,6 +169,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
     }
 
 
+
     $scope.purchaseVehicle = function(user) {
         $http.put('/vehicles/' + $window.sessionStorage.vehicleId).then(function(response) {
             $scope.purchaseData = response.data;
@@ -214,12 +180,10 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 
 .controller('SellerProfileController', function SellerProfileController($scope, $location, $window, $http, $rootScope) {
     $http.get('/sellerProfile').then(function(response) {
-        console.log(response.data);
         $scope.profile = response.data.data;
     });
     $scope.logoutSeller = function() {
         $http.get('/logout').then(function(response) {
-            $window.sessionStorage.setItem('token', '')
             $location.path('/home')
         })
     }
@@ -227,18 +191,21 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 
 .controller('ProfileController', function ProfileController($scope, $location, $window, $http, $rootScope) {
     $http.get('/profile').then(function(response) {
-        console.log(response);
         $scope.profile = response.data.data;
     });
     $scope.creditCheck = function() {
             $http.get('/creditCheck').then(function(response) {
-                console.log(response);
+              console.log(response.data);
                 $scope.results = response.data;
             })
-        },
+        }
+        $scope.pickLoan = function(loan) {
+          $http.post('/pickedLoan', loan).then(function(response) {
+            console.log(response.data);
+          });
+        }
         $scope.logout = function() {
             $http.get('/logout').then(function(response) {
-                $window.sessionStorage.setItem('token', '')
                 $location.path('/home')
             })
         }
@@ -254,19 +221,17 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
         $scope.status = '  ';
         $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
         $scope.fblogin = function() {
-      $window.location.href = '/login/facebook/';
+            $window.location.href = '/login/facebook/';
         }
 
         $scope.googleLogin = function() {
-              $window.location.href = '/auth/google/';
+            $window.location.href = '/auth/google/';
         }
         $scope.selectedMake = function(make) {
             $scope.currentMake = make;
-            console.log(make);
         }
         $scope.selectedModel = function(model) {
             $scope.currentModel = model;
-            console.log(model);
         }
         $scope.handleStyle = function(style) {
             $scope.currentStyle = style;
@@ -275,22 +240,15 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
             $scope.currentYear = year;
             $http.get('https://api.edmunds.com/api/vehicle/v2/' + $scope.currentMake.name + '/' + $scope.currentModel.name + '/' + $scope.currentYear.year + '?fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg').then(function(response) {
                 $scope.styles = response.data;
-                console.log($scope.styles);
             });
-            console.log(year);
         }
         $scope.showSellerAlert = function(ev) {
             $http.get('https://api.edmunds.com/api/vehicle/v2/makes?fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg').then(function(response) {
                 $scope.makes = _.map(response.data.makes, function(make) {
                     return make
                 });
-                console.log($scope.makes);
             });
 
-
-            // Appending dialog to document.body to cover sidenav in docs app
-            // Modal dialogs should fully cover application
-            // to prevent interaction outside of dialog
             $mdDialog.show({
                 clickOutsideToClose: true,
                 scope: $scope,
@@ -327,23 +285,23 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                     '           </md-select>' +
                     '     </md-input-container>' +
                     '     <md-input-container>' +
-                    '           <label>Mileage</label>'+
-                    '           <input type="mileage" ng-model="vehicle.mileage">'+
-                    '     </md-input-container>'+
+                    '           <label>Mileage</label>' +
+                    '           <input type="mileage" ng-model="vehicle.mileage">' +
+                    '     </md-input-container>' +
                     '     <md-input-container>' +
-                    '           <label>Zipcode</label>'+
-                    '           <input type="zipcode" ng-model="vehicle.zip">'+
-                    '     </md-input-container>'+
+                    '           <label>Zipcode</label>' +
+                    '           <input type="zipcode" ng-model="vehicle.zip">' +
+                    '     </md-input-container>' +
                     '     <md-input-container>' +
-                    '           <label>Condition</label>'+
-                    '           <md-select ng-model="vehicle.condition">'+
-                    '           <md-option>Outstanding</md-option>'+
-                    '           <md-option>Clean</md-option>'+
-                    '           <md-option>Average</md-option>'+
-                    '           <md-option>Rough</md-option>'+
-                    '           <md-option>Damaged</md-option>'+
-                    '           </md-select>'+
-                    '     </md-input-container>'+
+                    '           <label>Condition</label>' +
+                    '           <md-select ng-model="vehicle.condition">' +
+                    '           <md-option>Outstanding</md-option>' +
+                    '           <md-option>Clean</md-option>' +
+                    '           <md-option>Average</md-option>' +
+                    '           <md-option>Rough</md-option>' +
+                    '           <md-option>Damaged</md-option>' +
+                    '           </md-select>' +
+                    '     </md-input-container>' +
                     '     <md-input-container>' +
                     '           <label>Phone</label>' +
                     '           <input type="text" ng-model="vehicle.phone">' +
@@ -356,12 +314,11 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                         $mdDialog.hide();
                     }
 
-
                     $scope.signupVehicle = function(vehicle) {
                         $http.get('https://api.edmunds.com/v1/api/tmv/tmvservice/calculateusedtmv?styleid=' + $scope.currentStyle.id + '&condition=' + vehicle.condition + '&mileage=' + vehicle.mileage + '&zip=' + vehicle.zip + '&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg').then(function(response) {
 
                             vehicle.tmv = response.data.tmv.certifiedUsedPrice;
-                            console.log(vehicle);
+
                             vehicle.pics = ['tacoma.png', 'tacoma2.jpeg', 'tacoma3.JPG']
                             $http.post('/signupVehicle', vehicle)
                                 .then(function(response) {
@@ -377,9 +334,6 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
         }
 
         $scope.showBuyerAlert = function(ev) {
-            // Appending dialog to document.body to cover sidenav in docs app
-            // Modal dialogs should fully cover application
-            // to prevent interaction outside of dialog
             $mdDialog.show({
                 clickOutsideToClose: true,
                 scope: $scope,
@@ -387,9 +341,9 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                 template: '<md-dialog class="login-page">' +
                     '<md-dialog-content layout="column" layout-align="start center">' +
                     '<h4>BUY WITH CARISTA</h4>' +
-                      '<md-button class="fb-login-btn" ng-click="fblogin()"></md-button>' +
-                      '<md-button class="google-login-btn" ng-click="googleLogin()"></md-button>' +
-                      '</md-dialog-content>' +
+                    '<md-button class="fb-login-btn" ng-click="fblogin()"></md-button>' +
+                    '<md-button class="google-login-btn" ng-click="googleLogin()"></md-button>' +
+                    '</md-dialog-content>' +
                     '</md-dialog>',
                 controller: function DialogController($scope, $mdDialog, $http, $location, $window) {
                     $scope.closeDialog = function() {
@@ -398,10 +352,9 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 
                     $scope.signup = function(buyer, $mdDialog) {
                         $http.post('/signup', buyer)
-                            .success(function(response) {
-                                console.log(response.data);
+                            .then(function(response) {
+
                                 $scope.profile = response.data;
-                                $window.sessionStorage.setItem('token', response.data.token)
                                 $location.path('/profile')
                             })
                     }
@@ -410,10 +363,6 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
             })
         };
     })
-    // <md-input-container>
-    //   <label>Username</label>
-    //   <input type="text" ng-model="user.name">
-    // </md-input-container>
 
 function DialogController($scope, $mdDialog) {
     $scope.hide = function() {

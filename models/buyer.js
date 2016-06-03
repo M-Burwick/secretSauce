@@ -23,6 +23,7 @@ var buyerSchema = mongoose.Schema({
     nameLast: {
         type: String
     },
+    loan: [],
     approval: {
         type: Boolean,
         default: false
