@@ -176,7 +176,12 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
               console.log(response.data);
                 $scope.results = response.data;
             })
-        },
+        }
+        $scope.pickLoan = function(loan) {
+          $http.post('/pickedLoan', loan).then(function(response) {
+            console.log(response.data);
+          });
+        }
         $scope.logout = function() {
             $http.get('/logout').then(function(response) {
                 $location.path('/home')
