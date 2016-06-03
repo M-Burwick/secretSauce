@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router', 'ngMaterial', 'ngFileUpload'])
+var app = angular.module('app', ['ui.router',  'ngMaterial', 'ngFileUpload'])
 
 //add quote gen for vehicles server side and client side
 //also render the html like the credit check template
@@ -125,9 +125,6 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
     $scope.selectVehicle = function(vehicle) {
         console.log(vehicle);
         $window.sessionStorage.setItem('vehicleId', vehicle._id);
-        $window.sessionStorage.setItem('make', vehicle.make);
-        $window.sessionStorage.setItem('model', vehicle.model);
-        $window.sessionStorage.setItem('year', vehicle.year);
         $location.path('/vehicleView');
     }
 
@@ -178,13 +175,33 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 
 .controller('VehicleViewController', function VehicleViewController($scope, $location, $window, $http, $rootScope) {
 
-    $scope.vehicle = {
-        year: $window.sessionStorage.year,
-        make: $window.sessionStorage.make,
-        model: $window.sessionStorage.model
+
+    $http.get('/vehicles/' + $window.sessionStorage.vehicleId).then(function(response){
+        console.log(response.data[0]);
+        $scope.vehicle = response.data;
+        $scope.myInterval = 3000;
+
+        $scope.slides = response.data[0].pics;
+        
+    })
+
+    $scope.currentPic = 0;
+
+    $scope.increase = function(car){
+        if($scope.currentPic === car.pics.length - 1){
+            $scope.currentPic = 0
+        } else {
+            $scope.currentPic++;
+        }
+
     }
-
-
+     $scope.decrease = function(car){
+        if($scope.currentPic === 0){
+            $scope.currentPic = car.pics.length - 1
+        } else {
+            $scope.currentPic--;
+        }
+    }
 
 
     $scope.purchaseVehicle = function(user) {

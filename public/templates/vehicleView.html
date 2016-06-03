@@ -1,15 +1,12 @@
-<h1> Vehicle View</h1>
 <div class="jumbotron">
-{{vehicle.make}}
-</div>
-<div class="jumbotron">
-{{vehicle.model}}
-</div>
-<div class="jumbotron">
-{{vehicle.year}}
 
-{{vehicle.pics}}
-
+<ul ng-repeat="car in vehicle">
+	<li>{{car.make}}</li>
+	<li><img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{car.pics[currentPic]}}" class="img-responsive" alt="Cinque Terre" width="500" height="180" /></li>
+	<button ng-click="decrease(car)">Prev</button>
+	<button ng-click ="increase(car)">Next</button>
 </div>
 
 <button ng-click = "purchaseVehicle()" type="submit" class="btn btn-success">Purchase Vehicle!</button>
+
+</div>

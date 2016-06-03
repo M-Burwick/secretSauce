@@ -9,14 +9,41 @@
 </div>
 
 
-<div class="jumbotron">
-{{profile.make}}{{profile.model}}{{profile.year}}
-		<div ng-repeat = "pic in profile.pics" layout="row">
-          <div flex><img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{pic}}" class="img-responsive" alt="Cinque Terre" width="175" height="250" /></div>   
-        </div>
+<section>
+	<div class="container">
+	<div class="row">
+		<div class="col-sm-2">
+			<ul>
+				<li>Make: {{profile.make}}</li>
+				<li>Model: {{profile.model}}</li>
+				<li>Year: {{profile.year}}</li>
+			</ul>	
+		</div>	
+		<div class="col-sm-8">
+          		<div flex><img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{profile.pics[0]}}" class="img-responsive" alt="Cinque Terre" width="100%" height="400" />
+          		</div>   
+		</div>
+		<div class="col-sm-2">
+			<ul>
+				<li>Style: {{profile.styles}}</li>
+				<li>Value: {{profile.tmv}}</li>
+				<li>Condition: {{profile.condition}} </li>
+			</ul>
+		</div>
+	<div>
+	</div>
+</section>
+<br>
+<section class="jumbotron">
+	<h1>Metrics</h1>
 
+	<div class="row">
+		<div class="col-sm-2">
+		</div>
+		<div class="col-sm-8">
+		</div>
+		<div class="col-sm-2">
+		</div>
+	</div>	
 
-
-
-</div>
-
+</section>	

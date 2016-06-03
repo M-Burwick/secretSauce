@@ -554,6 +554,8 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
     width: 100%;
 }
 
+
+
 /* If you don't want the footer to be responsive, remove these media queries */
 @media (max-width: 600px) {
     .footer-basic-centered {
