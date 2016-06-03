@@ -20,7 +20,7 @@
 <div class="row">
 	<div class="container">
 	<div class="col-sm-6">
-		<h1>Your Loan</h1>
+		<h1>Your Credit Score is results.creditScore</h1>
 
 		<div>
 		<ul>
@@ -29,7 +29,7 @@
 				Apr: {{loan.apr}}
 				Months: {{loan.months}}
 				Monthly Payment: {{loan.payments}}
-				<button>I want this loan</button>
+				<button ng-click="pickLoan(loan)">I want this loan</button>
 			</li>
 		</ul>
 		</div>
