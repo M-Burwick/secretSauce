@@ -16,21 +16,27 @@
 </div>
 </div>
 <br>
-<!-- <div class="jumbotron">
-<p> Approval: {{profile.approval}}</p>
-<p>Unapproval: {{profile.unapproval}}</p>
-<p>Amount: {{profile.approvalAmount}}</p>
-
-<p>Credit Score: {{profile.creditScore}}</p>
-
-</div> -->
 
 <div class="row">
 	<div class="container">
 	<div class="col-sm-6">
-		
+		<h1>Your Loan</h1>
+
+		<div>
+		<ul>
+			<li ng-repeat="loan in results.loans">
+				Ammount Approved for: {{loan.approval}}
+				Apr: {{loan.apr}}
+				Months: {{loan.months}}
+				Monthly Payment: {{loan.payments}}
+				<button>I want this loan</button>
+			</li>
+		</ul>
+		</div>
+
+
 		<h1>Your Vehicle</h1>
-        
+
        <ul ng-repeat = "car in profile.car">
   		 <li>{{car.make}}</li>
   		 <li>{{car.model}}</li>
@@ -41,9 +47,9 @@
 		<ul ng-repeat = "car in profile.car">
 
 		<div ng-repeat = "pic in car.pics" layout="row">
-          <div flex><img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{pic}}" class="img-responsive" alt="Cinque Terre" width="175" height="250" /></div>   
+          <div flex><img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{pic}}" class="img-responsive" alt="Cinque Terre" width="175" height="250" /></div>
         </div>
-	
+
 		</ul>
 	</div>
 </div>
@@ -57,14 +63,14 @@
   		<div flex><h3>{{car.model}}</h3></div>
   		<div flex><h3>{{car.year}}</h3></div>
   		<div ng-repeat = "pic in car.pics" layout="row">
-       <div flex><img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{pic}}" class="img-responsive" alt="Cinque Terre" width="175" height="250" /></div>   
+       <div flex><img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{pic}}" class="img-responsive" alt="Cinque Terre" width="175" height="250" /></div>
     </div>
   	    </div>
 
 	</li>
-	
+
 	<li>
-	
+
     </li>
 
 </ul>
