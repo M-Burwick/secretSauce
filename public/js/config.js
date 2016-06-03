@@ -169,14 +169,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
     }
 
 
-    $scope.pickLoan;
-
-
-    if(vehicle.loan.length){
-        $scope.pickLoan = true;
-    } else {
-        $scope.pickLoan = false;
-    }
+  
 
     $scope.purchaseVehicle = function(user) {
         $http.put('/vehicles/' + $window.sessionStorage.vehicleId).then(function(response) {
@@ -212,6 +205,15 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
             console.log(response.data);
           });
         }
+
+          $scope.pickLoan;
+
+
+    if(vehicle.loan.length){
+        $scope.pickLoan = true;
+    } else {
+        $scope.pickLoan = false;
+    }
         $scope.logout = function() {
             $http.get('/logout').then(function(response) {
                 $location.path('/home')
