@@ -120,20 +120,21 @@ module.exports = function(app, passport) {
         var thirdTier = [seven, eight, nine];
 
         function underWriting(credScore) {
-          var loan;
+          var options = {}
             if (credScore > 750) {
-  loan = firstTier[Math.floor(Math.random() * firstTier.length)]
-  loan.creditScore = credScore
-                res.json(loan);
+
+  options.loans = firstTier;
+  options.creditScore = credScore
+                res.json(options);
 
             } else if (credScore > 700) {
-               loan = secondTier[Math.floor(Math.random() * secondTier.length)]
-               loan.creditScore = credScore
-                             res.json(loan);
+              options.loans = secondTier;
+              options.creditScore = credScore
+                            res.json(options);
             } else if (credScore > 600) {
-               loan = thirdTier[Math.floor(Math.random() * thirdTier.length)]
-               loan.creditScore = credScore
-                             res.json(loan);
+              options.loans = thirdTier;
+              options.creditScore = credScore
+                            res.json(options);
             } else {
                 res.json("no approval");
             }
