@@ -173,6 +173,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
     });
     $scope.creditCheck = function() {
             $http.get('/creditCheck').then(function(response) {
+              console.log(response.data);
                 $scope.results = response.data;
             })
         },
