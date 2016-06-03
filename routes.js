@@ -134,6 +134,7 @@ module.exports = function(app, passport) {
                     msg: 'Authentication failed. buyer not found.'
                 });
             } else {
+                console.log(req.body)
                 buyer.loan = req.body.loan
                 buyer.save();
             }
