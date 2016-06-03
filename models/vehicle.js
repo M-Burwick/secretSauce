@@ -30,6 +30,9 @@ var vehicleSchema = mongoose.Schema({
     mileage: {
         type: Number
     },
+    views: {
+        type: Number
+    },
     zip: {
         type:Number
     },

@@ -173,6 +173,8 @@ module.exports = function(app, passport) {
             _id: req.params.vehicle_id
         }, function(err, vehicle) {
             console.log(vehicle);
+            vehicle.views++
+            vehicle.save();
             res.json(vehicle);
         })
     })
