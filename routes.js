@@ -120,7 +120,7 @@ module.exports = function(app, passport) {
         var thirdTier = [seven, eight, nine];
 
         function underWriting(credScore) {
-          let loan;
+          var loan;
             if (credScore > 750) {
   loan = firstTier[Math.floor(Math.random() * firstTier.length)].creditScore = credScore
                 res.json(loan);
