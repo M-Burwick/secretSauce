@@ -209,7 +209,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
           $scope.pickLoan;
 
 
-    if(profile.loan.length){
+    if($scope.profile.loan.length){
         $scope.pickLoan = true;
     } else {
         $scope.pickLoan = false;
