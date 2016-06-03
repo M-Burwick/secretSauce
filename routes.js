@@ -44,7 +44,7 @@ module.exports = function(app, passport) {
     //Simulates credit check
     app.get('/creditCheck', function(req, res) {
         function getRandomArbitrary(min, max) {
-            return Math.floor(Math.random() * (max - min) + min);
+            return (Math.random() * (max - min) + min);
         }
 
         var one = {
