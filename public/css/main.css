@@ -27,6 +27,8 @@ background-position: center center;
     height: 46px;
 }
 
+
+
 .md-button.md-raised:not([disabled]) {
     box-shadow: none !important;
 }
@@ -38,9 +40,164 @@ background-position: center center;
     font-size: 32px;
 }
 
-/*.nav-link{
-color: #000;
+
+
+#imgHolder{
+    height:100%;
+    width:80%;
+    background-color:orange;
+}
+
+.vehicleGrid{
+    margin-bottom:50px;
+}
+
+/*#vehicleGridRow div{
+    margin-bottom: 90px;
 }*/
+
+#vehicleGridRow{
+    background-color: #aaa;
+    border-radius: 0px 0px 5px 5px;
+    border-bottom:1px solid #fff;
+    margin-top: -95px;
+}
+
+#vehiclePriceDiv{
+       margin-left: 1%;
+       color:#fff;
+
+}
+
+#hoverBtnContainer{
+    margin-top:35%;
+}
+
+#hoverBtn{
+    background-color:; rgb(88, 125, 249);
+}
+
+#vehicleBanner{
+    padding-left:0px;
+    width:100%;
+    padding-right:0px;
+}
+
+.vehiclehr{
+    height:1px;
+    background-color: white;
+    margin-top:-7%;
+    margin-bottom:3%;
+    border:0.3px solid white;
+}
+
+.vehicleData{
+    padding-left: 7%;
+    padding-bottom:2%;
+    width:230px;
+    color:#fff;
+    font-size:14.9px;
+    height:35px;
+}
+
+.vehicleDetail{
+    margin-top:15px;
+    width:600px;
+    border: 5px solid rgb(88, 125, 249);
+    padding:10px;
+    height:auto;
+    margin-bottom:15px;
+    background-color: lightgray;
+}
+
+#smile{
+ color:#000;
+}
+
+
+.image-container {
+    position: relative;
+    width: 360px;
+    height: 300px;
+    border-radius:0px 5px 0px 0px;
+    padding-bottom:15px;
+}
+#vehicleImage {
+    position: relative;
+    width:100%;
+    padding:0px;
+    height: auto;
+    border-radius:0px 5px 0px 0px;
+    padding-bottom:15px;
+}
+i{
+   color: white;
+}
+
+.iconCarousel{
+    width:30px;
+}
+.iconCarousel:hover{
+    height:96px;
+
+}
+
+#vehicleImage img{
+    width:110%;
+    height:1000px;
+}
+
+#vehicleAfter{
+    height:98%;
+    padding-left: 2%;
+    padding-right: 2%;
+}
+#vehicleInfo{
+    margin-bottom:10px;
+}
+
+.circle {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px; 
+    background-color:#aaa;
+    /* width and height can be anything, as long as they're equal */
+}
+
+.square{
+    width: 250px;
+    height: 170px; 
+}
+
+.circle img{
+}
+
+#vehicleArrow{
+    margin-top:30%;
+}
+
+.image-container img{
+    border-radius:3px;
+}
+.image-container .after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90%;
+    display: none;
+    color: #FFF;
+    border-radius:3px;
+}
+
+#vehicleImage:hover .after{
+    display: block;
+    background: rgba(0, 0, 0, .1);  
+}
+.image-container:hover .after {
+    display: block;
+    background: rgba(0, 0, 0, .6);
+}
 
 #homejumbo {
     height: 100vh;
@@ -172,13 +329,24 @@ color: #000;
     color: black;
 }
 .fuck {
-    posiiton: relative;
+    position: absolute;
     margin-top: -500px;
     background-color: #007ba7;
 }
-hr {
+/*hr {
     height: 3px;
     background-color: rgb(88, 125, 249);
+}*/
+
+hr.style-one {
+    position:absolute;
+    margin-top: -9px;
+    margin-left:15%;
+    width:75px;
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
 }
 .jumboHr {
     height: 5px;
@@ -212,9 +380,17 @@ hr {
     height: 400px;
 }
 .congratsContent {
-    /*   word-spacing: 0px;
+       word-spacing: 0px;
    letter-spacing: -0.364px;
-   font-size: 31.707px;*/
+   font-size: 31.707px;
+   width: 600px;
+   height:300px;
+   padding:10px;
+}
+
+#searchInput{
+    width:60%;
+    margin-left:-35%;
 }
 #confirmSaleBtn {
     background-color: rgb(88, 125, 249);
@@ -235,11 +411,26 @@ hr {
     margin-left: 3px;
     margin-right: 3px;
 }
+
+#vehBuyerBtn{
+    width:230px;
+    height:120px;
+    background-color: rgb(88, 125, 249);
+}
+
 #navsellerBtn {
     background-color: rgb(88, 125, 249);
+    height:30px;
 }
 #navbuyerBtn {
     background-color: #aaa;
+
+}
+
+.navbar-nav>li>a {
+    padding-top:18px;
+    padding-bottom: 0px;
+    line-height: 0px;
 }
 .navBtn span {
     color: white;
@@ -310,10 +501,11 @@ section {
     font-size: 1.5em;
 }
 #congrats {
-    background: url('./coast.jpg');
+    background: url('./time.jpg');
     background-size: cover;
-    height: 600px;
+    height: 1000px;
     width: 100%;
+
 }
 #benefits {
     padding-top: 100px;

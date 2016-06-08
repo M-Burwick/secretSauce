@@ -1,5 +1,7 @@
 var Buyer = require('./models/buyer'),
     Vehicle = require('./models/vehicle'),
+    Inquiry = require('./models/inquiry'),
+
     jwt = require('jwt-simple'),
     passport = require('passport'),
     config = require('./config/main'),
@@ -12,7 +14,7 @@ module.exports = function(app, passport) {
 
     app.get('/auth/google/callback',
         passport.authenticate('google', {
-            successRedirect: '/#/profile',
+            successRedirect: '/#/search',
             failureRedirect: '/'
         }));
 
@@ -169,11 +171,9 @@ module.exports = function(app, passport) {
     })
 
     app.get('/vehicles/:vehicle_id', function(req, res) {
-        Vehicle.find({
-            _id: req.params.vehicle_id
-        }, function(err, vehicle) {
+        Vehicle.findById(req.params.vehicle_id, function(err, vehicle){
             console.log(vehicle);
-            vehicle.views++
+            vehicle.views++;
             vehicle.save();
             res.json(vehicle);
         })
@@ -222,9 +222,47 @@ module.exports = function(app, passport) {
                     msg: 'Successful created new Buyer.',
                     data: newBuyer
                 });
-            });
+            }); 
         }
     });
+
+    app.post('/inquiry', function(req, res){
+        if (!req.body.make || !req.body.model) {
+            res.json({
+                success: false,
+                msg: 'Please pass name and password.'
+            });
+        } else {
+            var newInquiry = new Inquiry({
+                email: req.body.email,
+                name: req.body.name,
+                phone: req.body.phone,
+                make: req.body.make,
+                model: req.body.model,
+                style: req.body.style,
+                price: req.body.price,
+                vehicleId: req.body.vehicleid,
+                year: req.body.year
+            });
+
+            newInquiry.save(function(err){
+                if (err) {
+                    console.log(err);
+                    return res.json({
+                        success: false,
+                        msg: 'Buyername already exists.'
+                    });
+                }
+                res.json({
+                    success: true,
+                    msg: 'Successful created new inquiry.',
+                    data: newInquiry
+                });
+            })
+            console.log(newInquiry);
+
+        }
+    })
 
     app.post('/signupVehicle', function(req, res) {
 
@@ -240,8 +278,10 @@ module.exports = function(app, passport) {
                 year: req.body.year,
                 email: req.body.email,
                 phone: req.body.phone,
-                style: req.body.stlye,
+                style: req.body.style,
+                styleId: req.body.styleId,
                 zip: req.body.zip,
+                views: 0,
                 mileage: req.body.mileage,
                 condition: req.body.condition,
                 tmv: req.body.tmv,

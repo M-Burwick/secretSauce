@@ -11,60 +11,52 @@
 	</div>
 </section>
 
-
-
-
 <div class="vehicleGrid">
 <div class="container"  layout="column" layout-align="center center">
+  <md-input-container id="searchInput">
+        <input placeholder="Find your car"ng-model="searchText">
 
+ </md-input-container>
+<div  class="row">
+		<div class="container-fluid">
+             <div data-ng-repeat="vehicle in vehicles | filter:searchText" class="col-md-4">
+             	<div class="image-container">
+    				<img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{vehicle.pics[0]}}" class="img-responsive" alt="Cinque Terre" />
+<div id ="vehicleGridRow" layout="row" layout-align="start center">
+  <div layout="column" layout-align="start center" >
+  		<div class="vehicleData">  <h4> {{vehicle.make}} {{vehicle.model}} </h4> </div>
+  		<div class="vehicleData"> <h4> {{vehicle.year}}</h4></div>
 
+ 	
 
-<!-- 
-
-<ul ng-repeat="vehicle in vehicles">
-	<div layout="column">
- 		 <div flex="50">
-   		 <img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{vehicle.pics[1]}}" class="img-responsive" alt="Cinque Terre" width="175" height="250"/>
-  		</div>
-   <div flex="50">
-    <img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{vehicle.pics[2]}}" class="img-responsive" alt="Cinque Terre" width="175" height="250"/>
   </div>
+  <div id="vehiclePriceDiv">	
+  	<h3>
+  	${{vehicle.tmv}}
+  	</h3>
+  	<hr class="vehiclehr"/>
+  	<h5>
+  		{{vehicle.mileage}}
+  	</h5>	
+  </div>	
 
-	<li>
-		{{vehicle.make}}
-		{{vehicle.model}}
-		{{vehicle.year}}
-		<img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{vehicle.pics[0]}}" class="img-responsive" alt="Cinque Terre" width="500" height="250"/>
-	</li>
-
-
-	<button ng-click = "selectVehicle(vehicle)" type="submit" class="btn btn-success">Select This {{vehicle.model}}</button>
-
-</ul> -->
-
-<div ng-repeat="vehicle in vehicles">
-		<div flex="100"> 
-			<div class="row">
-				<div id ="col1"class="col-sm-4">	
-					<img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{vehicle.pics[0]}}" class="img-responsive" alt="Cinque Terre" width="500" height="180" />
-					<img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{vehicle.pics[0]}}" class="img-responsive" alt="Cinque Terre" width="500" height="180" />
-				</div>
-				<div id ="col2" class="col-sm-8">	
-					<img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{vehicle.pics[0]}}" class="img-responsive" alt="Cinque Terre" width="735" height="500" />
-				</div>
+</div>
+    			
+    			<div class='after'>
+    			<div  layout="column" layout-align="center center">	
+    			<div id ="hoverBtnContainer">
+    
+    				   <md-button id="navsellerBtn" ng-click="selectVehicle(vehicle)">Select This {{vehicle.model}}</md-button>
+    			</div>
+    		</div>
+</div>
 			</div>
-	
-			<div class="row">
-				<div class="col-sm-10">
-					<span class="name">{{vehicle.year}} {{vehicle.make}} {{vehicle.model}} {{vehicle.email}}{{vehicle.tmv}}</span>
-						<button ng-click = "selectVehicle(vehicle)" type="submit" class="btn btn-success">Select This {{vehicle.model}}</button>
-				</div>
-				<div class="col-sm-2">
 
-				</div>	
-			</div>	
-		</div>
+             </div>
+        </div>     
+</div>
+</div>
 </div>
 
-</div>
-</div>
+
+

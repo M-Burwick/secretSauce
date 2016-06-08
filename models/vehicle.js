@@ -20,6 +20,9 @@ var vehicleSchema = mongoose.Schema({
     style: {
         type:String
     },
+    styleId: {
+        type:Number
+    },
     pics: [],
     tmv: {
         type: Number

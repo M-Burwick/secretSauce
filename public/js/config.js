@@ -14,6 +14,8 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                 templateUrl: 'templates/congratulations.html'
             })
 
+
+
         $stateProvider
             .state('buyercongratulations', {
                 url: '/hooray',
@@ -129,6 +131,10 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
     }
 })
 
+.controller('InquiryController', function InquiryController($scope, $location, $window, $http, $rootScope){
+ 
+})
+
 .controller('SignupVehicleController', function SignupVehicleController($scope, $location, $window, $http, $rootScope) {
     $scope.signupVehicle = function(vehicle) {
         $http.post('/signupVehicle', vehicle)
@@ -138,45 +144,75 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
     }
 })
 
+.controller('DemoCtrl', function() {
+      this.topDirections = ['left', 'up'];
+      this.bottomDirections = ['down', 'right'];
+      this.isOpen = false;
+      this.availableModes = ['md-fling', 'md-scale'];
+      this.selectedMode = 'md-fling';
+      this.availableDirections = ['up', 'down', 'left', 'right'];
+      this.selectedDirection = 'down';
+    })
+
 .controller('VehicleViewController', function VehicleViewController($scope, $location, $window, $http, $rootScope) {
 
 
     $http.get('/vehicles/' + $window.sessionStorage.vehicleId).then(function(response){
-        console.log(response.data[0]);
+        console.log(response.data)
         $scope.vehicle = response.data;
-        $scope.myInterval = 3000;
+        $scope.slides = response.data.pics;
+        // https://api.edmunds.com/api/vehicle/v2/{make}/{model}/{year}/styles?fmt=json&api_key={api key}
 
-        $scope.slides = response.data[0].pics;
+        $http.get("https://api.edmunds.com/api/vehicle/v2/styles/" + response.data.styleId +  "/equipment?fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg").then(function(edmundsresponse){
+             console.log(edmundsresponse.data);
+            $scope.edmunds = edmundsresponse.data;
+        })
         
     })
 
+    $scope.inquire = function(inquiry){
+        inquiry.make = $scope.vehicle.make;
+        inquiry.model = $scope.vehicle.model;
+        inquiry.year = $scope.vehicle.year;
+        inquiry.style = $scope.vehicle.style;
+        inquiry.price = $scope.vehicle.price;
+
+        $http.post('/inquiry', inquiry).then(function(response) {
+            console.log(response);
+            $location.path('/')
+        });
+    }
+
     $scope.currentPic = 0;
 
-    $scope.increase = function(car){
-        if($scope.currentPic === car.pics.length - 1){
-            $scope.currentPic = 0
+    $scope.increase = function(){
+        if($scope.vehicle.currentPic === $scope.vehicle.pics.length - 1){
+            $scope.vehicle.currentPic = 0
+            console.log($scope.vehicle);
         } else {
-            $scope.currentPic++;
+            $scope.vehicle.pics[$scope.currentPic++];
+            console.log($scope.vehicle.currentPic)
         }
 
     }
-     $scope.decrease = function(car){
-        if($scope.currentPic === 0){
-            $scope.currentPic = car.pics.length - 1
+     $scope.decrease = function(){
+
+        if($scope.vehicle.currentPic === 0){
+            $scope.vehicle.currentPic = $scope.vehicle.pics.length - 1
+             console.log($scope.vehicle);
         } else {
-            $scope.currentPic--;
+            console.log($scope.vehicle.pics[0])
+
+            $scope.vehicle.pics[$scope.currentPic--];
         }
     }
-
-
-  
-
     $scope.purchaseVehicle = function(user) {
         $http.put('/vehicles/' + $window.sessionStorage.vehicleId).then(function(response) {
             $scope.purchaseData = response.data;
             $location.path('/profile')
         })
     }
+
 })
 
 .controller('SellerProfileController', function SellerProfileController($scope, $location, $window, $http, $rootScope) {
@@ -326,10 +362,11 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                     }
 
                     $scope.signupVehicle = function(vehicle) {
+                        console.log(vehicle.style);
                         $http.get('https://api.edmunds.com/v1/api/tmv/tmvservice/calculateusedtmv?styleid=' + $scope.currentStyle.id + '&condition=' + vehicle.condition + '&mileage=' + vehicle.mileage + '&zip=' + vehicle.zip + '&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg').then(function(response) {
 
                             vehicle.tmv = response.data.tmv.certifiedUsedPrice;
-
+                            vehicle.styleId = $scope.currentStyle.id;
                             vehicle.pics = ['tacoma.png', 'tacoma2.jpeg', 'tacoma3.JPG']
                             $http.post('/signupVehicle', vehicle)
                                 .then(function(response) {
@@ -369,6 +406,56 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                                 $location.path('/profile')
                             })
                     }
+                }
+
+            })
+        };
+       
+
+           $scope.inquireAlert = function(ev) {
+            $mdDialog.show({
+                clickOutsideToClose: true,
+                scope: $scope,
+                preserveScope: true,
+                template: '<md-dialog class="login-page">' +
+                    '<md-dialog-content layout="column" layout-align="start center">' +
+                    '<h4>Buy with the best.</h4>' +
+                    '     <md-input-container>' +
+                    '           <label>Email</label>' +
+                    '         <input ng-model="inquiry.email">'+          
+                    '     </md-input-container>' +  
+                    '     <md-input-container>' +
+                    '           <label>Name</label>' +
+                    '        <input ng-model="inquiry.name">'+
+                    '     </md-input-container>' + 
+                    '     <md-input-container>' +
+                    '           <label>Phone</label>' +
+                    '        <input ng-model="inquiry.phone">'+
+                    '     </md-input-container>' + 
+                    '<md-button id="confirmSaleBtn" class ="confirmBtn" ng-click ="inquire(inquiry)">Im interested!</md-button>'+
+                    '</md-dialog-content>' +
+                    '</md-dialog>',
+                controller: function DialogController($scope, $mdDialog, $http, $location, $window) {
+                    $scope.closeDialog = function() {
+                        $mdDialog.hide();
+                    }
+
+               $scope.inquire = function(inquiry){
+        inquiry.make = $scope.vehicle.make;
+        inquiry.model = $scope.vehicle.model;
+        inquiry.style = $scope.vehicle.style;
+        inquiry.price = $scope.vehicle.tmv;
+        inquiry.vehicleid = $scope.vehicle._id;
+        inquiry.year = $scope.vehicle.year;
+
+
+
+
+        $http.post('/inquiry', inquiry).then(function(response) {
+            console.log(response);
+            $location.path('/hooray')
+        });
+    }
                 }
 
             })
