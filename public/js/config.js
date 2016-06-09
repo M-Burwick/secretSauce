@@ -182,7 +182,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 
         $http.post('/inquiry', inquiry).then(function(response) {
             console.log(response);
-            $location.path('/')
+            $location.path('/hooray')
         });
     }
 
@@ -443,22 +443,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                         $mdDialog.hide();
                     }
 
-               $scope.inquire = function(inquiry){
-        inquiry.make = $scope.vehicle.make;
-        inquiry.model = $scope.vehicle.model;
-        inquiry.style = $scope.vehicle.style;
-        inquiry.price = $scope.vehicle.tmv;
-        inquiry.vehicleid = $scope.vehicle._id;
-        inquiry.year = $scope.vehicle.year;
-
-
-
-
-        $http.post('/inquiry', inquiry).then(function(response) {
-            console.log(response);
-            $location.path('/hooray')
-        });
-    }
+      
                 }
 
             })
