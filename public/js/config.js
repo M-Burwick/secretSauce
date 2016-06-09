@@ -163,11 +163,14 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
         $scope.slides = response.data.pics;
         // https://api.edmunds.com/api/vehicle/v2/{make}/{model}/{year}/styles?fmt=json&api_key={api key}
 
-        $http.get("https://api.edmunds.com/api/vehicle/v2/styles/" + response.data.styleId +  "/equipment?fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg").then(function(edmundsresponse){
+        $http.get("https://api.edmunds.com/api/vehicle/v2/"+response.data.make+"/"+response.data.model+"/"+response.data.year+"/grade?fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg").then(function(edmundsresponse){
              console.log(edmundsresponse.data);
-            $scope.edmunds = edmundsresponse.data;
+            $scope.edmunds = edmundsresponse.data.reviews;
         })
-        
+        // https://api.edmunds.com/api/vehiclereviews/v2/honda/accord/2012?fmt=json&api_key={api key}
+// https://api.edmunds.com/api/vehicle/v2/{make}/{model}/{year}/grade?fmt=json&api_key={api_key}
+
+
     })
 
     $scope.inquire = function(inquiry){
