@@ -28,21 +28,43 @@ background-position: center center;
 }
 
 
-.ch-img-1 { 
-    background-image: url('./IMG/googleLogin.png');
+#colBox{
+    background-color:#fff;
+    padding:15px;
+    border: 1px solid #c9c9c9;;
 }
 
+.ch-img-1{ 
+    background-image: url('./ico-carwash.png');
+    background-size: cover;
+
+}
+
+
+
 .ch-img-2 { 
-    background-image: url('./IMG/googleLogin.png');
+    background-image: url('./ico-happylist.png');
+
+    background-size: cover;
 }
 
 .ch-img-3 { 
-    background-image: url('./IMG/googleLogin.png');
+    background-image: url('./ico-delivery.png');
+    background-size:cover;
+}
+
+.ch-item:before{
+    content: "\25AE";
+    font-family: FontAwesome;
+    left:-5px;
+    position:absolute;
+    top:0;
 }
 
 .ch-item {
     width: 100%;
     height: 100%;
+    margin:7px;
     border-radius: 50%;
     overflow: hidden;
     position: relative;
@@ -80,12 +102,13 @@ background-position: center center;
 
 .ch-info {
     position: absolute;
-    background: rgba(63,147,147, 0.8);
+    background: rgba(88, 125, 249, 0.9);
     width: inherit;
     height: inherit;
     border-radius: 50%;
     overflow: hidden;
     opacity: 0;
+    padding-top:20px;
     transition: all 0.4s ease-in-out;
     transform: scale(0);
 }
@@ -94,11 +117,12 @@ background-position: center center;
 .ch-info h3 {
     color: #fff;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 22px;
-    margin: 0 30px;
-    padding: 45px 0 0 0;
-    height: 140px;
+    letter-spacing: 1px;
+    font-size: 12px;
+    margin-top:5%;
+    padding-left:5px;
+    padding-right:5px;
+   /* height: 140px;*/
     font-family: 'Open Sans', Arial, sans-serif;
     text-shadow: 
         0 0 1px #fff, 
@@ -107,13 +131,13 @@ background-position: center center;
 
 .ch-info p {
     color: #fff;
-    padding: 10px 5px;
+    padding: 5px 5px;
     font-style: italic;
-    margin: 0 30px;
-    font-size: 12px;
+    margin: 0 20px;
+    font-size:12px;
     border-top: 1px solid rgba(255,255,255,0.5);
-    opacity: 0;
-    transition: all 1s ease-in-out 0.4s;
+/*    opacity: 0;
+*/    transition: all 1s ease-in-out 0.4s;
 }
 .ch-info p a {
     display: block;
@@ -149,10 +173,10 @@ background-position: center center;
 }
 
 #grayZone{
-    height:500px;
     background-color: #f4f4f4;
     border-top: 1px solid #c9c9c9;
     padding-top: 40px;
+    padding-bottom:40px;
 }
 
 #dividerPrice{
@@ -178,7 +202,7 @@ background-position: center center;
     width:370px;
     border-radius:2px;
     background-color:#fff; 
-    border: 1px solid #e0e0e0;
+    border: 1px solid #c9c9c9;
 
 }
 
@@ -203,7 +227,7 @@ li{
     color:#aaa;
     font-size:20px;
     border-radius:2px;
-    border: 1.2px solid #0000ff;
+    border: 2px solid rgb(88, 125, 249);
 }
 
 
@@ -1003,7 +1027,7 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
 
 
 .ch-grid {
-    margin: 20px 0 0 0;
+    margin: 0 0 0 0;
     padding: 0;
     list-style: none;
     display: block;
@@ -1022,16 +1046,16 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
 }
 
 .ch-grid li {
-    width: 220px;
-    height: 220px;
+    width: auto;
+    height: auto;
     display: inline-block;
-    margin: 20px;
+    margin: 3px;
 }
 
 
 .ch-item {
-    width: 100%;
-    height: 100%;
+    width: 160px;
+    height: 160px;
     border-radius: 50%;
     overflow: hidden;
     position: relative;
