@@ -231,6 +231,30 @@ li{
 }
 
 
+#searchCar{
+    width:100%;
+    height:40px;
+    border-top: 0px #FFf;
+    border-left: 0px #fff;
+    -webkit-box-shadow: 0 10px 6px -6px #777;
+    -moz-box-shadow: 0 10px 6px -6px #777;
+    box-shadow: 4px 10px 6px -6px #777;
+}
+
+#searchCar:focus{
+    border-color: #aaa;
+    box-shadow: 0 1px 1px #aaa inset, 0 0 8px #aaa;
+    outline: 0 none;
+}
+
+
+
+.searchCarDiv{
+    width:100%;
+    margin-bottom:15px;
+
+}
+
 .md-button.md-raised:not([disabled]) {
     box-shadow: none !important;
 }
@@ -242,7 +266,10 @@ li{
     font-size: 32px;
 }
 
-
+.img-responsive{
+    width:100%;
+    height:86%;
+}
 
 #imgHolder{
     height:100%;
@@ -394,7 +421,7 @@ i{
     top: 0;
     left: 0;
     width: 100%;
-    height: 90%;
+    height: 82%;
     display: none;
     color: #FFF;
     border-radius:3px;

@@ -5,7 +5,7 @@
 	</div>
 
 	<div layout="row" layout-align="center center">
-		<img ng-src="./css/audi-banner.jpg" class="img-responsive" alt="Cinque Terre" width="600" height="450"/>
+		<img ng-src="./css/cls.jpg" class="img-responsive" alt="Cinque Terre" width="600" height="450"/>
 
 
 	</div>
@@ -13,10 +13,9 @@
 
 <div class="vehicleGrid">
 <div class="container"  layout="column" layout-align="center center">
-  <md-input-container id="searchInput">
-        <input placeholder="Find your car"ng-model="searchText">
-
- </md-input-container>
+  <div class="searchCarDiv">
+    <input id="searchCar" placeholder="Find your car"ng-model="searchText">
+  </div>            
 <div  class="row">
 		<div class="container-fluid">
              <div data-ng-repeat="vehicle in vehicles | filter:searchText" class="col-md-4">
