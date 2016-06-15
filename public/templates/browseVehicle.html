@@ -20,7 +20,7 @@
 		<div class="container-fluid">
              <div data-ng-repeat="vehicle in vehicles | filter:searchText" class="col-md-4">
              	<div class="image-container">
-    				<img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{vehicle.pics[0]}}" class="img-responsive" alt="Cinque Terre" />
+    				<img id="browseImg" ng-src="http://dq1jslmyx9epx.cloudfront.net/{{vehicle.pics[0]}}" class="img-responsive" alt="Cinque Terre" />
 <div id ="vehicleGridRow" layout="row" layout-align="start center">
   <div layout="column" layout-align="start center" >
   		<div class="vehicleData">  <h4> {{vehicle.make}} {{vehicle.model}} </h4> </div>
