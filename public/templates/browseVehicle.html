@@ -1,6 +1,6 @@
 <section id="browseJumbo" class="sellerSection"layout="row" layout-align=" center center">
 	<div layout="column" layout-align="center center">
-		<h1>Carista. Set. Go.</h1>
+		<h2>Car Buying Simplified.</h2>
 
 	</div>
 
@@ -18,7 +18,7 @@
   </div>            
 <div  class="row">
 		<div class="container-fluid">
-             <div data-ng-repeat="vehicle in vehicles | filter:searchText" class="col-md-4">
+             <div id="watchMe" data-ng-repeat="vehicle in vehicles | filter:searchText" class="col-md-4 col-sm-6">
              	<div class="image-container">
     				<img id="browseImg" ng-src="http://dq1jslmyx9epx.cloudfront.net/{{vehicle.pics[0]}}" class="img-responsive" alt="Cinque Terre" />
 <div id ="vehicleGridRow" layout="row" layout-align="start center">
@@ -45,7 +45,7 @@
     			<div  layout="column" layout-align="center center">	
     			<div id ="hoverBtnContainer">
     
-    				   <md-button id="navsellerBtn" ng-click="selectVehicle(vehicle)">Select This {{vehicle.model}}</md-button>
+    				   <md-button id="navsellerBtn" ui-sref="vehicleView">Select This {{vehicle.model}}</md-button>
     			</div>
     		</div>
 </div>

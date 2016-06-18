@@ -72,25 +72,25 @@
 <section id ="vehicleInfo">
     <div id="carNav">
       <div class="row">
-          <div class="col-sm-4" layout="column" layout-align="center center" id="dividerPrice">
+          <div class="col-xs-6 col-sm-3" layout="column" layout-align="center center" id="dividerPrice">
             <ul>
 
-               <li><h3 id="carNavGray">{{vehicle.make}} {{vehicle.model}}</h3></li>
-               <li><h5>Born: {{vehicle.year}}</h5></li>
+               <li><h3>{{vehicle.make}} {{vehicle.model}}</h3></li>
+               <li><h4>Year: {{vehicle.year}}</h4></li>
 
-               <li><h5>{{vehicle.mileage}} miles</h5></li>
+               <li><h4>{{vehicle.mileage}} miles</h4></li>
             </ul>
-          </div>
-          <div class="col-sm-3" layout="column" layout-align="center center" id="dividerPriceTwo">
+          </div> 
+          <div class="col-xs-6 col-sm-3" layout="column" layout-align="center center" id="dividerPriceTwo">
             <ul>  
               <li><h3>${{vehicle.tmv}}</h3></li>
 
-              <li><h5>{{vehicle.views}} others thought is was worth a look</h5></li> 
+              <li><h4>{{vehicle.views}} people viewed this car</h4></li> 
               <li><i id ="yours"class="fa fa-heart" aria-hidden="true"></i> Make it yours!</li> 
             </ul>  
 
           </div> 
-          <div class="col-sm-5" layout="row" layout-align="center center">            
+          <div class="hidden-xs col-sm-6" layout="row" layout-align="center center">            
               <ul class="ch-grid">
                 <li>
                   <div class="ch-item ch-img-1">

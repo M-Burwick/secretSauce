@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router',  'ngMaterial', 'ngFileUpload'])
+var app = angular.module('app', ['ui.router',  'ngMaterial', 'ngFileUpload', 'ngTouch'])
 
 app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('/home');
@@ -161,6 +161,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
         console.log(response.data)
         $scope.vehicle = response.data;
         $scope.slides = response.data.pics;
+         console.log(response.data.pics);
         // https://api.edmunds.com/api/vehicle/v2/{make}/{model}/{year}/styles?fmt=json&api_key={api key}
 
         $http.get("https://api.edmunds.com/api/vehicle/v2/"+response.data.make+"/"+response.data.model+"/"+response.data.year+"/grade?fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg").then(function(edmundsresponse){
@@ -190,6 +191,8 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
             $location.path('/hooray')
         });
     }
+
+
 
     $scope.currentPic = 0;
 
