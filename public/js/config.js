@@ -35,6 +35,13 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                 templateUrl: 'templates/browseVehicle.html'
             })
         $stateProvider
+            .state('vehicleView', {
+                url: '/vehicleView',
+                controller: 'VehicleViewController',
+                templateUrl: 'templates/vehicleView.html'
+            })
+
+        $stateProvider
             .state('login', {
                 url: '/login',
                 controller: 'LoginController',
@@ -70,13 +77,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                 controller: 'SellerProfileController',
                 templateUrl: 'templates/sellerProfile.html'
             })
-        $stateProvider
-            .state('vehicleView', {
-                url: '/vehicleView',
-                controller: 'VehicleViewController',
-                templateUrl: 'templates/vehicleView.html'
-            })
-        $stateProvider
+              $stateProvider
             .state('creditCheck', {
                 controller: 'CreditCheckController',
                 templateUrl: 'templates/creditCheck.html'
@@ -157,7 +158,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 .controller('VehicleViewController', function VehicleViewController($scope, $location, $window, $http, $rootScope) {
 
 
-    $http.get('/vehicles/' + $window.sessionStorage.vehicleId).then(function(response){
+    $http.get('/vehicles/' + $scope.id).then(function(response){
         console.log(response.data)
         $scope.vehicle = response.data;
         $scope.slides = response.data.pics;
