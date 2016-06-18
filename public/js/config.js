@@ -158,7 +158,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 .controller('VehicleViewController', function VehicleViewController($scope, $location, $window, $http, $rootScope) {
 
 
-    $http.get('/vehicles/' + $scope.id).then(function(response){
+    $http.get('/vehicles/' + $window.sessionStorage.vehicleId).then(function(response){
         console.log(response.data)
         $scope.vehicle = response.data;
         $scope.slides = response.data.pics;
