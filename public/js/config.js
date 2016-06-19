@@ -173,6 +173,16 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
         $http.get("https://api.edmunds.com/api/tco/v1/details/allnewtcobystyleidzipandstate/200711761/90043/CA?fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg").then(function(response){
             console.log(response);
         })
+
+
+        $http.get("https://api.edmunds.com/v1/api/toolsrepository/vindecoder?vin=5NPEB4AC5CH333298&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg").then(function(response){
+            console.log(response);
+        })
+
+
+
+
+
         // https://api.edmunds.com/api/vehiclereviews/v2/honda/accord/2012?fmt=json&api_key={api key}
 // https://api.edmunds.com/api/vehicle/v2/{make}/{model}/{year}/grade?fmt=json&api_key={api_key}
 
