@@ -3,11 +3,7 @@
     font-family: 'Merriweather Sans', sans-serif !important;
 }
 .jumbotron {
-    /*	background-color: white;
-	width:100%;
-	height:750px;*/
-    display: flex;
-    justify-content: center;
+    margin-bottom: 0px;
 }
 .fb-login-btn {
     background: url('./IMG/fblogin.png') !important;
@@ -587,10 +583,16 @@ i{
     margin-top: -500px;
     background-color: #007ba7;
 }
-/*hr {
-    height: 3px;
-    background-color: rgb(88, 125, 249);
-}*/
+hr {
+    height: 2px;
+/*    background-color: rgb(88, 125, 249);
+*/
+    background-color: #aaa;
+}
+
+.col img{
+    margin-left: 19px;
+}
 
 hr.style-one {
     position:absolute;
@@ -718,11 +720,7 @@ hr.style-one {
     background-color: #fff;
     height: 500px;
 }
-section {
-    background-color: #fff;
-    padding: 20px;
-}
-<<<<<<< HEAD
+
 
 
 .name{
@@ -767,9 +765,13 @@ section {
     height: auto;
 }
 #howItWorks {
-    padding: 40px;
     background-color: #fafafa;
 }
+
+#howItWorks div {
+    padding-top: -100px;
+
+}    
 .buyLogin {
     margin-left: -200px !important;
 }
@@ -782,11 +784,7 @@ section {
 }*/
 
 section {
-    /* 	padding-top:20%;
-
-*/
     background-color: #fff;
-    padding: 20px;
 }
 #benefits {
     padding-top: 40px;
@@ -940,7 +938,7 @@ md-input-container:not(.md-input-invalid).md-input-focused label {
     border-radius: 2px;
     text-align: center;
 /*    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-*/
+
 
 
 }
