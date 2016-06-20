@@ -89,10 +89,6 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 
     })
 
-.controller('mainController', function MainController($scope, $location, $window, $http, $rootScope) {
-    $scope.hello = "hello fucker";
-})
-
 .controller('BrowseController', function BrowseController($scope, $location, $window, $http, $rootScope) {
     $http.get('/vehicles').then(function(response) {
         console.log(response);
