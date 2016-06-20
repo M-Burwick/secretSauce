@@ -89,6 +89,22 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 
     })
 
+.directive('carousel', function($timeout) {
+   return {
+      restrict: 'E',
+      scope: {
+        links: '=' 
+      },
+      templateUrl: 'carousel.html',
+      link: function(scope, element) {
+        $timeout(function() {
+          $('.carousel-indicators li',element).first().addClass('active');
+          $('.carousel-inner .item',element).first().addClass('active');
+        });
+      }
+   }
+})
+
 .controller('BrowseController', function BrowseController($scope, $location, $window, $http, $rootScope) {
     $http.get('/vehicles').then(function(response) {
         console.log(response);
@@ -158,7 +174,8 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
         console.log(response.data)
         $scope.vehicle = response.data;
         $scope.slides = response.data.pics;
-         console.log(response.data.pics);
+        $scope.links = response.data.pics;
+        console.log($scope.links);
         // https://api.edmunds.com/api/vehicle/v2/{make}/{model}/{year}/styles?fmt=json&api_key={api key}
 
         $http.get("https://api.edmunds.com/api/vehicle/v2/"+response.data.make+"/"+response.data.model+"/"+response.data.year+"/grade?fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg").then(function(edmundsresponse){
@@ -179,11 +196,16 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 
 
 
+
+
         // https://api.edmunds.com/api/vehiclereviews/v2/honda/accord/2012?fmt=json&api_key={api key}
 // https://api.edmunds.com/api/vehicle/v2/{make}/{model}/{year}/grade?fmt=json&api_key={api_key}
 
 
     })
+
+
+
 
     $scope.inquire = function(inquiry){
         inquiry.make = $scope.vehicle.make;
@@ -229,6 +251,10 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
             $scope.purchaseData = response.data;
             $location.path('/profile')
         })
+    }
+
+    $scope.setFilters = function (event) {
+        event.preventDefault();
     }
 
 })
@@ -464,6 +490,9 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
             })
         };
     })
+
+
+
 
 function DialogController($scope, $mdDialog) {
     $scope.hide = function() {

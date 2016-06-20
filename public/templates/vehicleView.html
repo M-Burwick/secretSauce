@@ -1,22 +1,30 @@
 
 
 <section id="vehicleBanner">
-<div id="vehicleImage" class="image-container">
-	<img ng-src="http://dq1jslmyx9epx.cloudfront.net/{{vehicle.pics[currentPic]}}" class="img-responsive" alt="Cinque Terre" />
-	<div id="vehicleAfter" class="after">
-		<div id ="vehicleArrow"layout="row" layout-align="space-between center">
-  <div><a href=""ng-click="decrease()">
-  	<div>
-  	<i class="fa fa-angle-left fa-5x" aria-hidden="true"></i>
-  </div>
-</a></div>
-  <div><a href="" ng-click="increase()"><div class ="iconCarousel"><i class="fa fa-angle-right fa-5x" aria-hidden="true"></div></i>
-</a></div>
+  <div class="carousel" id="slider">
+  <ol class="carousel-indicators">
+    <li ng-repeat="pic in vehicle.pics" data-target="#slider" data-slide-to="item" ng-class="{active : $first}"></li>
+  </ol>
+  
+ 
+
+    <div class="carousel-inner">
+        <div class="item" ng-class="{active:$first}"  ng-repeat="pic in vehicle.pics">
+            <img src="http://dq1jslmyx9epx.cloudfront.net/{{pic}}" >
+        </div>
+    </div>
+
+    <a class="left carousel-control" href="#slider"  ng-click='setFilters($event)' role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Prev</span>
+    </a> 
+
+    <a class="right carousel-control" href="#slider"  ng-click='setFilters($event)' role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+    </a>
 
 </div>
-	</div>	
-
-</div>	
 
 </section>
 
@@ -166,10 +174,11 @@
     </div>  
 </div>  
 
+<section>
 
 
 
-
+</section>  
 
 
 

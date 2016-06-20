@@ -166,7 +166,14 @@ background-position: center center;
     background-color:#fff
 }
 
+.item img{
+    width:100%;
+    height:100%;
+}
 
+.glyphicon{
+    color:white;
+}
 
 #yours{
     color:red;
@@ -312,8 +319,7 @@ li{
 }
 
 #vehicleBanner{
-    padding-left:0px;
-    width:100%;
+    padding-left: 0px;
     padding-right:0px;
 }
 
