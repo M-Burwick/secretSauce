@@ -24,6 +24,15 @@ background-position: center center;
 }
 
 
+.contactBtn{
+    width:200px;
+    color:white;
+}
+
+.footerIcon i{
+    margin:15px;
+}
+
 #colBox{
     background-color:#fff;
     padding:15px;
@@ -585,9 +594,9 @@ i{
 }
 hr {
     height: 2px;
-/*    background-color: rgb(88, 125, 249);
-*/
-    background-color: #aaa;
+    background-color: rgb(88, 125, 249);
+
+/*    background-color: #aaa;*/
 }
 
 .col img{

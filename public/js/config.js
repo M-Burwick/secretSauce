@@ -77,7 +77,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                 controller: 'SellerProfileController',
                 templateUrl: 'templates/sellerProfile.html'
             })
-              $stateProvider
+        $stateProvider
             .state('creditCheck', {
                 controller: 'CreditCheckController',
                 templateUrl: 'templates/creditCheck.html'
@@ -85,6 +85,16 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
         $stateProvider
             .state('logout', {
                 controller: 'LogoutController',
+            })
+        $stateProvider
+            .state('terms', {
+                url: '/terms',
+                templateUrl: 'templates/terms.html'
+            })
+        $stateProvider
+            .state('terms.privacy', {
+                url: '/privacy',
+                templateUrl: 'templates/privacy.html'
             })
 
     })
@@ -308,7 +318,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
             $location.path('/creditCheck.html')
         });
     })
-    .controller('AppCtrl', function($scope, $mdDialog, $mdMedia, $http, $window) {
+.controller('AppCtrl', function($scope, $mdDialog, $mdMedia, $http, $window) {
         $scope.status = '  ';
         $scope.customFullscreen = $mdMedia('xs') || $mdMedia('sm');
         $scope.fblogin = function() {
@@ -397,6 +407,9 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                     '           <label>Phone</label>' +
                     '           <input type="text" ng-model="vehicle.phone">' +
                     '     </md-input-container>' +
+                    '<p> By signing up you agree to the <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a>'+
+
+                    '</p>'+
                     '<md-button id="confirmSaleBtn" class ="confirmBtn" ng-click ="signupVehicle(vehicle)">Sell My Car!</md-button>' +
                     '</md-dialog-content>' +
                     '</md-dialog>',
@@ -479,6 +492,50 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                     '<md-button id="confirmSaleBtn" class ="confirmBtn" ng-click ="inquire(inquiry)">Im interested!</md-button>'+
                     '</md-dialog-content>' +
                     '</md-dialog>',
+                controller: function DialogController($scope, $mdDialog, $http, $location, $window) {
+                    $scope.closeDialog = function() {
+                        $mdDialog.hide();
+                    }
+
+      
+                }
+
+            })
+        };
+
+
+         $scope.contactForm = function(ev) {
+            $mdDialog.show({
+                clickOutsideToClose: true,
+                scope: $scope,
+                preserveScope: true,
+                template: 
+                '<md-dialog  class="login-page">'+
+                '<md-dialog-content layout="column" layout-align="start center">'+
+                '<h2>Give Us A Honk!</h2>'+
+                '<form>'+
+  '<div class="form-group">'+
+    '<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email *">'+
+  '</div>'+              
+  '<div class="form-group">'+
+  '<textarea class="form-control" placeholder="What Can We Help With You With? *" rows="3"></textarea>'+
+  '</div>'+
+  '<div class="form-group">'+
+  '   <div class="col-sm-6"><input type="text" class="form-control" placeholder="First Name *"></div>'+
+  '   <div class="col-sm-6"><input type="text" class="form-control" placeholder="Last Name *"></div>'+
+  '</div>'+
+  '<br></br>'+
+  '<div class="form-group">'+
+  '   <div class="col-sm-6"><input type="text" class="form-control" placeholder="Zipcode *"></div>'+
+  '   <div class="col-sm-6"><input type="text" class="form-control" placeholder="Phone Number *"></div>'+
+  '</div>'+
+  '<br></br>'+
+  '<div layout="column" layout-align="start center">'+
+  '<md-button type="submit" class="contactBtn" id="navsellerBtn">Submit</md-button>'+
+  '</div>'+
+'</form>'+
+ '</md-dialog-content>' +
+'</md-dialog>',
                 controller: function DialogController($scope, $mdDialog, $http, $location, $window) {
                     $scope.closeDialog = function() {
                         $mdDialog.hide();

@@ -91,19 +91,28 @@
     <div ui-view></div>
 
 
-    <footer class="footer-basic-centered">
+    <footer ng-controller ="AppCtrl"class="footer-basic-centered">
 
         <div class- "container">
 
             <p class="footer-company-motto">
-                Carista is an online peer to peer platform that provides individuals who are selling or buying cars with services such as car inspection, access to financing, and the completion of transactions. Carista is not a party to any agreements entered into by
-                buyers or sellers. Carista is not a dealership, auto-broker, agent, or financial institution. Icons made by Freepik from www.flaticon.com</p>
+                Carista is an online peer to peer platform that provides individuals who are selling or buying cars with services such as car inspection, access to financing, and the completion of transactions.  Icons made by Freepik from www.flaticon.com. Carista is a delaware C corp. Carista is not a party to any agreements entered into by
+                buyers or sellers. Carista is not a dealership, auto-broker, agent, or financial institution.</p>
 
             <p class="footer-links">
                 <a ui-sref="home">Home</a> ·
                 <a ui-sref="signupVehicle">Seller</a> ·
-                <a ui-sref="signup">Buyer</a>
+                <a ui-sref="signup">Buyer</a> ·
+                <a ui-sref="terms">Terms & Privacy</a> ·
+                <a ng-click="contactForm()">Contact</a>
             </p>
+            <div class="footerIcon"layout="row" layout-align="center center">
+            <i class="fa fa-instagram fa-2x" aria-hidden="true"></i>
+            <i class="fa fa-twitter fa-2x" aria-hidden="true"></i>
+            <i class="fa fa-facebook fa-2x " aria-hidden="true"></i>
+            </div>
+   
+
 
             <p class="footer-company-name">Carista &copy; 2016</p>
         </div>
