@@ -196,11 +196,11 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
         $http.get("https://api.edmunds.com/api/tco/v1/details/allnewtcobystyleidzipandstate/200711761/90043/CA?fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg").then(function(response){
             console.log(response);
         })
-
-
-        $http.get("https://api.edmunds.com/v1/api/toolsrepository/vindecoder?vin=5NPEB4AC5CH333298&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg").then(function(response){
+        $http.get("https://api.edmunds.com/api/vehicle/v2/vins/5NPEB4AC5CH333298?&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg").then(function(response){
             console.log(response);
         })
+        // https://api.edmunds.com/api/vehicle/v2/vins/5NPEB4AC5CH333298?&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg
+        // // https://api.edmunds.com/api/vehicle/v2/vins/{car VIN}?manufactureCode={manufacturer code}&fmt=json&api_key={api key}
 
 
 
@@ -455,7 +455,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                         $mdDialog.hide();
                     }
 
-                    $scope.signup = function(buyer, $mdDialog) {
+                $scope.signup = function(buyer, $mdDialog) {
                         $http.post('/signup', buyer)
                             .then(function(response) {
 
@@ -469,7 +469,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
         };
        
 
-           $scope.inquireAlert = function(ev) {
+        $scope.inquireAlert = function(ev) {
             $mdDialog.show({
                 clickOutsideToClose: true,
                 scope: $scope,
@@ -514,37 +514,56 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                 '<md-dialog-content layout="column" layout-align="start center">'+
                 '<h2>Give Us A Honk!</h2>'+
                 '<form>'+
-  '<div class="form-group">'+
-    '<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email *">'+
-  '</div>'+              
-  '<div class="form-group">'+
-  '<textarea class="form-control" placeholder="What Can We Help With You With? *" rows="3"></textarea>'+
-  '</div>'+
-  '<div class="form-group">'+
-  '   <div class="col-sm-6"><input type="text" class="form-control" placeholder="First Name *"></div>'+
-  '   <div class="col-sm-6"><input type="text" class="form-control" placeholder="Last Name *"></div>'+
-  '</div>'+
-  '<br></br>'+
-  '<div class="form-group">'+
-  '   <div class="col-sm-6"><input type="text" class="form-control" placeholder="Zipcode *"></div>'+
-  '   <div class="col-sm-6"><input type="text" class="form-control" placeholder="Phone Number *"></div>'+
-  '</div>'+
-  '<br></br>'+
-  '<div layout="column" layout-align="start center">'+
-  '<md-button type="submit" class="contactBtn" id="navsellerBtn">Submit</md-button>'+
-  '</div>'+
-'</form>'+
- '</md-dialog-content>' +
-'</md-dialog>',
-                controller: function DialogController($scope, $mdDialog, $http, $location, $window) {
-                    $scope.closeDialog = function() {
-                        $mdDialog.hide();
-                    }
+                    '<div class="form-group">'+
+                    '<input ng-model="info.email" type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Email *">'+
+                    '</div>'+              
+                      '<div class="form-group">'+
+                      '<textarea ng-model="info.message" class="form-control" name="message" placeholder="What Can We Help With You With? *" rows="3"></textarea>'+
+                      '</div>'+
+                      '<div class="form-group">'+
+                      '   <div class="col-sm-6"><input ng-model="info.firstName" type="text" name="firstName" class="form-control" placeholder="First Name *"></div>'+
+                      '   <div class="col-sm-6"><input ng-model="info.lastName" type="text" name="lastName" class="form-control" placeholder="Last Name *"></div>'+
+                      '</div>'+
+                      '<br></br>'+
+                      '<div class="form-group">'+
+                      '   <div class="col-sm-6"><input ng-model="info.zipcode" type="text" name="zipcode" class="form-control" placeholder="Zipcode *"></div>'+
+                      '   <div class="col-sm-6"><input ng-model="info.phone" type="number" name="phone"  class="form-control" placeholder="Phone Number *"></div>'+
+                      '</div>'+
+                      '<br></br>'+
+                      '<div layout="column" layout-align="start center">'+
+                      '<md-button type="submit" ng-click="contact(info)" class="contactBtn" id="navsellerBtn">Submit</md-button>'+
+                      '</div>'+
+                '</form>'+
+                '</md-dialog-content>' +
+                '</md-dialog>',
+                controller: function ContactFormController ($scope, $mdToast, $animate,  $mdDialog, $http, $location, $window){
+                            $scope.toastPosition = {
+                                bottom: false,
+                                top: true,
+                                left: false,
+                                right: true
+                            };
+                            $scope.getToastPosition = function() {
+                                return Object.keys($scope.toastPosition)
+                                    .filter(function(pos){
+                                        return $scope.toastPosition[pos]
+                                    })
+                                    .join(' ')
+                            };
+                            $scope.contact = function(info){
+                                $http.post('/contact',info).then(function(response){
+                                        $mdDialog.hide();
+                                        $location.path('/congratulations');
+                                      
+                                })
+                            };
 
-      
-                }
+                            
+                 }
 
             })
+
+            
         };
     })
 

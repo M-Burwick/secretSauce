@@ -5,7 +5,20 @@ var Buyer = require('./models/buyer'),
     jwt = require('jwt-simple'),
     passport = require('passport'),
     config = require('./config/main'),
-    random = require("random-js")();
+    random = require("random-js")(),
+    nodemailer = require('nodemailer'),
+    smtpTransport = require('nodemailer-smtp-transport')
+    transporter = nodemailer.createTransport(smtpTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    auth: {
+        user: 'jarred.stiger@gmail.com',
+        pass: 'deeznutzlilfoot'
+    }
+}))
+
+
+
 
 module.exports = function(app, passport) {
     app.get('/auth/google', passport.authenticate('google', {
@@ -305,6 +318,8 @@ module.exports = function(app, passport) {
         }
     });
 
+    
+
     app.get('/profile', function(req, res) {
         var token = req.user;
         if (token) {
@@ -363,6 +378,26 @@ module.exports = function(app, passport) {
         }
 
     });
+
+app.post('/contact', function(req, res){
+    var data = req.body;
+    console.log(data);
+
+    transporter.sendMail({
+    from: data.email,
+    to: 'jarred.stiger@gmail.com',
+    subject: data.firstName + data.lastName,
+    text: data.message
+    }, function(error, response) {
+   if (error) {
+        console.log(error);
+   } else {
+        console.log('Message sent');
+    }
+})
+})
+
+    
 
     app.get('/logout', function(req, res) {
         req.logout();
