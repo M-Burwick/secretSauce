@@ -94,7 +94,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
         $stateProvider
             .state('privacy', {
                 url: '/privacy',
-                templateUrl: 'templates/popTemplate.html'
+                templateUrl: 'templates/privacypolicy.html'
             })   
     })
 
