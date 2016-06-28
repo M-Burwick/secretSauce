@@ -92,11 +92,10 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                 templateUrl: 'templates/terms.html'
             })
         $stateProvider
-            .state('terms.privacy', {
+            .state('privacy', {
                 url: '/privacy',
-                templateUrl: 'templates/privacy.html'
-            })
-
+                templateUrl: 'templates/popTemplate.html'
+            })   
     })
 
 .directive('carousel', function($timeout) {
