@@ -2,6 +2,147 @@
     background-color: white;
     font-family: 'Merriweather Sans', sans-serif !important;
 }
+
+.swMain>ul{
+    display: table;
+    list-style: none;
+    margin: 0 0 40px;
+    padding: 10px 0;
+    position: relative;
+    width: 100%;
+    background: #f7f7f8;
+    border-radius: 5px;
+}
+
+*, :after, :before {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a {
+    color: #007AFF;
+}
+a, a:active, a:focus, a:hover {
+    outline: 0!important;
+    text-decoration: none!important;
+    cursor: pointer;
+}
+a {
+    background-color: transparent;
+}
+
+
+.swMain li>a.done:before, .swMain>ul li>a.selected:before {
+    border-color: #007AFF;
+}
+
+.swMain>ul li:first-child>a:before {
+    left: 50%;
+    max-width: 51%;
+}
+.swMain>ul li>a.selected .stepNumber {
+    border-color: #007AFF;
+}
+
+.swMain>ul li>a:before {
+    border-top: 4px solid #c8c7cc;
+    content: "";
+    display: block;
+    font-size: 0;
+    height: 1px;
+    overflow: hidden;
+    position: relative;
+    top: 21px;
+    width: 100%;
+    z-index: 1;
+}
+
+.swMain>ul .stepNumber {
+    background-color: #fff;
+    border: 5px solid #c8c7cc;
+    border-radius: 100%;
+    color: #546474;
+    display: inline-block;
+    font-size: 15px;
+    height: 40px;
+    line-height: 30px;
+    position: relative;
+    text-align: center;
+    width: 40px;
+    z-index: 2;
+}
+
+
+.swMain>ul li {
+    display: table-cell;
+    text-align: center;
+    width: 1%;
+}
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+.swMain li>a.done .stepDesc, .swMain>ul li>a.selected .stepDesc {
+    color: #2B3D53;
+}
+.swMain>ul li .stepDesc {
+    color: #8e8e93;
+    display: block;
+    font-size: 14px;
+    margin-top: 4px;
+    max-width: 100%;
+    table-layout: fixed;
+    text-align: center;
+    word-wrap: break-word;
+    z-index: 104;
+}
+
+.text-small {
+    font-size: 12px!important;
+}
+
+
+ legend{
+    color:#007AFF
+    font-family:'Raleway', sans-serif;
+    font-size:15px;
+    padding:0 10px;
+    top:-12px;
+    position:absolute;
+    font-weight:400;
+    border:none;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 20px;
+    line-height: inherit;
+    border: 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+
+
+
+
+fieldset{
+    border: 1px solid #e6e8e8;
+    border-radius: 5px;
+    margin:20px 0;
+    background:#fff;
+    padding:25px;
+    position:relative;
+    min-width: 0;
+    display: block;
+    -webkit-margin-start: 2px;
+    -webkit-margin-end: 2px;
+    -webkit-padding-before: 0.35em;
+    -webkit-padding-start: 0.75em;
+    -webkit-padding-end: 0.75em;
+    -webkit-padding-after: 0.625em;
+    border-style: groove;
+}
 .jumbotron {
     margin-bottom: 0px;
 }
@@ -22,6 +163,16 @@ background-repeat:   no-repeat;
 background-position: center center;
     height: 46px;
 }
+
+#caristaSmiley{
+    color: #007AFF;
+}
+
+
+.stepTitle{
+ font-family: 'Raleway', sans-serif;
+}
+
 
 
 .contactBtn{

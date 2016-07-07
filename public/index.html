@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Merriweather+Sans' rel='stylesheet' type='text/css'>
-
+    <link href='https://fonts.googleapis.com/css?family=Raleway:400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href='https://cdnjs.cloudflare.com/ajax/libs/angular-wizard/0.6.1/angular-wizard.min.css'>
     <link rel="stylesheet" href="./css/main.css">
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
 </head>
@@ -44,7 +45,7 @@
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right js-nav">
                     <li>
-                        <md-button id="navsellerBtn" class="navBtn" ng-click="showSellerAlert($event)">Seller</md-button>
+                        <md-button id="navsellerBtn" class="navBtn" ui-sref="signupVehicle">Seller</md-button>
                     </li>
                     <li>
                         <md-button id="navbuyerBtn" class="navBtn" ui-sref="browse">Buyer</md-button>
@@ -62,7 +63,7 @@
         <div class- "container">
 
             <p class="footer-company-motto">
-             Carista Inc. is a Delaware C-Corporation. Carista is an online community and service provider. Carista facilitates online peer to peer automotive sales transactions and provides individuals who are selling or buying cars with services such as car inspection, profile creation, washing, photos, access to financing, and the completion of transactions. Icons made by Freepik from www.flaticon.com. Carista is a delaware C corp. Carista is not a party to any agreements entered into by buyers or sellers. Carista is not a dealership, auto-broker, agent, insurer, or financial institution.</p>
+            Carista Inc. is a Delaware C-Corporation. Carista is an online community and service provider. Carista facilitates online peer to peer automotive sales transactions and provides individuals who are selling or buying cars with services such as car inspection, profile creation, washing, photos, access to financing, and the completion of transactions. Icons made by Freepik from www.flaticon.com. Carista is not a party to any agreements entered into by buyers or sellers. Carista is not a dealership, auto-broker, agent, insurer, or financial institution.</p>
 
             <p class="footer-links">
                 <a ui-sref="home">Home</a> ·
@@ -94,10 +95,12 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.2/angular.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.18/angular-ui-router.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-wizard/0.6.1/angular-wizard.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.3/angular-touch.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/2.0.0/toaster.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.10.3/TweenMax.min.js"></script>
 
