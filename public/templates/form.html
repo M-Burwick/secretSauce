@@ -47,30 +47,8 @@
 							</li>
 						</ul>
 					</div>
-
-	      <wz-step wz-title="Starting">
-	      <div layout="column"       layout-align="center center">
-	     <h2 class="stepTitle">Create A Profile With Us</h2>
-<!-- 
-	     <p> Sellers we’ve got your back. If your car needs repair our mechanics will give you an estimate for repair including a detailed report. Once the repairs are made we will your car reinspect for free </p> -->
-	    <md-button class="fb-login-btn"  ng-disabled="!checkbox1 || !checkbox2" ng-click="fblogin()"></md-button>
-        <md-button class="google-login-btn"  wz-next value="Finish now"  ng-disabled="!checkbox1 || !checkbox2" ng-click="googleLogin()"></md-button>
-        <br>
-        <h4 class="stepTitle">Get on the road to selling your car</h4>
-        <br>
-        <br>
-        <br>	
-      
-</div>
-        	<button class="btn btn-primary btn-o next-step btn-wide pull-right" type="submit" wz-next value="Continuing">
-			Next <i class="fa fa-arrow-circle-right"></i>
-		</button>
-		<br>
-		<br>
-		<br>
-
-      </wz-step>				
-      <wz-step wz-title="Continuing" id="starterkit" >
+			
+      <wz-step wz-title="Starting" id="starterkit" >
 							<div class="row">
 								<div class="col-md-5">
 									<div class="padding-30">
@@ -148,10 +126,7 @@
 
 								</div>
 										<div class="form-group">
-										  <button class="btn btn-primary btn-o back-step btn-wide pull-left"  wz-previous value="Starting">
-				<i class="fa fa-arrow-circle-left"></i> Back
-		</button>
-										<button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-click="completeForm(form)" type="submit" wz-next value="Valuation">
+						<button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-click="completeForm(form)" type="submit" wz-next value="Valuation">
 											Next <i class="fa fa-arrow-circle-right"></i>
 										</button>
 									</div>
@@ -238,7 +213,7 @@
 		 <br>
 
 		<div class="form-group">
-			<button class="btn btn-primary btn-o back-step btn-wide pull-left"  wz-previous value="Starting">
+			<button class="btn btn-primary btn-o back-step btn-wide pull-left"  wz-previous value="Valuation">
 				<i class="fa fa-arrow-circle-left"></i> Back
 			</button>
 			<button class="btn btn-primary btn-o next-step btn-wide pull-right"  wz-next value="Terms">
@@ -250,7 +225,7 @@
 
 	  </wz-step>
 
-      <wz-step wz-title="Terms">
+<wz-step wz-title="Terms">
       <div layout="column"       layout-align="center center">
 
       <h2 class= "stepTitle"> Sellers we’ve got your back.</h2>
@@ -268,35 +243,87 @@
     </div>
     <br>
     <br>
-        		<button class="btn btn-primary btn-o back-step btn-wide pull-left"  wz-previous value="Starting">
-				<i class="fa fa-arrow-circle-left"></i> Back
-			</button>
-                <button type="submit" wz-next value="Continuing" class="btn btn-primary btn-o next-step btn-wide pull-right" ng-disabled="!checkbox1 || !checkbox2">Submit</button>
+        		
+                <button type="submit" wz-next value="Profile" class="btn btn-primary btn-o next-step btn-wide pull-right" ng-disabled="!checkbox1 || !checkbox2">Next</button>
                 <Br>
                	<br>
 
       
       	  </wz-step>
 
+
+      <wz-step wz-title="Profile">
+      <div layout="column"       layout-align="center center">
+	     <h2 class="stepTitle">Create A Profile With Us</h2>
+<!-- 
+	     <p> Sellers we’ve got your back. If your car needs repair our mechanics will give you an estimate for repair including a detailed report. Once the repairs are made we will your car reinspect for free </p> -->
+	    <md-button class="fb-login-btn" ng-click="fblogin()"></md-button>
+        <md-button class="google-login-btn"  wz-next value="Finish now"  ng-click="googleLogin()"></md-button>
+        <br>
+        <h4 class="stepTitle">Get on the road to selling your car</h4>
+                
+        <div  id="ctn"class="container"><p>By signing up, I agree to Carista's <a ui-sref="terms">Terms Of Service</a>, Payments Terms of Service, <a ui-sref="privacy">Privacy Policy</a>, and <a ui-sref="#">Seller Refund Policy</a></p></div>
+        <br>
+        <br>
+        <br>	
+      
+		</div>
+
+		<button class="btn btn-primary btn-o back-step btn-wide pull-left"  wz-previous value="Terms">
+				<i class="fa fa-arrow-circle-left"></i> Back
+			</button>
+        <button class="btn btn-primary btn-o next-step btn-wide pull-right" type="submit" wz-next value="Payment">
+			Next <i class="fa fa-arrow-circle-right"></i>
+		</button>
+		<br>
+		<br>
+		<br>
+
+    </wz-step>
+
+
+
+      <wz-step wz-title="Payment">
+      <div layout="column"       layout-align="center center">
+	     <h2 class="stepTitle">Payment</h2>
+	     <p>GO INSIDE</p>
+		<br>
+	  </div>	
+		
+
+			<button class="btn btn-primary btn-o back-step btn-wide pull-left"  wz-previous value="Profile">
+				<i class="fa fa-arrow-circle-left"></i> Back
+			</button>
+        <button class="btn btn-primary btn-o next-step btn-wide pull-right" type="submit" wz-next value="Inform">
+			Next <i class="fa fa-arrow-circle-right"></i>
+		</button>
+
+    </wz-step>
+
+  <wz-step wz-title="Inform">
+      <div layout="column"       layout-align="center center">
+	     <h2 class="stepTitle">Inform Page</h2>
+	     <p>We will be in contact :)</p>
+	</div>
+
+	<button class="btn btn-primary btn-o next-step btn-wide pull-left" type="submit">
+        <a ui-sref="/sellerProfile"
+			Next <i class="fa fa-arrow-circle-right"></i>
+	</button>
+
+    
+    </wz-step>
+
+
+	
       <!-- STEP 3 -->
       
     </wizard>
-
-
+  </div>
+</section>
     <Br>
     	<Br>
     		<Br>
     			<Br>
     				<Br>
-  </div>
-
-
-
-
-
-
-
-
-
-
-</section>
+	<br>

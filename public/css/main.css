@@ -18,6 +18,14 @@
     padding-left:5px;
 }
 
+#ctn{
+    width:25%;
+}
+
+#ctn p{
+    font-size:12px;
+}
+
 *, :after, :before {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
