@@ -98,21 +98,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
             })   
     })
 
-.directive('carousel', function($timeout) {
-   return {
-      restrict: 'E',
-      scope: {
-        links: '=' 
-      },
-      templateUrl: 'carousel.html',
-      link: function(scope, element) {
-        $timeout(function() {
-          $('.carousel-indicators li',element).first().addClass('active');
-          $('.carousel-inner .item',element).first().addClass('active');
-        });
-      }
-   }
-})
+
 
 .controller('BrowseController', function BrowseController($scope, $location, $window, $http, $rootScope) {
     $http.get('/vehicles').then(function(response) {
@@ -125,7 +111,6 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
         $window.sessionStorage.setItem('vehicleId', vehicle._id);
         $location.path('/vehicleView');
     }
-
 
 })
 
@@ -153,28 +138,14 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
     }
 })
 
-.controller('InquiryController', function InquiryController($scope, $location, $window, $http, $rootScope){
- 
-})
-
 .controller('SignupVehicleController', function SignupVehicleController($scope, $location, $window, $http, $rootScope) {
     $scope.signupVehicle = function(vehicle) {
         $http.post('/signupVehicle', vehicle)
             .then(function(response) {
                 $location.path('/congratulations')
-            })
+        })
     }
 })
-
-.controller('DemoCtrl', function() {
-      this.topDirections = ['left', 'up'];
-      this.bottomDirections = ['down', 'right'];
-      this.isOpen = false;
-      this.availableModes = ['md-fling', 'md-scale'];
-      this.selectedMode = 'md-fling';
-      this.availableDirections = ['up', 'down', 'left', 'right'];
-      this.selectedDirection = 'down';
-    })
 
 .controller('VehicleViewController', function VehicleViewController($scope, $location, $window, $http, $rootScope) {
 
@@ -183,7 +154,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
         console.log(response.data)
         $scope.vehicle = response.data;
 
-        $scope.vehicleInfo.make = response.data.make.name;
+        // $scope.vehicleInfo.make = response.data.make.name;
         $scope.slides = response.data.pics;
         $scope.links = response.data.pics;
         console.log($scope.links);
@@ -197,24 +168,15 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
         $http.get("https://api.edmunds.com/api/tco/v1/details/allnewtcobystyleidzipandstate/200711761/90043/CA?fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg").then(function(response){
             console.log(response);
         })
-        $http.get("https://api.edmunds.com/api/vehicle/v2/vins/5NPEB4AC5CH333298?&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg").then(function(response){
+        $http.get("https://api.edmunds.com/api/vehicle/v2/vins/1ZVBP8EM7E5236358?&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg").then(function(response){
              console.log(response.data);
 
             $scope.vehicleStyles = response.data.years[0].styles;
         })
         // https://api.edmunds.com/api/vehicle/v2/vins/5NPEB4AC5CH333298?&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg
         // // https://api.edmunds.com/api/vehicle/v2/vins/{car VIN}?manufactureCode={manufacturer code}&fmt=json&api_key={api key}
-
-
-
-
-
-
-
         // https://api.edmunds.com/api/vehiclereviews/v2/honda/accord/2012?fmt=json&api_key={api key}
-// https://api.edmunds.com/api/vehicle/v2/{make}/{model}/{year}/grade?fmt=json&api_key={api_key}
-
-
+        // https://api.edmunds.com/api/vehicle/v2/{make}/{model}/{year}/grade?fmt=json&api_key={api_key}
     })
 
 
@@ -235,30 +197,6 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
     }
 
 
-
-    $scope.currentPic = 0;
-
-    $scope.increase = function(){
-        if($scope.vehicle.currentPic === $scope.vehicle.pics.length - 1){
-            $scope.vehicle.currentPic = 0
-            console.log($scope.vehicle);
-        } else {
-            $scope.vehicle.pics[$scope.currentPic++];
-            console.log($scope.vehicle.currentPic)
-        }
-
-    }
-     $scope.decrease = function(){
-
-        if($scope.vehicle.currentPic === 0){
-            $scope.vehicle.currentPic = $scope.vehicle.pics.length - 1
-             console.log($scope.vehicle);
-        } else {
-            console.log($scope.vehicle.pics[0])
-
-            $scope.vehicle.pics[$scope.currentPic--];
-        }
-    }
     $scope.purchaseVehicle = function(user) {
         $http.put('/vehicles/' + $window.sessionStorage.vehicleId).then(function(response) {
             $scope.purchaseData = response.data;
@@ -318,6 +256,14 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 .controller('WizardCtrl', function WizardCtrl($scope, $http, $window){
     $scope.model = {};
 
+     $scope.fblogin = function() {
+        $window.location.href = '/login/facebook/';
+    }
+
+    $scope.googleLogin = function() {
+        $window.location.href = '/auth/google/';
+    }
+
     $scope.inputVin = function(vin){
         $http.get("https://api.edmunds.com/api/vehicle/v2/vins/" + vin.vin + "?&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg").then(function(response){
             console.log(response.data);
@@ -331,17 +277,23 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
         })
     }
 
-    $scope.completeForm = function(form){
-        $http.get('https://api.edmunds.com/v1/api/tmv/tmvservice/calculateusedtmv?styleid=' + $scope.vehicleStyles.id + '&condition=Clean&mileage=' + form.mileage + '&zip=' + form.zip + '&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg').then(function(response) {
-            console.log(response.data.tmv);
-            $scope.vehicleData = response.data.tmv.certifiedUsedPrice;
-        });
+    $scope.isCheckboxChecked = function() {
+        return ($scope.checkbox1 || $scope.checkbox2);
     }
+
+
 
     $scope.selectStyle= function(input){
         console.log(input.id);
         $window.sessionStorage.styleId = input.id
        
+    }
+
+    $scope.completeForm = function(form){
+        $http.get('https://api.edmunds.com/v1/api/tmv/tmvservice/calculateusedtmv?styleid=' + $window.sessionStorage.styleId +'&condition=Outstanding&mileage=' + form.mileage + '&zip=' + form.zip + '&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg').then(function(response) {
+            console.log(response.data.tmv);
+            $scope.vehicleData = response.data.tmv.totalWithOptions;
+        });
     }
 
     $scope.enterValidation = function(){

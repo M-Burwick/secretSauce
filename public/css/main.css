@@ -14,6 +14,10 @@
     border-radius: 5px;
 }
 
+.clip-radio ul{
+    padding-left:5px;
+}
+
 *, :after, :before {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -123,7 +127,13 @@ li {
 }
 
 
+#prop{
+    padding-top:15px;
+}
 
+.sellerValueProp{
+    padding:5px;
+}
 
 
 fieldset{

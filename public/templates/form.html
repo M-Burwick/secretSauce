@@ -8,10 +8,9 @@
 
 <section class="container">
 
-<div ng-controller="WizardCtrl" class="ng-scope">
-				<!-- start: WIZARD FORM -->
-				<form name="Form" id="form" novalidate="" class="ng-pristine ng-invalid ng-invalid-required ng-valid-email ng-valid-compare-to">
-					<div id="wizard" class="swMain">
+	<div ng-controller="WizardCtrl">
+    <wizard on-finish="finishedWizard()">
+    	<div id="wizard" class="swMain">
 						<!-- start: WIZARD SEPS -->
 						<ul>
 							<li ng-click="form.goTo(Form, 1)" class="">
@@ -47,9 +46,8 @@
 								</a>
 							</li>
 						</ul>
-						<!-- end: WIZARD SEPS -->
-						<!-- start: WIZARD STEP 1 -->
-						<div id="step-1" ng-show="currentStep == 1" class="">
+					</div>
+      <wz-step wz-title="Starting" id="starterkit" >
 							<div class="row">
 								<div class="col-md-5">
 									<div class="padding-30">
@@ -65,18 +63,17 @@
 								</div>
 								<div class="col-md-7">
 									<fieldset>
-										<legend>
-											Personal Information
-										</legend>
+									
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group" ng-class="{'has-error':Form.firstName.$dirty &amp;&amp; Form.firstName.$invalid, 'has-success':Form.firstName.$valid}">
 													<label>
 														Vin <span class="symbol required"></span>
 													</label>
-													<input type="text" placeholder="Enter full vin number" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="vin" ng-model="myModel.vin" ng-required="currentStep == 1" required="required">
-													<!-- ngIf: Form.firstName.$dirty && Form.firstName.$invalid -->
-													<!-- ngIf: Form.firstName.$valid -->
+													<input type="text" placeholder="Enter full vin number" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="vin" ng-model="vin.vin" ng-required="currentStep == 1" required="required">
+														<button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-click ="inputVin(vin)" type="submit">
+											Enter Vin <i class="fa fa-arrow-circle-down"></i>
+										</button>
 												</div>
 											</div>
 											<div class="col-md-6">
@@ -84,7 +81,7 @@
 													<label class="control-label">
 														Mileage <span class="symbol required"></span>
 													</label>
-													<input type="text" placeholder="Enter your Vehicle Mileage" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="lastName" ng-model="myModel.lastName" ng-required="currentStep == 1" required="required">
+													<input type="text" placeholder="Enter your Vehicle Mileage" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="lastName" ng-model="form.mileage">
 													<!-- ngIf: Form.lastName.$dirty && Form.lastName.$invalid -->
 													<!-- ngIf: Form.lastName.$valid -->
 												</div>
@@ -92,19 +89,20 @@
 										</div>
 										<div class="row">
 											<div class="col-md-6">
-												<div class="form-group">
-													<label class="block">
-														Styles
+													<div class="form-group">
+													<label ng-hide="!vin.vin" class="block">
+														Choose Your Vehicle Style
 													</label>
-													<div class="clip-radio radio-primary">
-														<input type="radio" id="wz-female" name="gender" value="female" ng-model="myModel.gender" class="ng-pristine ng-untouched ng-valid">
-														<label for="wz-female">
-															Style Data
-														</label>
-														<input type="radio" id="wz-male" name="gender" value="male" ng-model="myModel.gender" class="ng-pristine ng-untouched ng-valid">
-														<label for="wz-male">
-															Style Data
-														</label>
+													<div  class="clip-radio radio-primary">
+														<ul >
+														<li id="blah" ng-repeat="style in vehicleStyles">
+														<input type="radio" id="wz-female" name="gender" value="female" ng-click="selectStyle(style)" class="ng-pristine ng-untouched ng-valid">
+																{{vehicleInfo.years[0].year}} -
+													         	{{vehicleInfo.make}} -
+													            {{vehicleInfo.model.name}} - 
+													            {{style.name}} 
+														</li>
+														
 													</div>
 												</div>
 											</div>
@@ -113,7 +111,7 @@
 													<label>
 														Choose your Zipcode
 													</label>
-													<input  type="text" placeholder="example: 90043"
+													<input type="text" placeholder="Enter your zipcode: 90043" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="lastName" ng-model="form.zip">
 												</div>
 											</div>
 										</div>
@@ -125,291 +123,116 @@
 									</fieldset>
 									
 									<div class="form-group">
-										<button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-click="form.next(Form)">
+										<button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-click="completeForm(form)" type="submit" wz-next value="Continue">
 											Next <i class="fa fa-arrow-circle-right"></i>
 										</button>
 									</div>
 								</div>
 							</div>
-						</div>
-						<!-- end: WIZARD STEP 1 -->
-						<!-- start: WIZARD STEP 2 -->
-						<div id="step-2" ng-show="currentStep == 2" class="ng-hide">
-							<div class="row">
-								<div class="col-md-5">
-									<div class="padding-30">
-										<h2 class="StepTitle">Create an account <span class="text-large block">to manage everything you do with ng-Clip</span></h2>
-										<p>
-											You’ll enjoy personal services and great benefits including:
-										</p>
-										<p class="text-small">
-											</p><ul class="no-margin">
-												<li>
-													Access to exclusive releases and limited products.
-												</li>
-												<li>
-													ng-Clip services, benefits and promotions.
-												</li>
-											</ul>
-										<p></p>
-									</div>
-								</div>
-								<div class="col-md-7">
-									<fieldset>
-										<legend>
-											Account Credential
-										</legend>
-										<div class="form-group has-success" ng-class="{'has-error':Form.email.$dirty &amp;&amp; Form.email.$invalid, 'has-success':Form.email.$valid}">
-											<label class="control-label">
-												Email <span class="symbol required"></span>
-											</label>
-											<input type="email" placeholder="Enter a valid E-mail" class="form-control ng-pristine ng-untouched ng-valid-email ng-valid ng-valid-required" name="email" ng-model="myModel.email" ng-required="currentStep == 2">
-											<!-- ngIf: Form.email.$dirty && Form.email.$error.required -->
-											<!-- ngIf: Form.email.$error.email -->
-											<!-- ngIf: Form.email.$valid --><span class="success text-small ng-scope" ng-if="Form.email.$valid">It's a valid e-mail!</span><!-- end ngIf: Form.email.$valid -->
-										</div>
-										<div class="row">
-											<div class="col-md-6">
-												<div class="form-group has-success" ng-class="{'has-error':Form.password.$dirty &amp;&amp; Form.password.$invalid, 'has-success':Form.password.$valid}">
-													<label class="control-label">
-														Password <span class="symbol required"></span>
-													</label>
-													<input type="password" placeholder="Enter a Password" class="form-control ng-pristine ng-untouched ng-valid ng-valid-required" name="password" ng-model="myModel.password" ng-required="currentStep == 2">
-													<!-- ngIf: Form.password.$dirty && Form.password.$error.required -->
-													<!-- ngIf: Form.password.$valid --><span class="success text-small block ng-scope" ng-if="Form.password.$valid">Ok!</span><!-- end ngIf: Form.password.$valid -->
-												</div>
-											</div>
-											<div class="col-md-6">
-												<div class="form-group has-success" ng-class="{'has-error':Form.password2.$dirty &amp;&amp; Form.password2.$error.compareTo || Form.password2.$dirty &amp;&amp; Form.password2.$invalid, 'has-success':Form.password2.$valid}">
-													<label class="control-label">
-														Repeat Password <span class="symbol required"></span>
-													</label>
-													<input type="password" placeholder="Repeat Password" class="form-control ng-pristine ng-untouched ng-isolate-scope ng-valid-compare-to ng-valid ng-valid-required" name="password2" ng-model="myModel.password2" compare-to="myModel.password" ng-required="currentStep == 2">
-													<!-- ngIf: Form.password2.$dirty && Form.password2.$error.required -->
-													<!-- ngIf: Form.password2.$dirty && Form.password2.$error.compareTo -->
-													<!-- ngIf: Form.password2.$valid --><span class="success text-small block ng-scope" ng-if="Form.password2.$valid">Passwords match!</span><!-- end ngIf: Form.password2.$valid -->
-												</div>
-											</div>
-										</div>
-									</fieldset>
-									<div class="form-group">
-										<button class="btn btn-primary btn-o back-step btn-wide pull-left" ng-click="form.prev(Form)">
-											<i class="fa fa-circle-arrow-left"></i> Back
-										</button>
-										<button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-click="form.next(Form)">
-											Next <i class="fa fa-arrow-circle-right"></i>
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- end: WIZARD STEP 2 -->
-						<!-- start: WIZARD STEP 3 -->
-						<div id="step-3" ng-show="currentStep == 3" class="ng-hide">
-							<div class="row">
-								<div class="col-md-5">
-									<div class="padding-30">
-										<h2 class="StepTitle">Enter billing details</h2>
-										<p class="text-large">
-											You will need to enter your billing address and select your payment method.
-										</p>
-										<p class="text-small">
-											You can use most major credit card, as well as PayPal.
-										</p>
-									</div>
-								</div>
-								<div class="col-md-7">
-									<fieldset>
-										<legend>
-											Payment Method
-										</legend>
-										<label>
-											Payment type
-										</label>
-										<div class="form-group">
-											<div class="btn-group">
-												<label class="btn btn-primary btn-sm ng-pristine ng-untouched ng-valid" ng-model="myModel.paymentMethod" uib-btn-radio="'creditcard'">
-													<i class="fa fa-cc-visa"></i> <i class="fa fa-cc-mastercard"></i> Credit Card
-												</label>
-												<label class="btn btn-primary btn-sm ng-pristine ng-untouched ng-valid" ng-model="myModel.paymentMethod" uib-btn-radio="'paypal'">
-													<i class="fa fa-cc-paypal"></i> PayPal
-												</label>
-											</div>
-										</div>
-										<div class="form-group">
-											<label>
-												Card Number
-											</label>
-											<input type="text" class="form-control ng-pristine ng-untouched ng-valid" name="cardNumber" ng-model="myModel.cardNumber" placeholder="Enter Your Card Number">
-										</div>
-										<label>
-											Expires
-										</label>
-										<div class="row">
-											<div class="col-md-4 col-sm-6">
-												<div class="form-group">
-													
-												<div class="cs-select cs-skin-slide ng-pristine ng-untouched ng-valid" tabindex="0"><span class="cs-placeholder">Month</span><div class="cs-options"><ul><li data-option="" data-value="January"><span>January</span></li><li data-option="" data-value="February"><span>February</span></li><li data-option="" data-value="March"><span>March</span></li><li data-option="" data-value="April"><span>April</span></li><li data-option="" data-value="May"><span>May</span></li><li data-option="" data-value="June"><span>June</span></li><li data-option="" data-value="July"><span>July</span></li><li data-option="" data-value="August"><span>August</span></li><li data-option="" data-value="September"><span>September</span></li><li data-option="" data-value="October"><span>October</span></li><li data-option="" data-value="November"><span>November</span></li><li data-option="" data-value="December"><span>December</span></li></ul></div><select class="cs-select cs-skin-slide ng-pristine ng-untouched ng-valid" ng-model="myModel.expiresMonth">
-														<option value="" disabled="">Month</option>
-														<option value="January">January</option>
-														<option value="February">February</option>
-														<option value="March">March</option>
-														<option value="April">April</option>
-														<option value="May">May</option>
-														<option value="June">June</option>
-														<option value="July">July</option>
-														<option value="August">August</option>
-														<option value="September">September</option>
-														<option value="October">October</option>
-														<option value="November">November</option>
-														<option value="December">December</option>
-													</select></div></div>
-											</div>
-											<div class="col-md-4 col-sm-6">
-												<div class="form-group">
-													
-												<div class="cs-select cs-skin-slide ng-pristine ng-untouched ng-valid" tabindex="0"><span class="cs-placeholder">Year</span><div class="cs-options"><ul><li data-option="" data-value="2015"><span>2015</span></li><li data-option="" data-value="2016"><span>2016</span></li><li data-option="" data-value="2017"><span>2017</span></li><li data-option="" data-value="2018"><span>2018</span></li><li data-option="" data-value="2019"><span>2019</span></li><li data-option="" data-value="2020"><span>2020</span></li></ul></div><select class="cs-select cs-skin-slide ng-pristine ng-untouched ng-valid" ng-model="myModel.expiresYear">
-														<option value="" disabled="">Year</option>
-														<option value="2015">2015</option>
-														<option value="2016">2016</option>
-														<option value="2017">2017</option>
-														<option value="2018">2018</option>
-														<option value="2019">2019</option>
-														<option value="2020">2020</option>
-													</select></div></div>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-xs-12">
-												<label>
-													Security code
-												</label>
-												<div class="row">
-													<div class="col-xs-3">
-														<div class="form-group">
-															<input type="text" class="form-control ng-pristine ng-untouched ng-valid" name="securityCode" placeholder="Security code" ng-model="myModel.securityCode">
-														</div>
-													</div>
-													<span class="help-inline col-xs-4"> <a href="" uib-popover="The security code is a three-digit number on the back of your credit card, immediately following your main card number." popover-placement="top" popover-title="How to find the security code"><i class="ti-help-alt text-large text-primary"></i></a> </span>
-												</div>
-											</div>
-										</div>
-									</fieldset>
-									<div class="form-group">
-										<button class="btn btn-primary btn-o back-step btn-wide pull-left" ng-click="form.prev(Form)">
-											<i class="fa fa-circle-arrow-left"></i> Back
-										</button>
-										<button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-click="form.next(Form)">
-											Next <i class="fa fa-arrow-circle-right"></i>
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- end: WIZARD STEP 3 -->
-						<!-- start: WIZARD STEP 4 -->
-						<div id="step-4" ng-show="currentStep == 4" class="ng-hide">
-							<div class="row">
-								<div class="col-md-12">
-									<div class="text-center">
-										<h1 class=" ti-check block text-primary"></h1>
-										<h2 class="StepTitle">Congratulations!</h2>
-										<p class="text-large">
-											Your tutorial is complete.
-										</p>
-										<p class="text-small">
-											Thank you for your registration. Your transaction has been completed, and a receipt for your purchase has been emailed to you.  You may log into your account to view details of this transaction.
-										</p>
-										<a class="btn btn-primary btn-o" href="" ng-click="form.goTo(Form, 1)">
-											Back to first step
-										</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- end: WIZARD STEP 4 -->
-					</div>
-					<pre class="code margin-top-20 ng-binding"></pre>
-				</form>
-				<!-- end: WIZARD FORM -->
-			</div>
+      </wz-step>
+      <wz-step wz-title="Continuing">
+         <div class="row">
+	      	<div class="col-md-6">
+			  	<h1 class="stepTitle">Carista Value | ${{vehicleData.usedPrivateParty}}</h1>
+<!-- 			  	<h3>${{vehicleData.usedPrivateParty}}</h3>
+ --><!-- 			  	<h4>ADD CLEAN VALUE ALSO</h4>
+ -->	    </div>	
+	      	<div class="col-md-6">
+			  	<h1 class="stepTitle">Trade-In Value | ${{vehicleData.usedTradeIn}}</h1>
+			  	<h3></h3>
+	      	</div>	
+         </div> 	
 
+         <section>
+         	<fieldset>
+         	<div class="row">
+	         	<div class="col-sm-5">
+	         		<h2 class="stepTitle">Besides Offering More...</h2>
+	         		<p>We make selling your car too easy. Our buyers are verified and ready to purchase before you deal with them.</p>
+	         		<p>No tire kickers. drive til' sold</p>
+	         	</div>
 
-<!-- 
-	<div ng-controller="WizardCtrl">
-    <wizard on-finish="finishedWizard()"> -->
-    
-      <!-- STEP 1 -->
-  <!--     <wz-step wz-title="Starting" >
+	         	<div class="col-sm-7">	
+		         	<div id ="prop" class="row">
+		         		<div class="col-md-6">
+		         			<ul>
+		         				<li>
+		         					<div class = "sellerValueProp">
+		         						<i class="fa fa-check" id="caristaSmiley"  aria-hidden="true"></i>
+										We take care of transferring title and liens
+									</div>
+								</li>
+		         				<li>
+		         					<div class = "sellerValueProp">
+		         						<i class="fa fa-check" id="caristaSmiley"  aria-hidden="true"></i>
+									 	150 point inspection assures buyers of quality, resulting in a faster sale.
+									</div> 	
+								</li>
+		         				<li>
+		         			        <div class = "sellerValueProp">
+		         						<i class="fa fa-check" id="caristaSmiley"  aria-hidden="true"></i>
+		         						Receive payment via ACH, Check, or Debit
+		         					</div>	
+		         				</li>
+		         			</ul>	
+		         		</div>	
+		         		<div class="col-md-6">
+							<ul>
+		         				<li>		         					
+		         					<div class = "sellerValueProp">
+										<i class="fa fa-check" id="caristaSmiley"  aria-hidden="true"></i> No Infrastructure: Carista has no lots, no sales people; just a flat fee for listing.
+									</div> 
+								</li>
+		         				<li>
+		         					<div class = "sellerValueProp">
+		         						<i class="fa fa-check" id="caristaSmiley"  aria-hidden="true"></i> We use leading valuation technology to get you the best price for your car
+		         					</div>	
+		         				</li>
+		         				<li>
+		         					<div class = "sellerValueProp">
+		         						<i class="fa fa-check" id="caristaSmiley"  aria-hidden="true"></i> Affordable: Our only fee is $199, no matter what your car sales for
+		         					</div>	
+		         				 </li>
+		         			</ul>
+		         		</div>
+		         	</div>
+	        	</div>
+         	</div>	
+        	</fieldset>
+         </section>	
 
-        <h3>This is the first step</h3>
-          <label>
-            Vin
-            <input type="text" ng-model="vin.vin" />
-          </label>
-         <input ng-click ="inputVin(vin)" type="submit"/>
-         <ul>
-         	<li ng-repeat="style in vehicleStyles">
-         		<div>
-         	<a ng-click="selectStyle(style)">		
-         	 {{vehicleInfo.years[0].year}} -
-         	 {{vehicleInfo.make}} -
-             {{vehicleInfo.model.name}} - 
-             {{style.name}} 
-            </a> 
-             	</div>
-     		</li>
-         </ul>	
+         <section>
+								<h1 class="stepTitle">Our Price: $199</h1>
+								<h5> * Sellers pay this fee for the insection, high end hotos of the vehicle, and a complete seller profile on Carista.</h5>
+								<h5> * Best of all if you sell your car before we do. Notifying us is a click away. That's it</h5>
+								<h5> * Welcome to the Carista way to sell your car</h5> 
+		 </section>	
+		 <br>
 
+		<div class="form-group">
+			<button class="btn btn-primary btn-o back-step btn-wide pull-left"  wz-previous value="Starting">
+				<i class="fa fa-arrow-circle-left"></i> Back
+			</button>
+			<button class="btn btn-primary btn-o next-step btn-wide pull-right"  wz-next value="Go on">
+				Next <i class="fa fa-arrow-circle-right"></i>
+			</button>
+		</div>
+		<Br>
+		<br>	
 
-        <div>
-          <label>
-            Zip
-            <input type="text" ng-model="form.zip" />
-          </label>
-        </div>
-        <div>
-          <label>
-            Field 2:
-            <input type="text" ng-model="form.mileage" />
-          </label>
-        </div>
-        <p><strong>The model:</strong> {{form || json}}</p>
-        <input ng-click ="completeForm(form)" type="submit" wz-next value="Continue" />
-      </wz-step> -->
-      
-      <!-- STEP 2 -->
- <!--      <wz-step wz-title="Continuing">
-        <h3>Continuing</h3>
-        <p>You have continued with the model!</p>
-        <h3>Change the values:</h3>
-        <div>
-          <label>
-            Field 1:
-            <input type="text" ng-model="model.field1" />
-          </label>
-        </div>
-        <div>
-          <label>
-            Field 2:
-            <input type="text" ng-model="model.field2" />
-          </label>
-        </div>
-        <div>
-          <label>
-            Field 3:
-            <input type="text" ng-model="model.field3" />
-          </label>
-        </div>
-        <p><strong>The model:</strong> {{model || json}}</p>
-        <input type="submit" wz-next value="Go on" />
-      </wz-step> -->
+	  </wz-step>
       
       <!-- STEP 3 -->
-<!--       <wz-step wz-title="More steps">
-        <p>Last step!!</p>
-        <p><strong>And the model still has:</strong> {{model || json}}</p>
-        <input type="submit" wz-next value="Finish now" />
+      <wz-step wz-title="More steps">
+	     <h2 class="stepTitle">Create A Profile With Us</h2>
+<!-- 
+	     <p> Sellers we’ve got your back. If your car needs repair our mechanics will give you an estimate for repair including a detailed report. Once the repairs are made we will your car reinspect for free </p> -->
+        <label class="checkbox"><input type="checkbox" value="" data-ng-model="checkbox1" ng-required="true"><a ui-sref="privacy">Privacy</a> </label>
+        <label class="checkbox"><input type="checkbox" value="" data-ng-model="checkbox2" ng-required="true"> <a ui-sref="terms">Terms & Conditions</a> </label>
+	    <md-button class="fb-login-btn"  ng-disabled="!checkbox1 || !checkbox2" ng-click="fblogin()"></md-button>
+        <md-button class="google-login-btn"  wz-next value="Finish now"  ng-disabled="!checkbox1 || !checkbox2" ng-click="googleLogin()"></md-button>
+        <button type="submit" wz-next value="Finish now" class="btn btn-success" ng-disabled="!checkbox1 || !checkbox2">Submit</button>
+
       </wz-step>
       
     </wizard>
@@ -421,7 +244,7 @@
     			<Br>
     				<Br>
   </div>
- -->
+
 
 
 
