@@ -47,7 +47,30 @@
 							</li>
 						</ul>
 					</div>
-      <wz-step wz-title="Starting" id="starterkit" >
+
+	      <wz-step wz-title="Starting">
+	      <div layout="column"       layout-align="center center">
+	     <h2 class="stepTitle">Create A Profile With Us</h2>
+<!-- 
+	     <p> Sellers we’ve got your back. If your car needs repair our mechanics will give you an estimate for repair including a detailed report. Once the repairs are made we will your car reinspect for free </p> -->
+	    <md-button class="fb-login-btn"  ng-disabled="!checkbox1 || !checkbox2" ng-click="fblogin()"></md-button>
+        <md-button class="google-login-btn"  wz-next value="Finish now"  ng-disabled="!checkbox1 || !checkbox2" ng-click="googleLogin()"></md-button>
+        <br>
+        <h4 class="stepTitle">Get on the road to selling your car</h4>
+        <br>
+        <br>
+        <br>	
+      
+</div>
+        	<button class="btn btn-primary btn-o next-step btn-wide pull-right" type="submit" wz-next value="Continuing">
+			Next <i class="fa fa-arrow-circle-right"></i>
+		</button>
+		<br>
+		<br>
+		<br>
+
+      </wz-step>				
+      <wz-step wz-title="Continuing" id="starterkit" >
 							<div class="row">
 								<div class="col-md-5">
 									<div class="padding-30">
@@ -56,9 +79,7 @@
 
 			<p class="step-small">This information will allow us to generate an instant quote for your vehicle</p>
 
-										<p class="text-small">
-											Enter security questions in case you lose access to your account.
-										</p>
+									
 									</div>
 								</div>
 								<div class="col-md-7">
@@ -71,7 +92,7 @@
 														Vin <span class="symbol required"></span>
 													</label>
 													<input type="text" placeholder="Enter full vin number" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="vin" ng-model="vin.vin" ng-required="currentStep == 1" required="required">
-														<button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-click ="inputVin(vin)" type="submit">
+														<button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-hide="form.hide" ng-click ="inputVin(vin)" type="submit">
 											Enter Vin <i class="fa fa-arrow-circle-down"></i>
 										</button>
 												</div>
@@ -96,11 +117,12 @@
 													<div  class="clip-radio radio-primary">
 														<ul >
 														<li id="blah" ng-repeat="style in vehicleStyles">
-														<input type="radio" id="wz-female" name="gender" value="female" ng-click="selectStyle(style)" class="ng-pristine ng-untouched ng-valid">
+														<input type="radio" id="wz-female" name="gender" value="{{form.styleId}}" ng-model="form.hide" ng-click="selectStyle(INPUT)" class="ng-pristine ng-untouched ng-valid">
 																{{vehicleInfo.years[0].year}} -
 													         	{{vehicleInfo.make}} -
 													            {{vehicleInfo.model.name}} - 
 													            {{style.name}} 
+													            {{style.id}}
 														</li>
 														
 													</div>
@@ -121,16 +143,22 @@
 											</a>
 										</p>
 									</fieldset>
-									
-									<div class="form-group">
-										<button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-click="completeForm(form)" type="submit" wz-next value="Continue">
+									<br>
+									<br>
+
+								</div>
+										<div class="form-group">
+										  <button class="btn btn-primary btn-o back-step btn-wide pull-left"  wz-previous value="Starting">
+				<i class="fa fa-arrow-circle-left"></i> Back
+		</button>
+										<button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-click="completeForm(form)" type="submit" wz-next value="Valuation">
 											Next <i class="fa fa-arrow-circle-right"></i>
 										</button>
 									</div>
-								</div>
 							</div>
+
       </wz-step>
-      <wz-step wz-title="Continuing">
+      <wz-step wz-title="Valuation">
          <div class="row">
 	      	<div class="col-md-6">
 			  	<h1 class="stepTitle">Carista Value | ${{vehicleData.usedPrivateParty}}</h1>
@@ -203,7 +231,7 @@
 
          <section>
 								<h1 class="stepTitle">Our Price: $199</h1>
-								<h5> * Sellers pay this fee for the insection, high end hotos of the vehicle, and a complete seller profile on Carista.</h5>
+								<h5> * Sellers pay this fee for the insection, high end photos of the vehicle, and a complete seller profile on Carista.</h5>
 								<h5> * Best of all if you sell your car before we do. Notifying us is a click away. That's it</h5>
 								<h5> * Welcome to the Carista way to sell your car</h5> 
 		 </section>	
@@ -213,7 +241,7 @@
 			<button class="btn btn-primary btn-o back-step btn-wide pull-left"  wz-previous value="Starting">
 				<i class="fa fa-arrow-circle-left"></i> Back
 			</button>
-			<button class="btn btn-primary btn-o next-step btn-wide pull-right"  wz-next value="Go on">
+			<button class="btn btn-primary btn-o next-step btn-wide pull-right"  wz-next value="Terms">
 				Next <i class="fa fa-arrow-circle-right"></i>
 			</button>
 		</div>
@@ -221,19 +249,36 @@
 		<br>	
 
 	  </wz-step>
-      
-      <!-- STEP 3 -->
-      <wz-step wz-title="More steps">
-	     <h2 class="stepTitle">Create A Profile With Us</h2>
-<!-- 
-	     <p> Sellers we’ve got your back. If your car needs repair our mechanics will give you an estimate for repair including a detailed report. Once the repairs are made we will your car reinspect for free </p> -->
-        <label class="checkbox"><input type="checkbox" value="" data-ng-model="checkbox1" ng-required="true"><a ui-sref="privacy">Privacy</a> </label>
-        <label class="checkbox"><input type="checkbox" value="" data-ng-model="checkbox2" ng-required="true"> <a ui-sref="terms">Terms & Conditions</a> </label>
-	    <md-button class="fb-login-btn"  ng-disabled="!checkbox1 || !checkbox2" ng-click="fblogin()"></md-button>
-        <md-button class="google-login-btn"  wz-next value="Finish now"  ng-disabled="!checkbox1 || !checkbox2" ng-click="googleLogin()"></md-button>
-        <button type="submit" wz-next value="Finish now" class="btn btn-success" ng-disabled="!checkbox1 || !checkbox2">Submit</button>
 
-      </wz-step>
+      <wz-step wz-title="Terms">
+      <div layout="column"       layout-align="center center">
+
+      <h2 class= "stepTitle"> Sellers we’ve got your back.</h2>
+      <br>
+      <p class= "stepTitle"> * If your car needs repair our mechanics will give you an estimate for repair including a detailed report.</p>
+      <p class= "stepTitle"> * Once approved the platform will handle your listings and advertising.</p>
+      <p class= "stepTitle"> * Our fees are flat, no hidden fees, hassles, taxes or middlemen.  The earnings are passed on to you.
+	<br>
+		<br><div class="form-group" layout="column"       layout-align="center center" >
+
+        <label class="checkbox"><input type="checkbox" value="" data-ng-model="checkbox2" ng-required="true"> <a ui-sref="terms">Terms & Conditions</a> </label>
+        	<label class="checkbox">
+      <input type="checkbox" value="" data-ng-model="checkbox1" ng-required="true"><a ui-sref="privacy">Privacy</a> </label>
+  </div>
+    </div>
+    <br>
+    <br>
+        		<button class="btn btn-primary btn-o back-step btn-wide pull-left"  wz-previous value="Starting">
+				<i class="fa fa-arrow-circle-left"></i> Back
+			</button>
+                <button type="submit" wz-next value="Continuing" class="btn btn-primary btn-o next-step btn-wide pull-right" ng-disabled="!checkbox1 || !checkbox2">Submit</button>
+                <Br>
+               	<br>
+
+      
+      	  </wz-step>
+
+      <!-- STEP 3 -->
       
     </wizard>
 

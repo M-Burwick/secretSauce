@@ -224,7 +224,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 .controller('ProfileController', function ProfileController($scope, $location, $window, $http, $rootScope) {
     $http.get('/profile').then(function(response) {
         $scope.profile = response.data.data;
-        $scope.picedkLoan;
+        $scope.pickedLoan;
 
         if($scope.profile.loan.length){
             $scope.pickedLoan = true;
@@ -262,7 +262,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 
     $scope.googleLogin = function() {
         $window.location.href = '/auth/google/';
-    }
+        }
 
     $scope.inputVin = function(vin){
         $http.get("https://api.edmunds.com/api/vehicle/v2/vins/" + vin.vin + "?&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg").then(function(response){
@@ -290,7 +290,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
     }
 
     $scope.completeForm = function(form){
-        $http.get('https://api.edmunds.com/v1/api/tmv/tmvservice/calculateusedtmv?styleid=' + $window.sessionStorage.styleId +'&condition=Outstanding&mileage=' + form.mileage + '&zip=' + form.zip + '&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg').then(function(response) {
+        $http.get('https://api.edmunds.com/v1/api/tmv/tmvservice/calculateusedtmv?styleid=' + window.sessionStorage.styleId +'&condition=Outstanding&mileage=' + form.mileage + '&zip=' + form.zip + '&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg').then(function(response) {
             console.log(response.data.tmv);
             $scope.vehicleData = response.data.tmv.totalWithOptions;
         });
