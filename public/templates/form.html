@@ -86,6 +86,13 @@
 												</div>
 											</div>
 										</div>
+
+									<!-- 		<input type="radio" id="wz-female" name="gender" value="{{form.styleId}}" ng-model="form.hide" ng-click="selectStyle(input)">
+																{{vehicleInfo.years[0].year}} -
+													         	{{vehicleInfo.make}} -
+													            {{vehicleInfo.model.name}} - 
+													            {{style.name}} 
+													            {{style.id}} -->
 										<div class="row">
 											<div class="col-md-6">
 													<div class="form-group">
@@ -93,18 +100,20 @@
 														Choose Your Vehicle Style
 													</label>
 													<div  class="clip-radio radio-primary">
-														<ul >
-														<li id="blah" ng-repeat="style in vehicleStyles">
-														<input type="radio" id="wz-female" name="gender" value="{{form.styleId}}" ng-model="form.hide" ng-click="selectStyle(INPUT)" class="ng-pristine ng-untouched ng-valid">
-																{{vehicleInfo.years[0].year}} -
-													         	{{vehicleInfo.make}} -
-													            {{vehicleInfo.model.name}} - 
-													            {{style.name}} 
-													            {{style.id}}
-														</li>
-														
-													</div>
+														  <ul>
+												          	<li id="blah" ng-repeat="style in vehicleStyles">
+												          	<input type="checkbox" ng-click="selectStyle(style)">		
+												          	 {{vehicleInfo.years[0].year}} -
+												          	 {{vehicleInfo.make}} -
+												              {{vehicleInfo.model.name}} - 
+												              {{style.name}} 
+												              
+												      		</li>
+												          </ul>														
+												   </div>
 												</div>
+
+
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
@@ -307,8 +316,9 @@
 	</div>
 
 	<button class="btn btn-primary btn-o next-step btn-wide pull-left" type="submit">
-        <a ui-sref="/sellerProfile"
+        <a ui-sref="/sellerProfile">
 			Next <i class="fa fa-arrow-circle-right"></i>
+		</a>
 	</button>
 
     
