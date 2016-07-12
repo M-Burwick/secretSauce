@@ -12,50 +12,42 @@
     <wizard on-finish="finishedWizard()">
     	<div id="wizard" class="swMain">
 						<!-- start: WIZARD SEPS -->
-						<ul>
-							<li ng-click="form.goTo(Form, 1)" class="">
-								<a href="" ng-class="{'selected' : currentStep >= 1, 'done' : currentStep > 1}" class="selected">
-									<div class="stepNumber">
-										1
-									</div>
-									<span class="stepDesc text-small"> Vehicle Information </span>
-								</a>
-							</li>
-							<li ng-click="form.goTo(Form, 2)">
-								<a href="" ng-class="{'selected' : currentStep >= 2, 'done' : currentStep > 2}">
-									<div class="stepNumber">
-										2
-									</div>
-									<span class="stepDesc text-small"> Get a Quote</span>
-								</a>
-							</li>
-							<li ng-click="form.goTo(Form, 3)">
-								<a href="" ng-class="{'selected' : currentStep >= 3, 'done' : currentStep > 3}">
-									<div class="stepNumber">
-										3
-									</div>
-									<span class="stepDesc text-small"> Profile & Agreement </span>
-								</a>
-							</li>
-							<li ng-click="form.goTo(Form, 4)">
-								<a href="" ng-class="{'selected' : currentStep >= 4, 'done' : currentStep > 4}">
-									<div class="stepNumber">
-										4
-									</div>
-									<span class="stepDesc text-small"> Complete </span>
-								</a>
-							</li>
-						</ul>
-					</div>
-			
-      <wz-step wz-title="Starting" id="starterkit" >
+						
+		</div>
+					
+      <wz-step wz-title="Profile" id="starterkit">
+      	<div layout="column" layout-align="center center" class="ng-scope layout-align-center-center layout-column">
+			     <h2 class="stepTitle">Create A Profile With Us</h2>
+		<!-- 
+			     <p> Sellers we’ve got your back. If your car needs repair our mechanics will give you an estimate for repair including a detailed report. Once the repairs are made we will your car reinspect for free </p> -->
+			    <button class="fb-login-btn md-button md-ink-ripple" type="button"  ng-click="fblogin()"></button>
+		        <button class="google-login-btn md-button md-ink-ripple" type="button"  ng-click="googleLogin()"></button>
+		        <br>
+		        <h4 class="stepTitle">Get on the road to selling your car</h4>
+		                
+		        <div id="ctn" class="container"><p>By signing up, I agree to Carista's <a ui-sref="terms" href="#/terms">Terms Of Service</a>, Payments Terms of Service, <a ui-sref="privacy" href="#/privacy">Privacy Policy</a>, and <a ui-sref="#">Seller Refund Policy</a></p></div>
+		        <br>
+		        <br>
+		        <br>	
+		</div>
+		<button class="btn btn-primary btn-o next-step btn-wide pull-right"  wz-next value="Info">
+				Next <i class="fa fa-arrow-circle-right"></i>
+		</button>
+	    <br>
+    	<br>
+    	<br>
+    </wz-step>
+
+    <wz-step wz-title="Info" id="starterkit" >
+
+
+
 							<div class="row">
 								<div class="col-md-5">
 									<div class="padding-30">
 										<i class="fa fa-smile-o fa-4x" id="caristaSmiley" aria-hidden="true"></i>
 										<h2 class="stepTitle">Enter your vehicle Information</h2>
-
-			<p class="step-small">This information will allow us to generate an instant quote for your vehicle</p>
+			<h4 class="step-small">This information will allow us to generate an instant quote for your vehicle</h4>
 
 									
 									</div>
@@ -65,14 +57,18 @@
 									
 										<div class="row">
 											<div class="col-md-6">
-												<div class="form-group" ng-class="{'has-error':Form.firstName.$dirty &amp;&amp; Form.firstName.$invalid, 'has-success':Form.firstName.$valid}">
+												<div class="form-group">
 													<label>
 														Vin <span class="symbol required"></span>
 													</label>
-													<input type="text" placeholder="Enter full vin number" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" name="vin" ng-model="vin.vin" ng-required="currentStep == 1" required="required">
+													<input type="text" placeholder="Enter full vin number"  name="vin" class="form-control ng-pristine ng-untouched ng-invalid ng-invalid-required" ng-model="vin.vin">
 														<button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-hide="form.hide" ng-click ="inputVin(vin)" type="submit">
-											Enter Vin <i class="fa fa-arrow-circle-down"></i>
-										</button>
+														Enter Vin <i class="fa fa-arrow-circle-down"></i>
+														</button>
+										<div ng-messages="exampleForm.userFirstName.$error">
+  <div ng-message="required">This field is required</div>
+</div>
+
 												</div>
 											</div>
 											<div class="col-md-6">
@@ -100,9 +96,13 @@
 														Choose Your Vehicle Style
 													</label>
 													<div  class="clip-radio radio-primary">
+														<div ng-show="error">
+														{{error}}
+														</div>
 														  <ul>
-												          	<li id="blah" ng-repeat="style in vehicleStyles">
-												          	<input type="checkbox" ng-click="selectStyle(style)">		
+
+												          	<li id="blah" ng-hide="error" ng-repeat="style in vehicleStyles">
+												          	<input type="checkbox"  ng-click="selectStyle(style)">	
 												          	 {{vehicleInfo.years[0].year}} -
 												          	 {{vehicleInfo.make}} -
 												              {{vehicleInfo.model.name}} - 
@@ -135,21 +135,27 @@
 
 								</div>
 										<div class="form-group">
-						<button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-click="completeForm(form)" type="submit" wz-next value="Valuation">
+						<button type="submit" wz-previous value="Profile" class="btn btn-primary btn-o back-step btn-wide pull-left"><i class="fa fa-arrow-circle-left"></i>Back</button>	
+
+						<button class="btn btn-primary btn-o next-step btn-wide pull-right" ng-disabled="!vin.vin || !form.mileage || !form.zip || !passed" ng-hide="error" class="ng-hide" ng-click="completeForm(form)" type="submit" wz-next value="Valuation">
 											Next <i class="fa fa-arrow-circle-right"></i>
 										</button>
 									</div>
 							</div>
-
+							   <br>
+    	<br>
+    	<br>
       </wz-step>
+
+
       <wz-step wz-title="Valuation">
          <div class="row">
-	      	<div class="col-md-6">
+	      	<div class="col-sm-6">
 			  	<h1 class="stepTitle">Carista Value | ${{vehicleData.usedPrivateParty}}</h1>
 <!-- 			  	<h3>${{vehicleData.usedPrivateParty}}</h3>
  --><!-- 			  	<h4>ADD CLEAN VALUE ALSO</h4>
  -->	    </div>	
-	      	<div class="col-md-6">
+	      	<div class="col-sm-6">
 			  	<h1 class="stepTitle">Trade-In Value | ${{vehicleData.usedTradeIn}}</h1>
 			  	<h3></h3>
 	      	</div>	
@@ -231,6 +237,7 @@
 		</div>
 		<Br>
 		<br>	
+		<br>
 
 	  </wz-step>
 
@@ -252,43 +259,16 @@
     </div>
     <br>
     <br>
-        		
-                <button type="submit" wz-next value="Profile" class="btn btn-primary btn-o next-step btn-wide pull-right" ng-disabled="!checkbox1 || !checkbox2">Next</button>
+        		<button type="submit" wz-prev value="Valuation" class="btn btn-primary btn-o next-step btn-wide pull-left">Back</button>
+                <button type="submit" wz-next value="Payment" class="btn btn-primary btn-o next-step btn-wide pull-right" ng-disabled="!checkbox1 || !checkbox2">Next</button>
                 <Br>
+               	<br>
                	<br>
 
       
-      	  </wz-step>
+      </wz-step>
 
 
-      <wz-step wz-title="Profile">
-      <div layout="column"       layout-align="center center">
-	     <h2 class="stepTitle">Create A Profile With Us</h2>
-<!-- 
-	     <p> Sellers we’ve got your back. If your car needs repair our mechanics will give you an estimate for repair including a detailed report. Once the repairs are made we will your car reinspect for free </p> -->
-	    <md-button class="fb-login-btn" ng-click="fblogin()"></md-button>
-        <md-button class="google-login-btn"  wz-next value="Finish now"  ng-click="googleLogin()"></md-button>
-        <br>
-        <h4 class="stepTitle">Get on the road to selling your car</h4>
-                
-        <div  id="ctn"class="container"><p>By signing up, I agree to Carista's <a ui-sref="terms">Terms Of Service</a>, Payments Terms of Service, <a ui-sref="privacy">Privacy Policy</a>, and <a ui-sref="#">Seller Refund Policy</a></p></div>
-        <br>
-        <br>
-        <br>	
-      
-		</div>
-
-		<button class="btn btn-primary btn-o back-step btn-wide pull-left"  wz-previous value="Terms">
-				<i class="fa fa-arrow-circle-left"></i> Back
-			</button>
-        <button class="btn btn-primary btn-o next-step btn-wide pull-right" type="submit" wz-next value="Payment">
-			Next <i class="fa fa-arrow-circle-right"></i>
-		</button>
-		<br>
-		<br>
-		<br>
-
-    </wz-step>
 
 
 
@@ -296,16 +276,41 @@
       <div layout="column"       layout-align="center center">
 	     <h2 class="stepTitle">Payment</h2>
 	     <p>GO INSIDE</p>
+			<form layout="column" layout-align="center center" stripe-form="stripeCallback">
+			    <input ng-model="card.number" placeholder="Card Number" />
+			    <input ng-model="card.exp_month" placeholder="Expiration Month" />
+			     <input ng-model="card.exp_year" placeholder="Expiration Year" />
+			    <input ng-model="card.cvc" placeholder="CVC" />
+			    <button ng-click="stripeCallback(card)" type="submit">Submit</button>
+			</form>
+
+
+	     <a href='https://www.expeditedssl.com/simple-ssl-scanner/scan?target_domain=www.drivecarista.com' target='_blank' rel='nofollow'><img src='https://www.expeditedssl.com/ssl-secure-badge.png'  alt='Expedited SSL Scanner'></a>
+	     <br>
+	     <div ng-hide="!successfulPayment">
+	     <div ng-hide="unsuccessfulPayment">
+	     	<h3>Your Payment of: ${{successfulPayment}} </h3>
+	     	<p ng-model ="successfulPayment" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01"></p>
+	     	<p>has been processed</p>
+	     </div>	
+	     <div ng-hide="successfulPayment">
+	     	<h3  >Sorry :{{unsuccessfulPayment}}</h3>
+	     	<p ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/"></p>
+	     </div>	
+	 	</div>
 		<br>
 	  </div>	
 		
 
-			<button class="btn btn-primary btn-o back-step btn-wide pull-left"  wz-previous value="Profile">
+			<button class="btn btn-primary btn-o back-step btn-wide pull-left"  wz-prev value="Terms">
 				<i class="fa fa-arrow-circle-left"></i> Back
 			</button>
         <button class="btn btn-primary btn-o next-step btn-wide pull-right" type="submit" wz-next value="Inform">
 			Next <i class="fa fa-arrow-circle-right"></i>
 		</button>
+		   <br>
+    	<br>
+    	<br>
 
     </wz-step>
 
@@ -320,20 +325,11 @@
 			Next <i class="fa fa-arrow-circle-right"></i>
 		</a>
 	</button>
-
-    
     </wz-step>
-
-
-	
-      <!-- STEP 3 -->
-      
     </wizard>
   </div>
 </section>
-    <Br>
-    	<Br>
-    		<Br>
-    			<Br>
-    				<Br>
-	<br>
+<br>
+<br>
+<br>
+

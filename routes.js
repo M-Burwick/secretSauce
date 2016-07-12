@@ -1,7 +1,7 @@
 var Buyer = require('./models/buyer'),
     Vehicle = require('./models/vehicle'),
     Inquiry = require('./models/inquiry'),
-
+    stripe = require("stripe")("sk_test_C0z4bZowWOpnePAoj52sMJBZ"),
     jwt = require('jwt-simple'),
     passport = require('passport'),
     config = require('./config/main'),
@@ -21,6 +21,7 @@ var Buyer = require('./models/buyer'),
 
 
 module.exports = function(app, passport) {
+
     app.get('/auth/google', passport.authenticate('google', {
         scope: ['email']
     }));
@@ -175,6 +176,26 @@ module.exports = function(app, passport) {
             }
         });
     });
+
+    app.post('/payment', function(req, res){
+        var stripeToken = req.body.token;
+        var charge = stripe.charges.create({
+            amount: 19999, // amount in cents, again
+            currency: "usd",
+            source: stripeToken,
+            description: "Example charge"
+            }, function(err, charge) {
+            if (err && err.type === 'StripeCardError') {
+                console.log(err);// The card has been declined
+            } else {
+                res.send({
+                    success:true,
+                    data: charge
+                });
+            }
+        })
+
+    })
 
     app.get('/vehicles', function(req, res) {
         console.log(req.user);

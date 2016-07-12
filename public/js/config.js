@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router',  'ngMaterial', 'ngFileUpload', 'ngTouch', 'mgo-angular-wizard'])
+var app = angular.module('app', ['ui.router', 'angular-stripe', 'ngMaterial', 'ngMessages', 'ngFileUpload', 'ngTouch', 'mgo-angular-wizard'])
 
 app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('/home');
@@ -98,7 +98,9 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
             })   
     })
 
-
+.config(function(stripeProvider) {
+  stripeProvider.setPublishableKey('pk_test_OCo8uPAjPuNPNplSVJRYSUty');
+})
 
 .controller('BrowseController', function BrowseController($scope, $location, $window, $http, $rootScope) {
     $http.get('/vehicles').then(function(response) {
@@ -253,7 +255,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
         }
 })
 
-.controller('WizardCtrl', function WizardCtrl($scope, $http, $window){
+.controller('WizardCtrl', function WizardCtrl($scope, stripe,  $http, $window){
     $scope.model = {};
 
      $scope.fblogin = function() {
@@ -266,16 +268,45 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 
     $scope.inputVin = function(vin){
         $http.get("https://api.edmunds.com/api/vehicle/v2/vins/" + vin.vin + "?&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg").then(function(response){
-            console.log(response.data);
+            console.log(response.data.years[0].year);
+            var year = response.data.years[0].year;
+            if(year < 2010){
+                $scope.error = 'Sorry, At this time vehicles must be six years or newer.';
+            }
+            $scope.passed ='true';
             $scope.vehicleInfo = response.data
-            $scope.vehicleInfo.make = response.data.make.name;
-     
-
-
+            $scope.vehicleInfo.make = response.data.make.name;     
              console.log(response.data.years[0].styles);
             $scope.vehicleStyles = response.data.years[0].styles;
         })
     }
+
+
+    $scope.stripeCallback = function (card) {
+      return stripe.card.createToken(card)
+        .then(function(response){
+            console.log('token created for card ending in ', response.card.last4, response.id);
+            var payment = response;
+            payment.card = response.card;
+            payment.token = response.id;
+            console.log(payment);
+            return $http.post('/payment', payment);
+        })
+        .then(function (payment) {
+            console.log(payment.data.data);
+            console.log('successfully submitted payment for $', payment.data.data.amount);
+            $scope.successfulPayment = payment.data.data.amount;
+
+        })
+        .catch(function (err) {
+            if (err.type && /^Stripe/.test(err.type)) {
+                $scope.unsuccessfulPayment('Stripe error: ', err.message);
+            }
+            else{
+                console.log('Other error occurred, possibly with your API', err.message);
+            }
+        });
+    };
 
     $scope.isCheckboxChecked = function() {
         return ($scope.checkbox1 || $scope.checkbox2);
@@ -304,78 +335,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
         return true;
     };
 
-    //Bullshit Code
-
-
-     $scope.currentStep = 1;
-
-    // Initial Value
-    $scope.form = {
-
-        next: function (form) {
-
-            $scope.toTheTop();
-
-            if (form.$valid) {
-                form.$setPristine();
-                nextStep();
-            } else {
-                var field = null, firstError = null;
-                for (field in form) {
-                    if (field[0] != '$') {
-                        if (firstError === null && !form[field].$valid) {
-                            firstError = form[field].$name;
-                        }
-
-                        if (form[field].$pristine) {
-                            form[field].$dirty = true;
-                        }
-                    }
-                }
-
-                angular.element('.ng-invalid[name=' + firstError + ']').focus();
-                errorMessage();
-            }
-        },
-        prev: function (form) {
-            $scope.toTheTop();
-            prevStep();
-        },
-        goTo: function (form, i) {
-            if (parseInt($scope.currentStep) > parseInt(i)) {
-                $scope.toTheTop();
-                goToStep(i);
-
-            } else {
-                if (form.$valid) {
-                    $scope.toTheTop();
-                    goToStep(i);
-
-                } else
-                    errorMessage();
-            }
-        },
-        submit: function () {
-
-        },
-        reset: function () {
-
-        }
-    };
-
-
-    var nextStep = function () {
-        $scope.currentStep++;
-    };
-    var prevStep = function () {
-        $scope.currentStep--;
-    };
-    var goToStep = function (i) {
-        $scope.currentStep = i;
-    };
-    var errorMessage = function (i) {
-        toaster.pop('error', 'Error', 'please complete the form in this step before proceeding');
-    };
+   
 
 })
 
