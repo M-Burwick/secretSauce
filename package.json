@@ -33,7 +33,8 @@
     "path": "^0.12.7",
     "random-js": "^1.0.8",
     "s3fs": "^2.4.7",
-    "stripe": "^4.7.0"
+    "stripe": "^4.7.0",
+    "xml2js": "^0.4.17"
   },
   "scripts": {
     "start": "node index.js",
