@@ -14,12 +14,12 @@ var config = require('./config/main');
 var fs = require('fs');
 
 mongoose.connect(config.database);
-// app.get('*',function(req,res,next){
-//   if(req.headers['x-forwarded-proto']!='https')
-//     res.redirect('https://www.drivecarista.com'+req.url)
-//   else
-//     next() /* Continue to other routes if we're not redirecting */
-// })
+app.get('*',function(req,res,next){
+  if(req.headers['x-forwarded-proto']!='https')
+    res.redirect('https://www.drivecarista.com'+req.url)
+  else
+    next() /* Continue to other routes if we're not redirecting */
+})
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
