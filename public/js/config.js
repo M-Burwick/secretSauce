@@ -2,6 +2,8 @@ var app = angular.module('app', ['ui.router', 'angular-stripe', 'ngMaterial', 'n
 
 app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('/home');
+        $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = 'www.drivecarista.com';
+
         $stateProvider
             .state('home', {
                 url: '/home',
@@ -14,7 +16,12 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                 templateUrl: 'templates/congratulations.html'
             })
 
-
+        $stateProvider
+            .state('lendingtree', {
+                url: '/lendingtree',
+                controller: 'LendingTreeController',
+                templateUrl: 'templates/lendingtree.html'
+            })
 
         $stateProvider
             .state('buyercongratulations', {
@@ -95,7 +102,8 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
             .state('privacy', {
                 url: '/privacy',
                 templateUrl: 'templates/privacypolicy.html'
-            })   
+            }) 
+
     })
 
 .config(function(stripeProvider) {
@@ -145,6 +153,24 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
         $http.post('/signupVehicle', vehicle)
             .then(function(response) {
                 $location.path('/congratulations')
+        })
+    }
+})
+
+.controller('LendingTreeController', function LendingTreeController($scope, $location, $window, $http, $rootScope) {
+    $scope.getLoan= function(loan) {
+        $http.post('/xml', loan).then(function(response) {
+            console.log(response.data);
+            $scope.xml = response.data.data; 
+        }).then(function(xml){
+            $http.post('https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx', xml).then(function(response){
+                console.log(response);
+            })
+        })
+        var xml = $scope.xml
+        $http.post('https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx', xml).then(function(response){
+            console.log(response);
+            $scope.madness = response.data;
         })
     }
 })

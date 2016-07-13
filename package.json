@@ -34,7 +34,8 @@
     "random-js": "^1.0.8",
     "s3fs": "^2.4.7",
     "stripe": "^4.7.0",
-    "xml2js": "^0.4.17"
+    "xml2js": "^0.4.17",
+    "xmlbuilder": "^8.2.2"
   },
   "scripts": {
     "start": "node index.js",

@@ -5,6 +5,11 @@ var Buyer = require('./models/buyer'),
     jwt = require('jwt-simple'),
     passport = require('passport'),
     config = require('./config/main'),
+    xml2js = require('xml2js'),
+    builder = require('xmlbuilder'),
+    fs = require('fs'),
+    requestsource = require('./config/sourceofrequest'),
+
     random = require("random-js")(),
     nodemailer = require('nodemailer'),
     smtpTransport = require('nodemailer-smtp-transport')
@@ -45,100 +50,120 @@ module.exports = function(app, passport) {
 
     );
 
-    app.get('/creditCheck', function(req, res) {
-        function getRandomArbitrary(min, max) {
-            return (Math.floor(Math.random() * (max - min) + min));
-        }
+    app.post('https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx', function(req, res){
+        console.log(req);
+        res.send({
+            success:true,
+            data: req
+        })
+    })
+    app.post('/xml', function(req, res){
+        console.log(req.body);
+        var xml = builder.create('root')
+            .ele('xmlbuilder')
+            .ele('repo', {'type': 'git'}, req.body.name)
+        .end({ pretty: true});
+        console.log(xml);
+        res.send({
+            success:true,
+            data:xml
+        })
+    })
 
-        var one = {
-                months: 48,
-                apr: (Math.random() * (13.74 - 5.76) + 5.76),
-                payment: 400,
-                approval: (getRandomArbitrary(25000, 45000))
-            },
+        // app.get('/creditCheck', function(req, res) {
+        //     function getRandomArbitrary(min, max) {
+        //         return (Math.floor(Math.random() * (max - min) + min));
+        //     }
 
-            two = {
-                months: 36,
-                apr: (Math.random() * (15.74 - 7.76) + 7.76),
-                payment: 500,
-                approval: (getRandomArbitrary(18000, 38000))
-            },
+        //     var one = {
+        //             months: 48,
+        //             apr: (Math.random() * (13.74 - 5.76) + 5.76),
+        //             payment: 400,
+        //             approval: (getRandomArbitrary(25000, 45000))
+        //         },
 
-            three = {
-                months: 60,
-                apr: (Math.random() * (9.74 - 4.76) + 4.76),
-                payment: 300,
-                approval: (getRandomArbitrary(25000, 55000))
-            },
+        //         two = {
+        //             months: 36,
+        //             apr: (Math.random() * (15.74 - 7.76) + 7.76),
+        //             payment: 500,
+        //             approval: (getRandomArbitrary(18000, 38000))
+        //         },
 
-            firstTier = [one, two, three],
+        //         three = {
+        //             months: 60,
+        //             apr: (Math.random() * (9.74 - 4.76) + 4.76),
+        //             payment: 300,
+        //             approval: (getRandomArbitrary(25000, 55000))
+        //         },
 
-            four = {
-                months: 48,
-                apr: (Math.random() * (18.74 - 12.76) + 12.76),
-                payment: 500,
-                approval: (getRandomArbitrary(15000, 35000))
-            },
+        //         firstTier = [one, two, three],
 
-            five = {
-                months: 36,
-                apr: (Math.random() * (19.74 - 11.76) + 11.76),
-                payment: 600,
-                approval: (getRandomArbitrary(18000, 38000))
-            },
+        //         four = {
+        //             months: 48,
+        //             apr: (Math.random() * (18.74 - 12.76) + 12.76),
+        //             payment: 500,
+        //             approval: (getRandomArbitrary(15000, 35000))
+        //         },
 
-            six = {
-                months: 60,
-                apr: (Math.random() * (15.74 - 8.76) + 8.76),
-                payment: 450,
-                approval: (getRandomArbitrary(25000, 55000))
-            },
+        //         five = {
+        //             months: 36,
+        //             apr: (Math.random() * (19.74 - 11.76) + 11.76),
+        //             payment: 600,
+        //             approval: (getRandomArbitrary(18000, 38000))
+        //         },
 
-            secondTier = [four, five, six],
+        //         six = {
+        //             months: 60,
+        //             apr: (Math.random() * (15.74 - 8.76) + 8.76),
+        //             payment: 450,
+        //             approval: (getRandomArbitrary(25000, 55000))
+        //         },
 
-            seven = {
-                months: 48,
-                apr: (Math.random() * (22.74 - 12.76) + 12.76),
-                payment: 550,
-                approval: (getRandomArbitrary(15000, 22000))
-            },
+        //         secondTier = [four, five, six],
 
-            eight = {
-                months: 36,
-                apr: (Math.random() * (24.74 - 11.76) + 11.76),
-                payment: 690,
-                approval: (getRandomArbitrary(18000, 28000))
-            },
+        //         seven = {
+        //             months: 48,
+        //             apr: (Math.random() * (22.74 - 12.76) + 12.76),
+        //             payment: 550,
+        //             approval: (getRandomArbitrary(15000, 22000))
+        //         },
 
-            nine = {
-                months: 60,
-                apr: (Math.random() * (20.74 - 14.76) + 8.76),
-                payment: 500,
-                approval: (getRandomArbitrary(19000, 25000))
-            },
+        //         eight = {
+        //             months: 36,
+        //             apr: (Math.random() * (24.74 - 11.76) + 11.76),
+        //             payment: 690,
+        //             approval: (getRandomArbitrary(18000, 28000))
+        //         },
 
-            thirdTier = [seven, eight, nine];
+        //         nine = {
+        //             months: 60,
+        //             apr: (Math.random() * (20.74 - 14.76) + 8.76),
+        //             payment: 500,
+        //             approval: (getRandomArbitrary(19000, 25000))
+        //         },
 
-        function underWriting(credScore) {
-            var options = {}
-            if (credScore > 750) {
-                options.loans = firstTier;
-                options.creditScore = credScore
-                res.json(options);
-            } else if (credScore > 700) {
-                options.loans = secondTier;
-                options.creditScore = credScore
-                res.json(options);
-            } else if (credScore > 600) {
-                options.loans = thirdTier;
-                options.creditScore = credScore
-                res.json(options);
-            } else {
-                res.json("no approval");
-            }
-        }
-        underWriting(getRandomArbitrary(550, 850));
-    });
+        //         thirdTier = [seven, eight, nine];
+
+        //     function underWriting(credScore) {
+        //         var options = {}
+        //         if (credScore > 750) {
+        //             options.loans = firstTier;
+        //             options.creditScore = credScore
+        //             res.json(options);
+        //         } else if (credScore > 700) {
+        //             options.loans = secondTier;
+        //             options.creditScore = credScore
+        //             res.json(options);
+        //         } else if (credScore > 600) {
+        //             options.loans = thirdTier;
+        //             options.creditScore = credScore
+        //             res.json(options);
+        //         } else {
+        //             res.json("no approval");
+        //         }
+        //     }
+        //     underWriting(getRandomArbitrary(550, 850));
+        // });
     app.post('/pickedLoan', function(req, res) {
         Buyer.findOne({
             email: req.user.email
