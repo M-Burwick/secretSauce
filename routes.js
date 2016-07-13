@@ -9,7 +9,8 @@ var Buyer = require('./models/buyer'),
     builder = require('xmlbuilder'),
     fs = require('fs'),
     requestsource = require('./config/sourceofrequest'),
-
+    cors = require('cors'),
+    needle = require('needle'),
     random = require("random-js")(),
     nodemailer = require('nodemailer'),
     smtpTransport = require('nodemailer-smtp-transport')
@@ -26,6 +27,8 @@ var Buyer = require('./models/buyer'),
 
 
 module.exports = function(app, passport) {
+
+    app.use(cors());
 
     app.get('/auth/google', passport.authenticate('google', {
         scope: ['email']
@@ -50,15 +53,15 @@ module.exports = function(app, passport) {
 
     );
 
-    app.post('https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx', function(req, res){
-        console.log(req);
-        res.send({
-            success:true,
-            data: req
-        })
+    var options = {
+  headers: { 'Content-Type': 'text/xml' }
+}
+
+    needle.post('https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx',options,function(req, resp){
+        console.log(resp.body);
+
     })
     app.post('/xml', function(req, res){
-        console.log(req.body);
         var xml = builder.create('root')
             .ele('xmlbuilder')
             .ele('repo', {'type': 'git'}, req.body.name)

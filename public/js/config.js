@@ -160,17 +160,11 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 .controller('LendingTreeController', function LendingTreeController($scope, $location, $window, $http, $rootScope) {
     $scope.getLoan= function(loan) {
         $http.post('/xml', loan).then(function(response) {
-            console.log(response.data);
+            var data = response.data.data;
             $scope.xml = response.data.data; 
-        }).then(function(xml){
-            $http.post('https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx', xml).then(function(response){
+            $http.post('https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx', data).then(function(response){
                 console.log(response);
             })
-        })
-        var xml = $scope.xml
-        $http.post('https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx', xml).then(function(response){
-            console.log(response);
-            $scope.madness = response.data;
         })
     }
 })
