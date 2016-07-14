@@ -293,7 +293,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
         }
 })
 
-.controller('WizardCtrl', function WizardCtrl($scope, stripe,  $http, $window){
+.controller('WizardCtrl', function WizardCtrl($scope, stripe,  $http, $window, $rootScope){
     $scope.model = {};
 
      $scope.fblogin = function() {
