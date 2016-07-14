@@ -2,8 +2,6 @@ var app = angular.module('app', ['ui.router', 'angular-stripe', 'ngMaterial', 'n
 
 app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('/home');
-        $httpProvider.defaults.headers.common['Access-Control-Allow-Origin'] = 'www.drivecarista.com';
-
         $stateProvider
             .state('home', {
                 url: '/home',
@@ -158,11 +156,31 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 })
 
 .controller('LendingTreeController', function LendingTreeController($scope, $location, $window, $http, $rootScope) {
+    var req = {
+        method: 'POST',
+        url: 'https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx',
+        headers: {
+        'Content-Type': 'text/xml'
+        },
+        data: { test: 'test' }
+    }
+
+
     $scope.getLoan= function(loan) {
+        loan.head = "brody";
         $http.post('/xml', loan).then(function(response) {
-            var data = response.data.data;
+            console.log(response.data.data)
+            var info = response.data.data;
+            var req = {
+                method: 'POST',
+                url: 'https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx',
+                headers: {
+                    'Content-Type': 'text/xml'
+                },
+                data: { test: info}
+            }
             $scope.xml = response.data.data; 
-            $http.post('https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx', data).then(function(response){
+            $http(req).then(function(response){
                 console.log(response);
             })
         })
@@ -284,7 +302,10 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 
     $scope.googleLogin = function() {
         $window.location.href = '/auth/google/';
-        }
+    }
+
+    $rootScope.session = {}
+    $rootScope.session.user = res.user;
 
     $scope.inputVin = function(vin){
         $http.get("https://api.edmunds.com/api/vehicle/v2/vins/" + vin.vin + "?&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg").then(function(response){

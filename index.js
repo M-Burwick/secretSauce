@@ -36,11 +36,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+    res.setHeader('Access-Control-Allow-Origin', 'www.drivecarista.com');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, POST, PUT, DELETE, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Authorization, Content-Type, Content-Range, Content-Disposition, Content-Description');
     next();
 });
+
 require('./config/passport.js')(passport);
 require('./routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
 // launch ======================================================================

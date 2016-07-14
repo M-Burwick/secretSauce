@@ -47,7 +47,7 @@ module.exports = function(app, passport) {
 
     app.get('/login/facebook/callback',
         passport.authenticate('facebook', {
-            successRedirect: '/#/signupVehicle',
+            successReturnToOrRedirect: '/#/signupVehicle',
             failureRedirect: '/'
         })
 
@@ -57,14 +57,15 @@ module.exports = function(app, passport) {
   headers: { 'Content-Type': 'text/xml' }
 }
 
-    needle.post('https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx',options,function(req, resp){
-        console.log(resp.body);
-
+    app.post('https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx',function(req, res){
+        console.log(res);
     })
     app.post('/xml', function(req, res){
-        var xml = builder.create('root')
-            .ele('xmlbuilder')
+        var xml = builder.create('SourceOfRequest')
+          .ele('xmlbuilder')
             .ele('repo', {'type': 'git'}, req.body.name)
+          .ele('head', {'type': 'payment'}, req.body.head)
+
         .end({ pretty: true});
         console.log(xml);
         res.send({
@@ -398,9 +399,9 @@ module.exports = function(app, passport) {
     });
 
     app.get('/sellerProfile', function(req, res) {
-        var token = {
-            email: "brick@gmail.com"
-        };
+        
+        var token = req.user;
+
         if (token) {
             Vehicle.findOne({
                 email: token.email
