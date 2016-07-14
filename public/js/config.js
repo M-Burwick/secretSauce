@@ -298,14 +298,16 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 
      $scope.fblogin = function() {
         $window.location.href = '/login/facebook/';
+
+          $rootScope.session = {}
+    $rootScope.session.user = res.user;
     }
 
     $scope.googleLogin = function() {
         $window.location.href = '/auth/google/';
     }
 
-    $rootScope.session = {}
-    $rootScope.session.user = res.user;
+  
 
     $scope.inputVin = function(vin){
         $http.get("https://api.edmunds.com/api/vehicle/v2/vins/" + vin.vin + "?&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg").then(function(response){
