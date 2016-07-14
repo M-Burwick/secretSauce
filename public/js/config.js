@@ -298,9 +298,6 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 
      $scope.fblogin = function() {
         $window.location.href = '/login/facebook/';
-
-          $rootScope.session = {}
-    $rootScope.session.user = res.user;
     }
 
     $scope.googleLogin = function() {
