@@ -7,7 +7,7 @@ var buyerSchema = mongoose.Schema({
     type: String,
     unique: true,
     required: true
-  },
+    },
     email: {
         type: String,
         unique: true,
@@ -21,6 +21,12 @@ var buyerSchema = mongoose.Schema({
         type: String
     },
     nameLast: {
+        type: String
+    },
+    photos: {
+        type: String
+    },
+    username:{
         type: String
     },
     loan: [],
