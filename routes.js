@@ -72,11 +72,170 @@ module.exports = function(app, passport) {
         console.log(res);
     })
     app.post('/xml', function(req, res){
-        var xml = builder.create('SourceOfRequest')
-          .ele('xmlbuilder')
-            .ele('repo', {'type': 'git'}, req.body.name)
-          .ele('head', {'type': 'payment'}, req.body.head)
+                   var xml = builder.create({
+                      LendingTreeAffiliateRequestAuto: {
+                        request: {
+                          '@created': '2016-07-15 03:32:12', // attributes start with @ 
+                          '@updated': '2016-07-15 03:32:12',
+                          '@AppID': '9CA2B044-AF93-4A43-BBD4-7A20A97E6DEB',
+                          SourceOfRequest: {
+                            LendingTreeAffiliatePartnerCode: {
+                              '#text':'26615'
+                            },
 
+                            LendingTreeAffiliateUserName: {
+                              '#text':'CARISTAUSER'
+                            },
+
+                            LendingTreeAffiliatePassword: {
+                              '#text':'BESTGRAPE87'
+                            },
+
+                            LendingTreeAffiliateEsourceID: {
+                              '#text':'6217796'
+                            },
+
+                            VisitorIPAddress: {
+                              '#text':'192.168.0.4'
+                            },
+
+                            VisitorURL: {
+                              '#text': 'http://www.drivecarista.com'
+                            }
+ 
+                          },
+                          AutoLoanProduct: {
+                            Purchase:{
+                                RequestedLoanAmount: {
+                                    '#text': '30000'
+                                },
+                                RequestedLoanPeriod: {
+                                    '#text': '33'
+                                },
+                                DownPayment: {
+                                     '#text': '5000'
+                                },
+                                SubjectVehicle: {
+                                    Class: {
+                                     '#text': 'USED'
+                                    },
+                                    Year: {
+                                     '#text': '2010'
+                                    },
+                                    Make: {
+                                     '#text': 'Honda' 
+                                    },
+                                    Model: {
+                                     '#text': 'Accord'
+                                    },
+                                    Trim: {
+                                     '#text': 'EX'
+                                    },
+                                    State: {
+                                     '#text': 'AR'
+                                    },
+                                    Mileage:{
+                                    '#text': '50000'
+                                    },
+                                    IdentificationNumber:{
+                                    '#text': '1234567890abcdefg'
+                                    },
+                                    WholesalePrice: {
+                                    '#text': '20000.00'    
+                                    },
+                                    VehiclePurchaseSource: {
+                                    '#text': 'DEALER'
+                                    }
+                                }
+                            }
+                          },
+
+                          Applicant:{
+                            FirstName: {
+                                '#text': 'John'
+                            },
+                            LastName: {
+                                '#text': 'Doe'
+                            },
+                            Street: {
+                                '#text': '3267 Test Dr'
+                            },
+                            City: {
+                                '#text': 'Charlotte'
+                            },
+                            State: {
+                                '#text': 'NC'
+                            },
+                            Zip: {
+                                '#text': '28277'
+                            },
+                            DateOfBirth: {
+                                '#text': '09/02/1975'
+                            },
+                            HomePhone: {
+                                '#text': '1112223333'
+                            },
+                            EmailAddress: {
+                                '#text': 'cindy@test.com'
+                            },
+                            Password: {
+                                '#text': 'cindy'
+                            },
+                            SSN: {
+                                '#text': '123-45-6789'
+                            },
+                            CreditHistory: {
+                                BankruptcyDischarged:{
+                                    '#text': 'NEVER'
+                                } 
+                            },
+                            Finance: {
+                                MonthlyEmploymentIncome:{
+                                    '#text': '8333'
+                                },
+                                TotalAssetValue: {
+                                    '#text': '222222'
+                                } 
+                            },
+                            Employment: {
+                                EmployerName:{
+                                    '#text': 'Lendingtree.com'
+                                },
+                                EmployeeTitle: {
+                                    '#text': 'Title'
+                                }, 
+                                EmployeeYears: {
+                                    '#text': '0'
+                                },
+                                EmployeeMonths: {
+                                    '#text': '9'
+                                },
+                                EmployeeStatus: {
+                                    '#text': 'FULLTIME'
+                                },
+                            },
+                            EmailOptIn: {
+                                '#text': 'N'
+                            },
+                            Housing: {
+                                OwnOrRent:{
+                                    '#text': 'OWN'
+                                },
+                                TimeAtCurrentResidenceYears: {
+                                    '#text': '5'
+                                }, 
+                                TimeAtCurrentResidenceMonths: {
+                                    '#text': '6'
+                                },
+                                MonthlyPayment: {
+                                    '#text': '1000'
+                                }
+                            }
+
+                          }
+                        }
+                      }
+         })
         .end({ pretty: true});
         console.log(xml);
         res.send({
