@@ -74,7 +74,7 @@ module.exports = function(app, passport) {
     app.post('/xml', function(req, res){
                    var xml = builder.create({
                       LendingTreeAffiliateRequestAuto: {
-                        request: {
+                        Request: {
                           '@created': '2016-07-15 03:32:12', // attributes start with @ 
                           '@updated': '2016-07-15 03:32:12',
                           '@AppID': '9CA2B044-AF93-4A43-BBD4-7A20A97E6DEB',
