@@ -156,33 +156,36 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 })
 
 .controller('LendingTreeController', function LendingTreeController($scope, $location, $window, $http, $rootScope) {
-    var req = {
-        method: 'POST',
-        url: 'https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx',
-        headers: {
-        'Content-Type': 'text/xml'
-        },
-        data: { test: 'test' }
-    }
+    // var req = {
+    //     method: 'POST',
+    //     url: 'https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx',
+    //     headers: {
+    //     'Content-Type': 'text/xml'
+    //     },
+    //     data: { test: 'test' }
+    // }
 
 
-    $scope.getLoan= function(loan) {
-        loan.head = "brody";
-        $http.post('/xml', loan).then(function(response) {
+    $scope.getLoan= function() {
+        $http.post('/xml').then(function(response) {
             console.log(response.data.data)
             var info = response.data.data;
-            var req = {
-                method: 'POST',
-                url: 'https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx',
-                headers: {
-                    'Content-Type': 'text/xml'
-                },
-                data: { test: info}
-            }
-            $scope.xml = response.data.data; 
-            $http(req).then(function(response){
-                console.log(response);
+            $http.post('https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx', info).then(function(response){
+                console.log(response)
+                $scope.xml = response.data
             })
+            // var req = {
+            //     method: 'POST',
+            //     url: 'https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx',
+            //     headers: {
+            //         'Content-Type': 'text/xml'
+            //     },
+            //     data: { test: info}
+            // }
+            // $scope.xml = response.data.data; 
+            // $http(req).then(function(response){
+            //     console.log(response);
+            // })
         })
     }
 })
