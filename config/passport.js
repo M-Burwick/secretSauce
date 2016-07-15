@@ -65,7 +65,7 @@ module.exports = function(passport) {
   clientID        : fbConfig.appID,
   clientSecret    : fbConfig.appSecret,
   callbackURL     : fbConfig.callbackUrl,
-  profileFields: ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified', 'photos'],
+  profileFields: ['id', 'email', 'gender', 'link', 'locale', 'name', 'timezone', 'updated_time', 'verified', 'picture.type(large)'],
 
 },
 
@@ -96,7 +96,9 @@ module.exports = function(passport) {
             newUser.username = profile.displayName;
             newUser.nameLast = profile._json.last_name; // look at the passport user profile to see how names are returned
             newUser.email = profile._json.email; // facebook can return multiple emails so we'll take the first
-            newUser.photos = "https://graph.facebook.com/" + profile.displayName + "/picture" + "?width=200&height=200" + "&access_token=" + access_token;
+            newUser.photos = profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg',
+
+            // newUser.photos = "https://graph.facebook.com/" + profile.displayName + "/picture" + "?width=200&height=200" + "&access_token=" + access_token;
 
             // save our user to the database
             newUser.save(function(err) {
