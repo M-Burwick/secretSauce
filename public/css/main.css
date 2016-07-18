@@ -992,11 +992,11 @@ hr.style-one {
    padding:10px;
 }
 .navbar-brand {
-  padding: 0px;
+  padding-top: 10px;
+
 }
 .navbar-brand>img {
   height: 100%;
-  padding: 15px;
   width: auto;
 }
 
