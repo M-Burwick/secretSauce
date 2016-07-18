@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router', 'angular-stripe', 'ngMaterial', 'ngMessages', 'ngFileUpload', 'ngTouch', 'mgo-angular-wizard'])
+var app = angular.module('app', ['ui.router', 'angular-stripe', 'ngMaterial', 'ngMessages', 'ui.bootstrap', 'ngFileUpload', 'ngTouch', 'mgo-angular-wizard'])
 
 app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('/home');
@@ -32,6 +32,15 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
                 url: '/inspection',
                 templateUrl: 'templates/inspection.html'
             })
+
+
+        $stateProvider
+            .state('faq', {
+                url: '/faq',
+                controller: 'AccordionDemoCtrl',
+                templateUrl: 'templates/faq.html'
+            })
+
 
         $stateProvider
             .state('browse', {
@@ -106,6 +115,35 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 
 .config(function(stripeProvider) {
   stripeProvider.setPublishableKey('pk_test_OCo8uPAjPuNPNplSVJRYSUty');
+})
+
+.controller('AccordionDemoCtrl', function ($scope) {
+  $scope.oneAtATime = true;
+
+  $scope.groups = [
+    {
+      title: 'Dynamic Group Header - 1',
+      content: 'Dynamic Group Body - 1'
+    },
+    {
+      title: 'Dynamic Group Header - 2',
+      content: 'Dynamic Group Body - 2'
+    }
+  ];
+
+  $scope.items = ['Item 1', 'Item 2', 'Item 3'];
+
+  $scope.addItem = function() {
+    var newItemNo = $scope.items.length + 1;
+    $scope.items.push('Item ' + newItemNo);
+  };
+
+  $scope.status = {
+    isCustomHeaderOpen: false,
+    isFirstOpen: true,
+    isFirstDisabled: false
+  };
+
 })
 
 .controller('BrowseController', function BrowseController($scope, $location, $window, $http, $rootScope) {

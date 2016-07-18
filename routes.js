@@ -75,9 +75,9 @@ module.exports = function(app, passport) {
                    var xml = builder.create({
                       LendingTreeAffiliateRequestAuto: {
                         Request: {
-                          '@created': '2016-07-15 03:35:12', // attributes start with @ 
-                          '@updated': '2016-07-15 03:35:12',
-                          '@AppID': '1CA2B099-AF99-4A43-BBD4-7A20A97E6DEB',
+                          '@created': '2016-07-15 03:32:12', // attributes start with @ 
+                          '@updated': '2016-07-15 03:32:12',
+                          '@AppID': '9CA2B044-AF93-4A43-BBD4-7A20A97E6DEB',
                           SourceOfRequest: {
                             LendingTreeAffiliatePartnerCode: {
                               '#text':'26615'
@@ -176,10 +176,10 @@ module.exports = function(app, passport) {
                                 '#text': '1112223333'
                             },
                             EmailAddress: {
-                                '#text': 'Mandy@test.com'
+                                '#text': 'cindy@test.com'
                             },
                             Password: {
-                                '#text': 'Mandy'
+                                '#text': 'cindy'
                             },
                             SSN: {
                                 '#text': '123-45-6789'
