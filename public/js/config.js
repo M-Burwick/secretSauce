@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router', 'angular-stripe', 'ngMaterial', 'ngMessages', 'ui.bootstrap', 'ngFileUpload', 'ngTouch', 'mgo-angular-wizard'])
+var app = angular.module('app', ['ui.router', 'angular-stripe', 'ngMaterial', 'ngMessages', 'ngFileUpload', 'ngTouch', 'mgo-angular-wizard'])
 
 app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('/home');
