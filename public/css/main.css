@@ -991,6 +991,16 @@ hr.style-one {
    height:300px;
    padding:10px;
 }
+.navbar-brand {
+  padding: 0px;
+}
+.navbar-brand>img {
+  height: 100%;
+  padding: 15px;
+  width: auto;
+}
+
+
 
 #searchInput{
     width:60%;
@@ -1007,7 +1017,7 @@ hr.style-one {
 }
 .navBtn {
     background-color: tomato;
-    margin-top: 15%;
+    margin-top: 25%;
     color: white;
     width: 80px;
     border-radius: 7px;

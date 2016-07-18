@@ -5,7 +5,7 @@ module.exports = {
     LendingTreeAffiliateUserName: "Man", 
     LendingTreeAffiliatePassword: 'BESTGRAPE87', 
     LendingTreeAffiliateEsourceID: '6217796', 
-    VisitorURL: 'www.drivecarista.com', 
+    VisitorURL: 'www.redrive.com', 
     VisitorIPAddress: '192.168.0.4'
 	}
 

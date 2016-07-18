@@ -399,6 +399,9 @@ module.exports = function(app, passport) {
     app.get('/vehicles', function(req, res) {
         console.log(req.user);
         Vehicle.find({}, function(err, vehicles) {
+            if(err){
+                res.json(err)
+            }
             res.json(vehicles);
         })
     })
