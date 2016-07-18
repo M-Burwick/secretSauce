@@ -12,8 +12,15 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var config = require('./config/main');
 var fs = require('fs');
+require('./config/passport.js')(passport);
+require('./routes.js')(app, passport);
 
 mongoose.connect(config.database);
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 app.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https')
     res.redirect('https://www.redrive.co'+req.url)
@@ -34,16 +41,7 @@ app.use(session({
 app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(function(req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', 'www.drivecarista.com');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, POST, PUT, DELETE, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Authorization, Content-Type, Content-Range, Content-Disposition, Content-Description');
-    next();
-});
-
-require('./config/passport.js')(passport);
-require('./routes.js')(app, passport); // load our routes and pass in our app and fully configured passport
+ // load our routes and pass in our app and fully configured passport
 // launch ======================================================================
 server = app.listen(process.env.PORT || 1738, process.env.IP || "0.0.0.0", function() {
   var addr = server.address();

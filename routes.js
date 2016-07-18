@@ -39,7 +39,6 @@ module.exports = function(app, passport) {
     }
 
 
-    app.use(cors());
 
     app.get('/auth/google', passport.authenticate('google', {
         scope: ['email']
@@ -64,13 +63,13 @@ module.exports = function(app, passport) {
 
     );
 
-    var options = {
-  headers: { 'Content-Type': 'text/xml' }
-}
-
-    app.post('https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx',function(req, res){
+    app.post('https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx',function(req, res, next){
+        res.setHeader('content-type', 'text/xml');
+        console.log(req.body);
         console.log(res);
+        next();
     })
+
     app.post('/xml', function(req, res){
                    var xml = builder.create({
                       LendingTreeAffiliateRequestAuto: {
