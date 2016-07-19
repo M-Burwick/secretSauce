@@ -64,8 +64,6 @@ module.exports = function(app, passport) {
     );
 
     app.post('https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx',function(req, res, next){
-        res.setHeader('content-type', 'text/xml');
-        console.log(req.body);
         console.log(res);
         next();
     })

@@ -14,7 +14,7 @@ var config = require('./config/main');
 var fs = require('fs');
 var allowCrossDomain = function(req, res, next) {
     if ('OPTIONS' == req.method) {
-      res.header('Access-Control-Allow-Origin', 'https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx');
+      res.header("Access-Control-Allow-Origin", "https://www.redrive.co");
       res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
       res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
       res.send(200);
@@ -29,12 +29,12 @@ require('./routes.js')(app, passport);
 mongoose.connect(config.database);
 app.use(allowCrossDomain); 
  
-app.get('*',function(req,res,next){
-  if(req.headers['x-forwarded-proto']!='https')
-    res.redirect('https://www.redrive.co'+req.url)
-  else
-    next() /* Continue to other routes if we're not redirecting */
-})
+// app.get('*',function(req,res,next){
+//   if(req.headers['x-forwarded-proto']!='https')
+//     res.redirect('https://www.redrive.co'+req.url)
+//   else
+//     next() /* Continue to other routes if we're not redirecting */
+// })
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
