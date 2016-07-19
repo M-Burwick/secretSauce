@@ -540,6 +540,35 @@ module.exports = function(app, passport) {
 
     
 
+    app.get('/sellerIslogged', function(req, res){
+        var token = req.user;
+        if (token) {
+            Vehicle.findOne({
+                email: token.email
+            }, function(err, vehicle) {
+                if (err) throw err;
+                if (!vehicle) {
+                    return res.status(403).send({
+                        success: false,
+                        msg: 'Authentication failed. vehicle not found.'
+                    });
+                } else {
+                    res.json({
+                        success: true,
+                        msg: 'Welcome in the member area ',
+                        data: vehicle
+                    });
+                }
+            });
+        } else {
+            return res.status(403).send({
+                success: false,
+                msg: 'No token provided.'
+            });
+        }
+    });
+
+
     app.get('/profile', function(req, res) {
         var token = req.user;
         if (token) {

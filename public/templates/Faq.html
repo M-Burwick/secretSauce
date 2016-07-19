@@ -1,77 +1,270 @@
+<div id="faqjumbo" class="jumbotron" layout="column" layout-align="center center">
+<div class="container" layout="column" layout-align="center center">
+<h2 class="faq2">Frequently Asked Questions</h2>
+<h5 class="faq2">Find all your answers here</h5>
 
-<div class="jumbotron">
-<uib-accordion close-others="oneAtATime">
-    <uib-accordion-group heading="Static Header, initially expanded" is-open="status.isFirstOpen" is-disabled="status.isFirstDisabled">
-      This content is straight in the template.
-    </uib-accordion-group>
-    <uib-accordion-group heading="{{group.title}}" ng-repeat="group in groups">
-      {{group.content}}
-    </uib-accordion-group>
-    <uib-accordion-group heading="Dynamic Body Content">
-      <p>The body of the uib-accordion group grows to fit the contents</p>
-      <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
-      <div ng-repeat="item in items">{{item}}</div>
-    </uib-accordion-group>
-    <uib-accordion-group heading="Custom template" template-url="group-template.html">
-      Hello
-    </uib-accordion-group>
-    <uib-accordion-group is-open="status.isCustomHeaderOpen" template-url="group-template.html">
-      <uib-accordion-heading>
-        Custom template with custom header template <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.isCustomHeaderOpen, 'glyphicon-chevron-right': !status.isCustomHeaderOpen}"></i>
-      </uib-accordion-heading>
-      World
-    </uib-accordion-group>
-    <uib-accordion-group heading="Delete account" panel-class="panel-danger">
-      <p>Please, to delete your account, click the button below</p>
-      <button class="btn btn-danger">Delete</button>
-    </uib-accordion-group>
-    <uib-accordion-group is-open="status.open">
-      <uib-accordion-heading>
-        I can have markup, too! <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
-      </uib-accordion-heading>
-      This is just some content to illustrate fancy headings.
-    </uib-accordion-group>
-  </uib-accordion>
-</div>    
-
-
-<div class="bs-example">
-    <div class="panel-group" id="accordion">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">1. What is HTML?</a>
-                </h4>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse in">
-                <div class="panel-body">
-                    <p>HTML stands for HyperText Markup Language. HTML is the main markup language for describing the structure of Web pages. </p>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                </h4>
-            </div>
-            <div id="collapseTwo" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <p>Bootstrap is a powerful front-end framework for faster and easier web development. It is a collection of CSS and HTML conventions. <a href="http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/" target="_blank">Learn more.</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">3. What is CSS?</a>
-                </h4>
-            </div>
-            <div id="collapseThree" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <p>CSS stands for Cascading Style Sheet. CSS allows you to specify various style properties for a given HTML element such as colors, backgrounds, fonts etc. <a href="http://www.tutorialrepublic.com/css-tutorial/" target="_blank">Learn more.</a></p>
-                </div>
-            </div>
-        </div>
-    </div>
-	<p><strong>Note:</strong> Click on the linked heading text to expand or collapse accordion panels.</p>
 </div>
+
+</div>  
+
+<section class="container">
+<!--   <div>
+    <ul layout="row" layout-align="center center">  
+      <li>OverView</li>
+      <li>Sellers</li>
+      <li>Buyers</li>
+      <li>See Cars</li>
+    </ul>  
+  </div>   -->
+
+
+<div ng-controller="AccordionDemoCtrl">
+  <script type="text/ng-template" id="group-template.html">
+    <div class="panel {{panelClass || 'panel-default'}}">
+      <div class="panel-heading">
+        <h4 class="panel-title" style="color:#fa39c3">
+          <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading">
+            <span uib-accordion-header ng-class="{'text-muted': isDisabled}">
+              {{heading}}
+            </span>
+          </a>
+        </h4>
+      </div>
+      <div class="panel-collapse collapse" uib-collapse="!isOpen">
+        <div class="panel-body" style="text-align: right" ng-transclude></div>
+      </div>
+    </div>
+  </script>
+<div layout="column" layout-align="center center">
+<h1 class="faq">Overview</h1>
+</div>
+<Br>
+
+  <uib-accordion close-others="oneAtATime">
+
+    <uib-accordion-group heading="Accurate Valuation">
+        <uib-accordion-heading>
+        Accurate Valuation
+      </uib-accordion-heading>
+      <p>We use leading valuation technology to get you the right price for your car when you sell it, and buyers pay the market rate (no middle man mark-up.</p>
+    </uib-accordion-group>
+
+     <uib-accordion-group heading="Reliability">
+      <uib-accordion-heading>
+        Reliability
+      </uib-accordion-heading>
+     <ul>
+      <li>Have ZERO accidents</li>
+      <li>Clean title, verified by Carfax and DMV</li>
+      <li>Pass a 150 point inspection by a certified mechanic (similar to a certified pre-owned inspection).</li>
+     </ul>
+    </uib-accordion-group>
+
+    <uib-accordion-group>
+      <uib-accordion-heading>
+        Convenience
+      </uib-accordion-heading>
+      <p>We take the car to and from the inspection</p>
+      <p>Create your seller profile on the site including:</p>
+      <ul>
+        <li>A complimentary car wash</li>
+        <li>Hi-Res Photos of your car</li>
+        <li>Integration of your car’s information and the photos onto your seller profile page</li>
+      </ul> 
+    </uib-accordion-group>
+    
+
+<!--     <uib-accordion-group>
+     <uib-accordion-heading>
+        Title Transfer
+      </uib-accordion-heading>
+      <p> We take care of transferring title and liens.</p>
+      <p> We validate vehicle information to ensure our users' experience<p>
+    </uib-accordion-group> -->
+
+    <uib-accordion-group>
+      <uib-accordion-heading>
+        Affordable
+      </uib-accordion-heading>
+      <p> Our only fee is $199, sellers pay this fee for the inspection, high end photos of the vehicle, and a complete seller profile on Carista.</p>
+    </uib-accordion-group>
+
+    <uib-accordion-group>
+        <uib-accordion-heading>
+       Best Financing
+      </uib-accordion-heading>
+      <p>Banks compete to get you the best loan!</p>
+      <p>No hidden costs or made up loan rates.<p>
+    </uib-accordion-group>
+
+
+
+  </uib-accordion>
+
+
+</section>
+
+<br>
+
+
+<section>
+ <div class="container">
+ <div layout="column" layout-align="center center">
+<h1 class="faq">Selling A Car?</h1>
+</div>
+<BR>
+<uib-accordion close-others="oneAtATime">
+ 
+ <uib-accordion-group>
+  <uib-accordion-heading>
+      How much does it cost to use Redrive?
+  </uib-accordion-heading>
+  Carista charges a one time flat fee of $199. That actually means $199, no hidden fees, no add-ons for something extra that we didn’t tell you about.
+ </uib-accordion-group>
+
+ <uib-accordion-group>
+  <uib-accordion-heading>
+      Are there any additional fees?
+  </uib-accordion-heading>
+To reiterate the previous point, there are no additional fees. The one time fee of $199 covers the valuation by a skilled technician, a 150 point inspection conducted by an ASE certified mechanic, a car wash, stunning photo shoot modeling your car, the creation of your seller profile, and the integration of all the wonderful information about your soon to be sold vehicle.
+ </uib-accordion-group>
+
+ <uib-accordion-group>
+  <uib-accordion-heading>
+      Who Inspects my Vehicle?
+  </uib-accordion-heading>
+ One of our ASE certified mechanics. 
+ </uib-accordion-group>
+
+ <uib-accordion-group>
+  <uib-accordion-heading>
+What happens if my vehicle does not pass the inspection?
+  </uib-accordion-heading>
+Sometimes a car doesn’t meet the Redrive standards, don’t take it personally, it wasn’t you, it was us. So, we refund you $90. We also provide the inspection details, and a discount that can be applied if you wish to have the issue corrected by one of our mechanic partners.
+ </uib-accordion-group>
+
+ <uib-accordion-group>
+  <uib-accordion-heading>
+Are there any restrictions once my car has been inspected?
+  </uib-accordion-heading>
+  Yes. For the duration of the listing period you cannot drive more than 2,000 miles. Why do we do this? At Redrive we pride ourselves on reliability, so once an inspection has been completed we need to ensure the car stays in the same condition as it was when it was inspected. Also, additional mileage affects value, since we offer your vehicle at a flat rate, we need to make sure the value remains the same. 
+ </uib-accordion-group>
+
+ <uib-accordion-group>
+  <uib-accordion-heading>
+      Am I responsible for test drives?
+  </uib-accordion-heading>
+Yes. Carista will work with you and the buyer to set up a time for the test drive. 
+ </uib-accordion-group>
+
+ <uib-accordion-group>
+  <uib-accordion-heading>
+     Do I have to leave my couch to sell my car?
+  </uib-accordion-heading>
+No! Go rewatch the season finale of Game of Thrones, you know you love that creepy piano music.
+ </uib-accordion-group>
+
+</uib-accordion>
+
+
+</div>
+</section>  
+
+<section>
+<div class="container">  
+<div layout="column" layout-align="center center">  
+<h1 class="faq">Buying A Car?</h1>
+</div>
+<BR>
+<uib-accordion close-others="oneAtATime">
+ 
+ <uib-accordion-group>
+  <uib-accordion-heading>
+     Is Redrive a Dealership?
+  </uib-accordion-heading>
+    No we are not a dealership, yuck.
+
+ </uib-accordion-group>
+
+ <uib-accordion-group>
+  <uib-accordion-heading>
+     What do I do with my old car?
+  </uib-accordion-heading>
+ If you car meets the Redrive standards, we would be happy to assist you in selling the car. If you have already bought through Redrive we offer a 15% discount on your listing.
+ </uib-accordion-group>
+
+ <uib-accordion-group>
+  <uib-accordion-heading>
+  Can I test drive the car I want to buy?
+  </uib-accordion-heading>
+Absolutely. You can schedule a test drive with the seller once you log-in, or on the seller profile page.
+ </uib-accordion-group>
+
+ <uib-accordion-group>
+  <uib-accordion-heading>
+How do I know the car is reliable?
+  </uib-accordion-heading>
+ Every car on Redrive has passed a 150 point inspection conducted by an ASE certified mechanic. This is a serious inspection and is similar to the inspection performed on certified pre-owned vehicles at many of the nation’s top dealerships
+ </uib-accordion-group>
+
+ <uib-accordion-group>
+  <uib-accordion-heading>
+How do I know I am getting a fair price?
+  </uib-accordion-heading>
+ Redrive uses leading valuation technology to determine the price of your vehicle. We use well known sources such as Kelley’s Blue Book and Edmunds, as well as other factors including local market conditions, and similar cars recently sold. Our vehicles are sold for private party value, saving you the money the dealership tacks on.
+ </uib-accordion-group>
+
+ <uib-accordion-group>
+  <uib-accordion-heading>
+Is the price negotiable?
+  </uib-accordion-heading>
+  Unfortunately, or maybe fortunately it is not. The price listed is the final price. It is the car’s actual value, not a penny more. Your ego doesn’t need to win a negotiation for you wallet to be happy!
+ </uib-accordion-group>
+
+ <uib-accordion-group>
+  <uib-accordion-heading>
+Does Carista Offer Financing?
+  </uib-accordion-heading>
+ Yes. When you apply for financing on Carista we send your loan request to a network of leading automotive lenders who compete to get you the best loan possible.
+ </uib-accordion-group>
+
+</uib-accordion>
+
+
+</div>
+
+<Br>
+<br>
+<br>
+<br>
+</section>  
+
+<section  id="contactfaq">
+
+<div class="container" layout="column" layout-align="center center">
+<h2 class="faq2">We'd Love to Hear From You!</h2>
+<Br>
+<p class="faqp">The Redrive support team is available anytime by email and phone. Talk to you soon!</p>
+<br>
+<div class="iconholda">
+<ul layout="row" layout-align="center center">
+  <li>
+    <div class="cbtn" layout="column" layout-align="center center">
+    <a href="https://www.facebook.com/ReDriveAuto"><i class="fa fa-facebook fa-3x " aria-hidden="true"></i></a>
+    </div>
+  </li>
+  <li>
+    <div class="cbtn" layout="column" layout-align="center center">
+    <a href="https://twitter.com/ReDriveAuto"><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></a>
+    </div>
+  </li>
+  <li>
+    <div class="cbtn" layout="column" layout-align="center center">
+    <a href="https://twitter.com/ReDriveAuto"><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></a>
+    </div>
+  </li>
+<ul> 
+</div> 
+</div>  
+
+</section>  

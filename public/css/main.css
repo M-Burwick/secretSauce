@@ -76,7 +76,49 @@ li.ng-scope.done{
 }
 
 
+.panel-title{
+    color:#007AFF;
+}
 
+.panel-default>.panel-heading {
+    background-color: #fff;
+    border-color: #ddd;
+}
+
+
+.faq{
+    font-family:'Lato', sans-serif;
+    font-weight: 400;
+    color:#aaa;
+}
+
+.faq2{
+    font-family:'Lato', sans-serif;
+    font-weight: 400;
+    color:#007AFF;
+}
+
+.faqp{
+    color:#333;
+}
+
+.cbtn{
+height:100px;
+width:100px;
+margin:15px;
+background-color: #007AFF;
+border-radius: 100%;
+}
+
+
+.iconholda{
+    padding-top:24px;
+}
+#contactfaq{
+    padding-top: 25px;
+    background-color:#ededed;
+    height:400px;
+}
 
 .steps-indicator.steps-7:before {
     margin-top:-5px;
@@ -792,6 +834,13 @@ i{
 .image-container:hover .after {
     display: block;
     background: rgba(0, 0, 0, .6);
+}
+ 
+#faqjumbo {
+    height:400px;
+    background-size: cover;
+    position: relative;
+    z-index: 0;
 }
 
 #homejumbo {

@@ -1,4 +1,4 @@
-var app = angular.module('app', ['ui.router', 'angular-stripe', 'ngMaterial', 'ngMessages', 'ngFileUpload', 'ngTouch', 'mgo-angular-wizard'])
+var app = angular.module('app', ['ui.router', 'ui.bootstrap', 'angular-stripe', 'ngMaterial', 'ngMessages', 'ngFileUpload', 'ngTouch', 'mgo-angular-wizard'])
 
 app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $locationProvider) {
         $urlRouterProvider.otherwise('/home');
@@ -37,7 +37,6 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
         $stateProvider
             .state('faq', {
                 url: '/faq',
-                controller: 'AccordionDemoCtrl',
                 templateUrl: 'templates/faq.html'
             })
 
@@ -116,7 +115,6 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 .config(function(stripeProvider) {
   stripeProvider.setPublishableKey('pk_test_OCo8uPAjPuNPNplSVJRYSUty');
 })
-
 .controller('AccordionDemoCtrl', function ($scope) {
   $scope.oneAtATime = true;
 
@@ -143,7 +141,6 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
     isFirstOpen: true,
     isFirstDisabled: false
   };
-
 })
 
 .controller('BrowseController', function BrowseController($scope, $location, $window, $http, $rootScope) {
@@ -337,8 +334,11 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 .controller('WizardCtrl', function WizardCtrl($scope, stripe,  $http, $window, $rootScope){
     $scope.model = {};
 
-     $scope.fblogin = function() {
+     $scope.fblogin = function($http) {
         $window.location.href = '/login/facebook/';
+        $http.get('sellerIslogged').then(function(response){
+            console.log(response)
+        })
     }
 
     $scope.googleLogin = function() {

@@ -2,10 +2,12 @@ var JwtStrategy = require('passport-jwt').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 // load up the user model
-var User = require('../models/buyer');
- var fbConfig = require('./facebook'); // get db config file
-  var googleConfig = require('./google');
+var User = require('../models/vehicle');
+var fbConfig = require('./facebook'); // get db config file
+var googleConfig = require('./google');
+
 module.exports = function(passport) {
+
   passport.serializeUser(function(user, done) {
        done(null, user.id);
    });
