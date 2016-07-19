@@ -12,15 +12,23 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var config = require('./config/main');
 var fs = require('fs');
+var allowCrossDomain = function(req, res, next) {
+    if ('OPTIONS' == req.method) {
+      res.header('Access-Control-Allow-Origin', 'https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx');
+      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
+      res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+      res.send(200);
+    }
+    else {
+      next();
+    }
+};
 require('./config/passport.js')(passport);
 require('./routes.js')(app, passport);
 
 mongoose.connect(config.database);
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+app.use(allowCrossDomain); 
+ 
 app.get('*',function(req,res,next){
   if(req.headers['x-forwarded-proto']!='https')
     res.redirect('https://www.redrive.co'+req.url)
