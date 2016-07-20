@@ -334,9 +334,9 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 .controller('WizardCtrl', function WizardCtrl($scope, stripe,  $http, $window, $rootScope){
     $scope.model = {};
 
-     $scope.fblogin = function($http) {
+     $scope.fblogin = function() {
         $window.location.href = '/login/facebook/';
-        
+
     }
 
     $scope.googleLogin = function() {
