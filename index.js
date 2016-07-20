@@ -9,7 +9,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var morgan = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var SessionStore = require('session-mongoose')(express);
+var session = require('express-session');
 var config = require('./config/main');
 var fs = require('fs');
 var allowCrossDomain = function(req, res, next) {
@@ -43,15 +43,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(express.static('public'));
 // required for passport
-app.use(
-  express.session({
-    store: new SessionStore({
-    url: 'mongodb://localhost/session',
-    interval: 1200000
-  }),
-  cookie: { maxAge: 1200000 },
-  secret: 'pandapandapandadabdabdabdabdab'
-}))
+app.use(session({
+    secret: 'pandaisdamaninjapans'
+})); // session secret
 app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(passport.initialize());
 app.use(passport.session());
