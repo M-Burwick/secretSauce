@@ -11,6 +11,7 @@
     "bson": "^0.4.23",
     "connect": "^2.30.2",
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^1.2.1",
     "connect-multiparty": "^2.0.0",
     "cookie-parser": "~1.0.0",
     "cors": "^2.7.1",
