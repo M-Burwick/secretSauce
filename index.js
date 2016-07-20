@@ -51,7 +51,7 @@ app.use(
   }),
   cookie: { maxAge: 1200000 },
   secret: 'pandapandapandadabdabdabdabdab'
-})// session secret
+}))
 app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(passport.initialize());
 app.use(passport.session());
