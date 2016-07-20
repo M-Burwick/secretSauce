@@ -336,9 +336,7 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
 
      $scope.fblogin = function($http) {
         $window.location.href = '/login/facebook/';
-        $http.get('sellerIslogged').then(function(response){
-            console.log(response)
-        })
+        
     }
 
     $scope.googleLogin = function() {
