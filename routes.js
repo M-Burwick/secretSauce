@@ -60,7 +60,6 @@ module.exports = function(app, passport) {
             successRedirect: 'http://www.redrive.co/#/signupVehicle',
             failureRedirect: '/'
         })
-
     );
 
     app.post('https://qaaffiliates.lendingtree.com/v1/QFPostAuto.aspx',function(req, res, next){
