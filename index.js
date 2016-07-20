@@ -45,7 +45,9 @@ app.use(express.static('public'));
 // required for passport
 app.use(session({
     secret: 'pandaisdamaninjapans',
-    store: new MongoStore({ mongooseConnection: mongoose.connection})
+    store: new MongoStore({ mongooseConnection: mongoose.connection,
+                            ttl: 2 * 24 * 60 * 60
+    })
 })); // session secret
 app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(passport.initialize());
