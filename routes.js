@@ -57,7 +57,7 @@ module.exports = function(app, passport) {
 
     app.get('/login/facebook/callback',
         passport.authenticate('facebook', {
-            successRedirect: 'http://www.redrive.co/#/signupVehicle',
+            successRedirect: 'https://www.redrive.co/#/signupVehicle',
             failureRedirect: '/'
         })
     );
