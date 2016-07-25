@@ -344,6 +344,9 @@ app.config(function($stateProvider, $httpProvider, $urlRouterProvider, $location
     }
 
   
+  $http.get('/sellerIsLogged').then(function(response){
+        $scope.loggedUser = response.data;
+  })
 
     $scope.inputVin = function(vin){
         $http.get("https://api.edmunds.com/api/vehicle/v2/vins/" + vin.vin + "?&fmt=json&api_key=yuwtpfvpq5aja2bpxpyj8frg").then(function(response){

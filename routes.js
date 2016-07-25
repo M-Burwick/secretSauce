@@ -39,7 +39,6 @@ module.exports = function(app, passport) {
     }
 
 
-
     app.get('/auth/google', passport.authenticate('google', {
         scope: ['email']
     }));
@@ -539,7 +538,7 @@ module.exports = function(app, passport) {
 
     
 
-    app.get('/sellerIslogged', function(req, res){
+    app.get('/sellerIsLogged', function(req, res){
         var token = req.user;
         if (token) {
             Vehicle.findOne({
