@@ -29,12 +29,12 @@ require('./config/passport.js')(passport);
 mongoose.connect(config.database);
 app.use(allowCrossDomain); 
  
-// app.get('*',function(req,res,next){
-//   if(req.headers['x-forwarded-proto']!='https')
-//     res.redirect('https://www.redrive.co'+req.url)
-//   else
-//     next() /* Continue to other routes if we're not redirecting */
-// })
+app.get('*',function(req,res,next){
+  if(req.headers['x-forwarded-proto']!='https')
+    res.redirect('https://www.redrive.co'+req.url)
+  else
+    next() /* Continue to other routes if we're not redirecting */
+})
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
 app.use(bodyParser.json()); // get information from html forms
@@ -63,7 +63,7 @@ require('./routes.js')(app, passport);
 
  // load our routes and pass in our app and fully configured passport
 // launch ======================================================================
-server = app.listen(process.env.PORT || 1738, process.env.IP || "0.0.0.0", function() {
+  var server = app.listen(process.env.PORT || 1738, process.env.IP || "0.0.0.0", function() {
   var addr = server.address();
   console.log("Server listening at", addr.address + ":" + addr.port);
 });
