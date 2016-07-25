@@ -13,7 +13,7 @@ var Buyer = require('./models/buyer'),
     needle = require('needle'),
     random = require("random-js")(),
     nodemailer = require('nodemailer'),
-    smtpTransport = require('nodemailer-smtp-transport')
+    smtpTransport = require('nodemailer-smtp-transport'),
     transporter = nodemailer.createTransport(smtpTransport({
     host: 'smtp.gmail.com',
     port: 465,
